@@ -1,0 +1,28 @@
+---
+import SchemaOrg from '@components/aeo/SchemaOrg.astro';
+import { breadcrumbSchema } from '@lib/schema';
+
+interface Props {
+  items: { name: string; href: string }[];
+}
+
+const { items } = Astro.props;
+const allItems = [{ name: '홈', href: '/' }, ...items];
+---
+
+<nav aria-label="breadcrumb" class="mb-6">
+  <ol class="flex flex-wrap items-center gap-1 text-sm text-text-muted">
+    {allItems.map((item, i) => (
+      <li class="flex items-center gap-1">
+        {i > 0 && <span class="mx-1">/</span>}
+        {i === allItems.length - 1 ? (
+          <span class="font-medium text-primary">{item.name}</span>
+        ) : (
+          <a href={item.href} class="hover:text-primary">{item.name}</a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<SchemaOrg schema={breadcrumbSchema(allItems)} />

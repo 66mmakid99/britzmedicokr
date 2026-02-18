@@ -1,0 +1,12 @@
+# 기존 britzmedi.co.kr URL → 새 URL 301 리다이렉트
+/company/intro    /about            301
+/company/ceo      /ceo              301
+/company/way      /way              301
+/company/tech     /rnd              301
+/company/contact  /contact          301
+/medical/torr     /products/torr-rf 301
+/medical/ulblanc  /products/ulblanc 301
+/cosmetic/newchae /products/newchae 301
+/community/news   /news             301
+/cs/partnership   /support/partnership 301
+/cs/inquery       /support/inquiry  301

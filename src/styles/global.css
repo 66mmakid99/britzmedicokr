@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+/* ===== 커스텀 테마 ===== */
+@theme {
+  --color-primary: #1A1A2E;
+  --color-secondary: #2D4A7A;
+  --color-accent: #C4A265;
+  --color-surface: #F8F9FA;
+  --color-text: #333333;
+  --color-text-muted: #666666;
+  --color-success: #28A745;
+  --color-error: #DC3545;
+  --color-tldr-bg: #EBF5FF;
+  --color-tldr-border: #3B82F6;
+}
+
+/* ===== Pretendard 폰트 ===== */
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Pretendard-Regular.subset.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/Pretendard-SemiBold.subset.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Pretendard-Bold.subset.woff2') format('woff2');
+}
+
+/* ===== 기본 스타일 ===== */
+html {
+  font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--color-text);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}

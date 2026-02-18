@@ -1,0 +1,99 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SchemaOrg from '@components/aeo/SchemaOrg.astro';
+import CTASection from '@components/common/CTASection.astro';
+import UpdateDate from '@components/common/UpdateDate.astro';
+import { organizationSchema } from '@lib/schema';
+---
+
+<BaseLayout>
+  <SchemaOrg schema={organizationSchema()} slot="head" />
+
+  <!-- Hero 섹션 -->
+  <section class="bg-primary px-4 py-20 text-white md:py-28">
+    <div class="mx-auto max-w-[1280px] text-center">
+      <h1 class="mb-6 text-3xl font-bold leading-tight md:text-5xl">
+        브리츠메디 — 한국의 RF 피부 미용 의료기기 전문 제조사
+      </h1>
+      <p class="mx-auto mb-10 max-w-2xl text-lg text-gray-300">
+        브리츠메디(BRITZMEDI)는 토로이달 코일 기반 Multi-wave RF 기술로 피부 미용 의료기기를 개발·제조하는 한국 기업입니다.
+      </p>
+      <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/contact" class="rounded-lg bg-accent px-8 py-3 text-lg font-semibold text-primary hover:bg-accent/90">
+          상담 신청
+        </a>
+        <a href="/products" class="rounded-lg border border-white/30 px-8 py-3 text-lg font-semibold hover:bg-white/10">
+          제품 보기
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 제품 쇼케이스 -->
+  <section class="px-4 py-16 md:py-20">
+    <div class="mx-auto max-w-[1280px]">
+      <h2 class="mb-10 text-center text-2xl font-bold text-primary md:text-3xl">제품 라인업</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { name: 'TORR RF', desc: 'Multi-wave RF 피부 미용 의료기기', href: '/products/torr-rf' },
+          { name: 'ULBLANC', desc: '프리미엄 RF 스킨케어 디바이스', href: '/products/ulblanc' },
+          { name: 'NEWCHAE', desc: '차세대 RF 피부 관리 솔루션', href: '/products/newchae' },
+          { name: 'LUMINO WAVE', desc: 'LED + RF 복합 디바이스', href: '/products/lumino-wave' },
+        ].map((product) => (
+          <a href={product.href} class="group rounded-xl border border-gray-200 p-6 text-center hover:border-secondary hover:shadow-lg">
+            <div class="mb-4 flex h-40 items-center justify-center rounded-lg bg-surface">
+              <span class="text-lg font-bold text-primary">{product.name}</span>
+            </div>
+            <h3 class="mb-2 text-lg font-bold text-primary group-hover:text-secondary">{product.name}</h3>
+            <p class="text-sm text-text-muted">{product.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 왜 브리츠메디인가 -->
+  <section class="bg-surface px-4 py-16 md:py-20">
+    <div class="mx-auto max-w-[1280px]">
+      <h2 class="mb-10 text-center text-2xl font-bold text-primary md:text-3xl">왜 브리츠메디인가</h2>
+      <div class="grid gap-8 md:grid-cols-3">
+        {[
+          { title: '독자적 토로이달 RF 기술', desc: '기존 모노폴라/바이폴라 방식 대비 균일한 에너지 전달과 깊은 침투 깊이를 구현하는 특허 기술입니다.' },
+          { title: '글로벌 인증 완비', desc: 'FDA 510(k), CE Mark, ISO 13485 등 주요 글로벌 의료기기 인증을 획득하여 품질과 안전성을 보증합니다.' },
+          { title: '40개국+ 글로벌 네트워크', desc: '전 세계 40개국 이상의 파트너 네트워크를 통해 글로벌 시장에서 입증된 브랜드입니다.' },
+        ].map((item) => (
+          <div class="rounded-xl bg-white p-8 shadow-sm">
+            <h3 class="mb-3 text-lg font-bold text-primary">{item.title}</h3>
+            <p class="text-sm leading-relaxed text-text-muted">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 숫자로 보는 브리츠메디 -->
+  <section class="px-4 py-16 md:py-20">
+    <div class="mx-auto max-w-[1280px]">
+      <h2 class="mb-10 text-center text-2xl font-bold text-primary md:text-3xl">숫자로 보는 브리츠메디</h2>
+      <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+        {[
+          { number: '3+', label: '글로벌 인증 (FDA/CE/ISO)' },
+          { number: '10+', label: '특허 보유' },
+          { number: '40+', label: '파트너 국가' },
+          { number: '100K+', label: '누적 시술' },
+        ].map((stat) => (
+          <div class="text-center">
+            <p class="text-4xl font-bold text-accent md:text-5xl">{stat.number}</p>
+            <p class="mt-2 text-sm text-text-muted">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="mx-auto max-w-[1280px] px-4 md:px-8">
+    <CTASection />
+    <UpdateDate />
+  </div>
+</BaseLayout>

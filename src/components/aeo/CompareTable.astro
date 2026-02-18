@@ -1,0 +1,43 @@
+---
+interface Props {
+  headers: string[];
+  rows: { label: string; values: string[] }[];
+  highlight?: number;
+}
+
+const { headers, rows, highlight } = Astro.props;
+---
+
+<div class="my-8 overflow-x-auto">
+  <table class="w-full min-w-[600px] border-collapse text-sm">
+    <thead>
+      <tr>
+        <th class="border-b-2 border-primary bg-surface px-4 py-3 text-left font-semibold text-primary"></th>
+        {headers.map((h, i) => (
+          <th class:list={[
+            'border-b-2 border-primary px-4 py-3 text-center font-semibold',
+            i === highlight ? 'bg-accent/10 text-accent' : 'bg-surface text-primary',
+          ]}>
+            {i === highlight && <span class="mb-1 block text-xs font-bold text-accent">추천</span>}
+            {h}
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row, ri) => (
+        <tr class={ri % 2 === 0 ? 'bg-white' : 'bg-surface/50'}>
+          <td class="border-b border-gray-100 px-4 py-3 font-medium text-primary">{row.label}</td>
+          {row.values.map((v, vi) => (
+            <td class:list={[
+              'border-b border-gray-100 px-4 py-3 text-center',
+              vi === highlight ? 'bg-accent/5 font-semibold' : '',
+            ]}>
+              {v}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

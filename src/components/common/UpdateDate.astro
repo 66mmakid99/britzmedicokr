@@ -1,0 +1,13 @@
+---
+import { formatDateKo } from '@lib/utils';
+
+interface Props {
+  date?: Date | string;
+}
+
+const { date = new Date() } = Astro.props;
+---
+
+<p class="my-4 text-sm text-text-muted">
+  최종 업데이트: {formatDateKo(date)}
+</p>

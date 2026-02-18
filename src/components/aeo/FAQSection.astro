@@ -1,0 +1,32 @@
+---
+import SchemaOrg from './SchemaOrg.astro';
+import { faqSchema } from '@lib/schema';
+
+interface Props {
+  items: { question: string; answer: string }[];
+  schemaEnabled?: boolean;
+}
+
+const { items, schemaEnabled = true } = Astro.props;
+---
+
+<section class="my-12">
+  <h2 class="mb-6 text-2xl font-bold text-primary">자주 묻는 질문</h2>
+  <div class="space-y-3">
+    {items.map((item, i) => (
+      <details class="group rounded-lg border border-gray-200 bg-white" open={i === 0}>
+        <summary class="flex cursor-pointer items-center justify-between px-6 py-4 font-semibold text-primary hover:bg-surface">
+          <span>{item.question}</span>
+          <svg class="h-5 w-5 shrink-0 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="border-t border-gray-100 px-6 py-4 text-text-muted leading-relaxed">
+          {item.answer}
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
+
+{schemaEnabled && <SchemaOrg schema={faqSchema(items)} />}

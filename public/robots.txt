@@ -1,0 +1,25 @@
+# 검색엔진 봇
+User-agent: Googlebot
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+# AI 봇 — 반드시 허용!
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# 기본
+User-agent: *
+Allow: /
+
+Sitemap: https://www.britzmedi.co.kr/sitemap-index.xml

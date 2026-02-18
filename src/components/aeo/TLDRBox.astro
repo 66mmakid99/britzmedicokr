@@ -1,0 +1,13 @@
+---
+interface Props {
+  content: string;
+  title?: string;
+}
+
+const { content, title = '한눈에 보기' } = Astro.props;
+---
+
+<aside class="my-8 rounded-lg border-l-4 border-tldr-border bg-tldr-bg p-6">
+  <p class="mb-2 text-sm font-bold uppercase tracking-wide text-secondary">{title}</p>
+  <p class="text-lg leading-relaxed text-text">{content}</p>
+</aside>
