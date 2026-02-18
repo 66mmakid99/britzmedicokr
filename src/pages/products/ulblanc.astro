@@ -4,7 +4,6 @@ import SchemaOrg from '@components/aeo/SchemaOrg.astro';
 import TLDRBox from '@components/aeo/TLDRBox.astro';
 import FAQSection from '@components/aeo/FAQSection.astro';
 import SpecTable from '@components/aeo/SpecTable.astro';
-import Breadcrumb from '@components/common/Breadcrumb.astro';
 import CTASection from '@components/common/CTASection.astro';
 import UpdateDate from '@components/common/UpdateDate.astro';
 import RelatedContent from '@components/common/RelatedContent.astro';
@@ -23,28 +22,39 @@ const deviceSchema = medicalDeviceSchema({
 <BaseLayout>
   <SchemaOrg schema={[deviceSchema, faqSchema(product.faqs)]} slot="head" />
 
-  <div class="mx-auto max-w-[1280px] px-4 py-12 md:px-8">
-    <Breadcrumb items={[
-      { name: '제품 라인업', href: '/products' },
-      { name: product.name, href: `/products/${product.slug}` },
-    ]} />
+  <!-- Product Hero -->
+  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid items-center gap-8 md:grid-cols-2">
+        <div>
+          <p class="mb-2 text-sm font-medium uppercase tracking-wider text-blue-400">{product.nameKo}</p>
+          <h1 class="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+            {product.name}
+          </h1>
+          <p class="mb-6 text-lg text-slate-300">{product.tagline}</p>
+          <p class="mb-8 text-slate-400">{product.firstSentence}</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/contact" class="rounded-xl bg-blue-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-blue-700 hover:shadow-lg">상담 신청</a>
+            <a href="/products" class="rounded-xl border-2 border-white/20 px-8 py-4 font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5">제품 비교</a>
+          </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <div class="flex h-64 w-full items-center justify-center rounded-3xl bg-white/10 backdrop-blur-sm md:h-80">
+            <span class="text-7xl font-bold text-white/20">{product.name.charAt(0)}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- 1. H1 + 첫 문장 -->
-    <h1 class="mb-6 text-3xl font-bold text-primary md:text-4xl">
-      {product.nameKo} ({product.name}) — {product.tagline}
-    </h1>
-
-    <p class="mb-8 text-lg text-text-muted">
-      {product.firstSentence}
-    </p>
-
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
     <!-- 2. TL;DR -->
     <TLDRBox content={product.tldr} />
 
     <!-- 3. 핵심 기술 -->
-    <section class="my-12">
-      <h2 class="mb-6 text-2xl font-bold text-primary">{product.techTitle}</h2>
-      <div class="space-y-4 text-text-muted">
+    <section class="my-16">
+      <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">{product.techTitle}</h2>
+      <div class="space-y-4 text-slate-600">
         {product.techDescription.map((text) => (
           <p>{text}</p>
         ))}
@@ -52,38 +62,38 @@ const deviceSchema = medicalDeviceSchema({
     </section>
 
     <!-- 4. 제품 사양 -->
-    <section class="my-12">
-      <h2 class="mb-6 text-2xl font-bold text-primary">제품 사양</h2>
+    <section class="my-16">
+      <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">제품 사양</h2>
       <SpecTable specs={product.specs} />
     </section>
 
-    <!-- 5. 인증 배지 -->
-    <section class="my-12">
-      <h2 class="mb-6 text-2xl font-bold text-primary">인증 현황</h2>
+    <!-- 5. 인증 배지 - GOLD THEME -->
+    <section class="my-16">
+      <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">인증 현황</h2>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {product.certifications.map((cert) => (
-          <div class="rounded-lg border border-gray-200 p-5 text-center">
-            <div class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-success/10">
-              <svg class="h-6 w-6 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-5 text-center">
+            <div class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-amber-100">
+              <svg class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <p class="font-semibold text-primary">{cert.name}</p>
-            <p class="mt-1 text-xs text-text-muted">{cert.number}</p>
-            <p class="mt-1 text-xs text-text-muted">{cert.date}</p>
+            <p class="font-semibold text-slate-900">{cert.name}</p>
+            <p class="mt-1 text-xs text-slate-500">{cert.number}</p>
+            <p class="mt-1 text-xs text-slate-500">{cert.date}</p>
           </div>
         ))}
       </div>
     </section>
 
     <!-- 6. 적용 분야 -->
-    <section class="my-12">
-      <h2 class="mb-6 text-2xl font-bold text-primary">적용 분야</h2>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <section class="my-16">
+      <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">적용 분야</h2>
+      <div class="grid gap-6 sm:grid-cols-2">
         {product.applications.map((app) => (
-          <div class="rounded-lg border border-gray-200 p-6">
-            <h3 class="mb-2 text-lg font-semibold text-primary">{app.title}</h3>
-            <p class="text-sm text-text-muted">{app.desc}</p>
+          <div class="rounded-2xl border border-slate-200 p-6 transition-all duration-300 hover:shadow-md">
+            <h3 class="mb-2 text-lg font-semibold text-slate-900">{app.title}</h3>
+            <p class="text-sm text-slate-600">{app.desc}</p>
           </div>
         ))}
       </div>

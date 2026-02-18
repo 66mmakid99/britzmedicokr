@@ -4,7 +4,7 @@ import SchemaOrg from '@components/aeo/SchemaOrg.astro';
 import TLDRBox from '@components/aeo/TLDRBox.astro';
 import FAQSection from '@components/aeo/FAQSection.astro';
 import CompareTable from '@components/aeo/CompareTable.astro';
-import Breadcrumb from '@components/common/Breadcrumb.astro';
+import PageHero from '@components/common/PageHero.astro';
 import CTASection from '@components/common/CTASection.astro';
 import UpdateDate from '@components/common/UpdateDate.astro';
 import RelatedContent from '@components/common/RelatedContent.astro';
@@ -28,46 +28,45 @@ const rndSchema = {
 <BaseLayout>
   <SchemaOrg schema={rndSchema} slot="head" />
 
-  <div class="mx-auto max-w-[1280px] px-4 py-12 md:px-8">
-    <Breadcrumb items={[
+  <PageHero
+    title="브리츠메디 R&D — 토로이달 RF 기술의 혁신"
+    breadcrumb={[
       { name: '회사소개', href: '/about' },
       { name: 'R&D / 기술력', href: '/rnd' },
-    ]} />
+    ]}
+  />
 
-    <h1 class="mb-6 text-3xl font-bold text-primary md:text-4xl">
-      브리츠메디 R&D — 토로이달 RF 기술의 혁신
-    </h1>
-
-    <p class="mb-8 text-lg text-text-muted">
+  <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <p class="mb-8 text-lg text-slate-600">
       브리츠메디 R&D센터는 토로이달 코일 기반의 Multi-wave RF 기술을 연구·개발하며, 기존 모노폴라/바이폴라 방식 대비 균일한 에너지 전달을 구현합니다.
     </p>
 
     <TLDRBox content="브리츠메디의 핵심 기술은 토로이달 코일 기반 Multi-wave RF입니다. 기존 모노폴라(단극) 방식은 에너지가 한 점에 집중되고, 바이폴라(양극) 방식은 얕은 깊이에 한정됩니다. 토로이달 코일은 360도 균일한 전자기장을 형성하여 넓은 면적에 고른 에너지를 깊이 전달합니다." />
 
     <!-- 핵심 기술 설명 -->
-    <section class="my-12">
-      <h2 class="mb-6 text-2xl font-bold text-primary">핵심 기술: 토로이달 코일 RF</h2>
+    <section class="my-16">
+      <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">핵심 기술: 토로이달 코일 RF</h2>
       <div class="grid gap-8 md:grid-cols-2">
-        <div class="space-y-4 text-text-muted">
-          <h3 class="text-lg font-semibold text-primary">토로이달 코일이란?</h3>
+        <div class="space-y-4 text-slate-600">
+          <h3 class="text-lg font-semibold text-slate-900">토로이달 코일이란?</h3>
           <p>
             토로이달(Toroidal) 코일은 도넛 형태의 코어에 코일을 감은 구조입니다. 이 구조는 전자기장이 코일 내부에 균일하게 형성되어 외부 누설이 최소화되고, 에너지 효율이 극대화됩니다.
           </p>
-          <h3 class="text-lg font-semibold text-primary">의료기기에 적용하면?</h3>
+          <h3 class="text-lg font-semibold text-slate-900">의료기기에 적용하면?</h3>
           <p>
             브리츠메디는 이 원리를 RF 의료기기에 최초로 적용했습니다. 토로이달 코일 핸드피스를 통해 피부 조직에 360도 방향으로 균일한 RF 에너지를 전달하며, 이를 통해 시술 부위 전체에 고른 열 효과를 만들어냅니다.
           </p>
-          <h3 class="text-lg font-semibold text-primary">Multi-wave RF란?</h3>
+          <h3 class="text-lg font-semibold text-slate-900">Multi-wave RF란?</h3>
           <p>
             단일 주파수가 아닌 복합 주파수를 사용하여 피부의 다양한 깊이(표피, 진피, 피하지방)에 동시에 에너지를 전달하는 기술입니다. 이를 통해 피부 리프팅, 탄력 개선, 콜라겐 리모델링 등 복합적인 효과를 구현합니다.
           </p>
         </div>
-        <div class="flex items-center justify-center rounded-xl bg-surface p-8">
+        <div class="flex items-center justify-center rounded-2xl bg-slate-50 p-8">
           <div class="text-center">
-            <div class="mb-4 text-6xl text-secondary">⚡</div>
-            <p class="text-lg font-bold text-primary">Toroidal Coil</p>
-            <p class="text-sm text-text-muted">360° 균일 에너지 전달</p>
-            <div class="mt-6 space-y-2 text-sm text-text-muted">
+            <div class="mb-4 text-6xl text-blue-700">⚡</div>
+            <p class="text-lg font-bold text-slate-900">Toroidal Coil</p>
+            <p class="text-sm text-slate-500">360° 균일 에너지 전달</p>
+            <div class="mt-6 space-y-2 text-sm text-slate-500">
               <p>표피 → 탄력 개선</p>
               <p>진피 → 콜라겐 리모델링</p>
               <p>피하 → 리프팅 효과</p>
@@ -78,8 +77,8 @@ const rndSchema = {
     </section>
 
     <!-- 비교 테이블 (AEO 핵심) -->
-    <section class="my-12">
-      <h2 class="mb-6 text-2xl font-bold text-primary">RF 방식 비교: 토로이달 vs 모노폴라 vs 바이폴라</h2>
+    <section class="my-16">
+      <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">RF 방식 비교: 토로이달 vs 모노폴라 vs 바이폴라</h2>
       <CompareTable
         headers={['모노폴라 RF', '바이폴라 RF', '토로이달 RF (BRITZMEDI)']}
         rows={[
@@ -96,9 +95,9 @@ const rndSchema = {
     </section>
 
     <!-- 특허 목록 -->
-    <section class="my-12">
-      <h2 class="mb-6 text-2xl font-bold text-primary">특허 현황</h2>
-      <p class="mb-6 text-text-muted">
+    <section class="my-16">
+      <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">특허 현황</h2>
+      <p class="mb-6 text-slate-600">
         브리츠메디는 토로이달 코일 RF 기술 관련 다수의 특허를 보유하고 있으며, 지속적으로 신규 특허를 출원하고 있습니다.
       </p>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -110,31 +109,31 @@ const rndSchema = {
           { title: 'RF 에너지 분포 최적화 알고리즘', status: '출원' },
           { title: '차세대 복합 주파수 RF 발생 장치', status: '출원' },
         ].map((patent) => (
-          <div class="rounded-lg border border-gray-200 p-4">
+          <div class="rounded-2xl border border-slate-200 p-4">
             <div class="mb-2 flex items-center gap-2">
-              <span class={`rounded-full px-2 py-0.5 text-xs font-medium ${patent.status === '등록' ? 'bg-success/10 text-success' : 'bg-accent/10 text-accent'}`}>
+              <span class={`rounded-full px-2 py-0.5 text-xs font-medium ${patent.status === '등록' ? 'bg-emerald-50 text-emerald-600' : 'bg-blue-50 text-blue-600'}`}>
                 {patent.status}
               </span>
             </div>
-            <p class="text-sm font-medium text-primary">{patent.title}</p>
+            <p class="text-sm font-medium text-slate-900">{patent.title}</p>
           </div>
         ))}
       </div>
     </section>
 
     <!-- 임상 데이터 -->
-    <section class="my-12">
-      <h2 class="mb-6 text-2xl font-bold text-primary">임상 데이터 요약</h2>
+    <section class="my-16">
+      <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">임상 데이터 요약</h2>
       <div class="grid gap-6 md:grid-cols-3">
         {[
           { number: '92%', label: '시술 만족도', desc: '임상 시험 참여자 중 92%가 시술 결과에 만족' },
           { number: '85%', label: '피부 탄력 개선', desc: '시술 3개월 후 피부 탄력도 측정 기준' },
           { number: '0건', label: '심각한 부작용', desc: '임상 시험 기간 중 심각한 부작용 보고 0건' },
         ].map((data) => (
-          <div class="rounded-xl bg-surface p-6 text-center">
-            <p class="text-4xl font-bold text-accent">{data.number}</p>
-            <p class="mt-2 font-semibold text-primary">{data.label}</p>
-            <p class="mt-1 text-sm text-text-muted">{data.desc}</p>
+          <div class="rounded-2xl bg-slate-50 p-6 text-center">
+            <p class="text-4xl font-bold text-blue-600">{data.number}</p>
+            <p class="mt-2 font-semibold text-slate-900">{data.label}</p>
+            <p class="mt-1 text-sm text-slate-500">{data.desc}</p>
           </div>
         ))}
       </div>

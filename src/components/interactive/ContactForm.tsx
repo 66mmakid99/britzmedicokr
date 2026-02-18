@@ -88,8 +88,8 @@ export default function ContactForm() {
   }
 
   const inputClass =
-    "w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-[#333] outline-none transition-colors focus:border-[#2D4A7A] focus:ring-2 focus:ring-[#2D4A7A]/20";
-  const labelClass = "mb-1.5 block text-sm font-semibold text-[#1A1A2E]";
+    "w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20";
+  const labelClass = "mb-1.5 block text-sm font-semibold text-slate-700";
 
   return (
     <div className="relative">
@@ -97,7 +97,7 @@ export default function ContactForm() {
       {toast && (
         <div
           className={`fixed top-6 right-6 z-50 flex items-center gap-3 rounded-lg px-5 py-3 text-sm font-medium text-white shadow-lg transition-all ${
-            toast.type === "success" ? "bg-[#28A745]" : "bg-[#DC3545]"
+            toast.type === "success" ? "bg-emerald-500" : "bg-red-500"
           }`}
         >
           <span>{toast.type === "success" ? "\u2713" : "\u2717"}</span>
@@ -110,7 +110,7 @@ export default function ContactForm() {
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label htmlFor="company" className={labelClass}>
-              회사명 <span className="text-[#DC3545]">*</span>
+              회사명 <span className="text-red-500">*</span>
             </label>
             <input
               id="company"
@@ -125,7 +125,7 @@ export default function ContactForm() {
           </div>
           <div>
             <label htmlFor="name" className={labelClass}>
-              이름 <span className="text-[#DC3545]">*</span>
+              이름 <span className="text-red-500">*</span>
             </label>
             <input
               id="name"
@@ -158,7 +158,7 @@ export default function ContactForm() {
           </div>
           <div>
             <label htmlFor="email" className={labelClass}>
-              이메일 <span className="text-[#DC3545]">*</span>
+              이메일 <span className="text-red-500">*</span>
             </label>
             <input
               id="email"
@@ -177,7 +177,7 @@ export default function ContactForm() {
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label htmlFor="phone" className={labelClass}>
-              연락처 <span className="text-[#DC3545]">*</span>
+              연락처 <span className="text-red-500">*</span>
             </label>
             <input
               id="phone"
@@ -230,7 +230,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-lg bg-[#1A1A2E] px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#2D4A7A] disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+          className="w-full rounded-xl bg-blue-700 px-8 py-4 text-sm font-semibold text-white transition-colors hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
         >
           {isSubmitting ? "전송 중..." : "문의하기"}
         </button>

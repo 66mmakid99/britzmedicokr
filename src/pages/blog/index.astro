@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import Breadcrumb from '@components/common/Breadcrumb.astro';
+import PageHero from '@components/common/PageHero.astro';
 import UpdateDate from '@components/common/UpdateDate.astro';
 import { getAllPosts } from '@data/blog';
 import { formatDateKo } from '@lib/utils';
@@ -16,10 +16,10 @@ const categories = [
 ];
 
 const categoryColors: Record<string, string> = {
-  'rf-guide': 'bg-blue-100 text-blue-800',
-  treatment: 'bg-green-100 text-green-800',
-  clinical: 'bg-purple-100 text-purple-800',
-  news: 'bg-orange-100 text-orange-800',
+  'rf-guide': 'bg-blue-100 text-blue-700',
+  treatment: 'bg-emerald-100 text-emerald-700',
+  clinical: 'bg-purple-100 text-purple-700',
+  news: 'bg-orange-100 text-orange-700',
 };
 ---
 
@@ -27,14 +27,13 @@ const categoryColors: Record<string, string> = {
   title="브리츠메디 블로그 — RF 기술과 피부 미용의 모든 것"
   description="RF 리프팅 기술 가이드, 피부 미용 시술 비교, 임상 데이터, 브리츠메디 최신 소식을 확인하세요."
 >
-  <div class="mx-auto max-w-[1280px] px-4 py-12 md:px-8">
-    <Breadcrumb items={[{ name: '블로그', href: '/blog' }]} />
+  <PageHero
+    title="브리츠메디 블로그 — RF 기술과 피부 미용의 모든 것"
+    breadcrumb={[{ name: '블로그', href: '/blog' }]}
+  />
 
-    <h1 class="mb-6 text-3xl font-bold text-primary md:text-4xl">
-      브리츠메디 블로그 — RF 기술과 피부 미용의 모든 것
-    </h1>
-
-    <p class="mb-8 text-lg text-text-muted">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <p class="mb-8 text-lg text-slate-600">
       토로이달 RF 기술, 피부 리프팅 시술 비교, 임상 결과, 브리츠메디 최신 뉴스까지. 전문 콘텐츠를 통해 의료기기와 피부 미용의 모든 것을 알아보세요.
     </p>
 
@@ -46,8 +45,8 @@ const categoryColors: Record<string, string> = {
           class:list={[
             'rounded-full px-4 py-2 text-sm font-medium transition-colors',
             cat.key === 'all'
-              ? 'bg-primary text-white'
-              : 'bg-surface text-text-muted hover:bg-gray-200',
+              ? 'bg-slate-900 text-white'
+              : 'bg-slate-100 text-slate-600 hover:bg-slate-200',
           ]}
         >
           {cat.label}
@@ -60,34 +59,39 @@ const categoryColors: Record<string, string> = {
       {posts.map((post) => (
         <a
           href={`/blog/${post.slug}`}
-          class="group flex flex-col rounded-xl border border-gray-200 bg-white p-6 hover:border-secondary hover:shadow-lg transition-shadow"
+          class="group flex flex-col rounded-2xl border border-slate-100 bg-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
         >
-          <div class="mb-3 flex items-center gap-2">
-            <span
-              class:list={[
-                'inline-block rounded-full px-3 py-1 text-xs font-semibold',
-                categoryColors[post.category] ?? 'bg-gray-100 text-gray-800',
-              ]}
-            >
-              {post.categoryLabel}
-            </span>
-            <span class="text-xs text-text-muted">{formatDateKo(post.publishedAt)}</span>
+          <div class="flex h-48 items-center justify-center rounded-t-2xl bg-slate-100">
+            <span class="text-4xl text-slate-300">📝</span>
           </div>
+          <div class="flex flex-1 flex-col p-6">
+            <div class="mb-3 flex items-center gap-2">
+              <span
+                class:list={[
+                  'inline-block rounded-full px-3 py-1 text-xs font-semibold',
+                  categoryColors[post.category] ?? 'bg-slate-100 text-slate-700',
+                ]}
+              >
+                {post.categoryLabel}
+              </span>
+              <span class="text-xs text-slate-500">{formatDateKo(post.publishedAt)}</span>
+            </div>
 
-          <h2 class="mb-3 text-lg font-bold text-primary group-hover:text-secondary leading-snug">
-            {post.title}
-          </h2>
+            <h2 class="mb-3 text-lg font-bold text-slate-900 group-hover:text-blue-700 leading-snug">
+              {post.title}
+            </h2>
 
-          <p class="mb-4 line-clamp-3 flex-1 text-sm text-text-muted leading-relaxed">
-            {post.excerpt}
-          </p>
+            <p class="mb-4 line-clamp-3 flex-1 text-sm text-slate-600 leading-relaxed">
+              {post.excerpt}
+            </p>
 
-          <span class="mt-auto inline-flex items-center text-sm font-semibold text-secondary">
-            자세히 보기
-            <svg class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </span>
+            <span class="mt-auto inline-flex items-center text-sm font-semibold text-blue-600">
+              자세히 보기
+              <svg class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </div>
         </a>
       ))}
     </div>

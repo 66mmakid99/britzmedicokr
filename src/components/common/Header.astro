@@ -4,11 +4,13 @@ import { mainNav } from '@data/navigation';
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur-sm">
-  <div class="mx-auto flex max-w-[1280px] items-center justify-between px-4 py-4 md:px-8">
+<header class="sticky top-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur-lg">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
     <!-- 로고 -->
-    <a href="/" class="flex items-center gap-2">
-      <span class="text-xl font-bold tracking-tight text-primary">BRITZMEDI</span>
+    <a href="/" class="flex items-center gap-3">
+      <span class="text-xl font-bold tracking-widest text-slate-900">BRITZMEDI</span>
+      <span class="hidden h-5 w-px bg-slate-200 sm:block"></span>
+      <span class="hidden text-xs uppercase tracking-wider text-slate-400 sm:block">RF Medical Device</span>
     </a>
 
     <!-- 데스크톱 네비게이션 -->
@@ -16,19 +18,19 @@ const currentPath = Astro.url.pathname;
       {mainNav.map((item) =>
         'children' in item ? (
           <div class="group relative">
-            <button class="flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium text-text hover:bg-surface hover:text-primary">
+            <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:text-blue-700">
               {item.label}
               <svg class="h-4 w-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div class="invisible absolute left-0 top-full z-50 min-w-[180px] rounded-lg border border-gray-100 bg-white py-2 shadow-lg opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+            <div class="invisible absolute left-0 top-full z-50 min-w-[200px] rounded-xl border border-slate-100 bg-white py-3 shadow-xl opacity-0 transition-all group-hover:visible group-hover:opacity-100">
               {item.children.map((child) => (
                 <a
                   href={child.href}
                   class:list={[
-                    'block px-4 py-2 text-sm hover:bg-surface hover:text-primary',
-                    currentPath === child.href ? 'font-semibold text-primary' : 'text-text-muted',
+                    'block px-5 py-2.5 text-sm transition-colors hover:bg-slate-50 hover:text-blue-700',
+                    currentPath === child.href ? 'font-semibold text-blue-700' : 'text-slate-600',
                   ]}
                 >
                   {child.label}
@@ -40,8 +42,8 @@ const currentPath = Astro.url.pathname;
           <a
             href={item.href}
             class:list={[
-              'rounded-lg px-4 py-2 text-sm font-medium hover:bg-surface hover:text-primary',
-              currentPath === item.href ? 'text-primary' : 'text-text',
+              'px-4 py-2 text-sm font-medium transition-colors hover:text-blue-700',
+              currentPath === item.href ? 'text-blue-700' : 'text-slate-600',
             ]}
           >
             {item.label}
@@ -52,11 +54,11 @@ const currentPath = Astro.url.pathname;
 
     <!-- CTA + 모바일 메뉴 토글 -->
     <div class="flex items-center gap-3">
-      <a href="/contact" class="hidden rounded-lg bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-secondary sm:inline-block">
+      <a href="/contact" class="hidden rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-800 sm:inline-block">
         상담 신청
       </a>
-      <button id="mobile-menu-toggle" class="rounded-lg p-2 hover:bg-surface lg:hidden" aria-label="메뉴 열기">
-        <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <button id="mobile-menu-toggle" class="rounded-lg p-2 transition-colors hover:bg-slate-50 lg:hidden" aria-label="메뉴 열기">
+        <svg class="h-6 w-6 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
@@ -64,18 +66,18 @@ const currentPath = Astro.url.pathname;
   </div>
 
   <!-- 모바일 네비게이션 -->
-  <div id="mobile-menu" class="hidden border-t border-gray-100 bg-white lg:hidden">
-    <nav class="mx-auto max-w-[1280px] px-4 py-4" aria-label="모바일 메뉴">
+  <div id="mobile-menu" class="hidden border-t border-slate-100 bg-white lg:hidden">
+    <nav class="mx-auto max-w-7xl px-4 py-4 sm:px-6" aria-label="모바일 메뉴">
       {mainNav.map((item) =>
         'children' in item ? (
-          <div class="border-b border-gray-50">
-            <p class="px-2 py-3 text-sm font-semibold text-primary">{item.label}</p>
+          <div class="border-b border-slate-50">
+            <p class="px-2 py-3 text-sm font-semibold text-slate-900">{item.label}</p>
             {item.children.map((child) => (
               <a
                 href={child.href}
                 class:list={[
-                  'block px-6 py-2 text-sm hover:text-primary',
-                  currentPath === child.href ? 'font-semibold text-primary' : 'text-text-muted',
+                  'block px-6 py-2 text-sm transition-colors hover:text-blue-700',
+                  currentPath === child.href ? 'font-semibold text-blue-700' : 'text-slate-500',
                 ]}
               >
                 {child.label}
@@ -86,15 +88,15 @@ const currentPath = Astro.url.pathname;
           <a
             href={item.href}
             class:list={[
-              'block border-b border-gray-50 px-2 py-3 text-sm font-medium hover:text-primary',
-              currentPath === item.href ? 'text-primary' : 'text-text',
+              'block border-b border-slate-50 px-2 py-3 text-sm font-medium transition-colors hover:text-blue-700',
+              currentPath === item.href ? 'text-blue-700' : 'text-slate-600',
             ]}
           >
             {item.label}
           </a>
         )
       )}
-      <a href="/contact" class="mt-4 block rounded-lg bg-primary py-3 text-center text-sm font-medium text-white">
+      <a href="/contact" class="mt-4 block rounded-lg bg-blue-700 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-blue-800">
         상담 신청
       </a>
     </nav>

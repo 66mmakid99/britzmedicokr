@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import SchemaOrg from '@components/aeo/SchemaOrg.astro';
-import Breadcrumb from '@components/common/Breadcrumb.astro';
+import PageHero from '@components/common/PageHero.astro';
 import UpdateDate from '@components/common/UpdateDate.astro';
 import RelatedContent from '@components/common/RelatedContent.astro';
 import { company } from '@data/company';
@@ -29,21 +29,20 @@ const contactSchema = {
 <BaseLayout>
   <SchemaOrg schema={contactSchema} slot="head" />
 
-  <div class="mx-auto max-w-[1280px] px-4 py-12 md:px-8">
-    <Breadcrumb items={[{ name: '연락처', href: '/contact' }]} />
+  <PageHero
+    title="연락처 / 오시는 길"
+    breadcrumb={[{ name: '연락처', href: '/contact' }]}
+  />
 
-    <h1 class="mb-6 text-3xl font-bold text-primary md:text-4xl">
-      연락처 / 오시는 길
-    </h1>
-
-    <p class="mb-12 text-lg text-text-muted">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <p class="mb-12 text-lg text-slate-600">
       브리츠메디에 문의하세요. 제품 상담, 파트너십, 기술 문의 등 무엇이든 환영합니다.
     </p>
 
     <div class="grid gap-8 lg:grid-cols-2">
       <!-- 연락처 정보 -->
       <div>
-        <h2 class="mb-6 text-2xl font-bold text-primary">연락처 정보</h2>
+        <h2 class="mb-6 text-2xl font-bold text-slate-900">연락처 정보</h2>
         <div class="space-y-6">
           {[
             { icon: '🏢', label: '회사명', value: '(주)브리츠메디 / BRITZMEDI Co., Ltd.' },
@@ -55,13 +54,13 @@ const contactSchema = {
             <div class="flex items-start gap-4">
               <span class="text-2xl">{item.icon}</span>
               <div>
-                <p class="text-sm font-medium text-text-muted">{item.label}</p>
+                <p class="text-sm font-medium text-slate-500">{item.label}</p>
                 {item.href ? (
-                  <a href={item.href} class="font-semibold text-secondary hover:underline" target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener' : undefined}>
+                  <a href={item.href} class="font-semibold text-blue-700 hover:underline" target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener' : undefined}>
                     {item.value}
                   </a>
                 ) : (
-                  <p class="font-semibold text-primary">{item.value}</p>
+                  <p class="font-semibold text-slate-900">{item.value}</p>
                 )}
               </div>
             </div>
@@ -69,26 +68,26 @@ const contactSchema = {
         </div>
 
         <!-- 영업 시간 -->
-        <div class="mt-8 rounded-lg border border-gray-200 p-6">
-          <h3 class="mb-4 text-lg font-bold text-primary">영업 시간</h3>
+        <div class="mt-8 rounded-2xl border border-slate-200 p-6">
+          <h3 class="mb-4 text-lg font-bold text-slate-900">영업 시간</h3>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
-              <span class="text-text-muted">월요일 — 금요일</span>
-              <span class="font-medium text-primary">09:00 — 18:00</span>
+              <span class="text-slate-500">월요일 — 금요일</span>
+              <span class="font-medium text-slate-900">09:00 — 18:00</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-text-muted">토요일 · 일요일 · 공휴일</span>
-              <span class="font-medium text-error">휴무</span>
+              <span class="text-slate-500">토요일 · 일요일 · 공휴일</span>
+              <span class="font-medium text-red-500">휴무</span>
             </div>
           </div>
         </div>
 
         <!-- 빠른 문의 버튼 -->
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href="mailto:info@britzmedi.co.kr" class="flex-1 rounded-lg bg-primary py-3 text-center font-semibold text-white hover:bg-secondary">
+          <a href="mailto:info@britzmedi.co.kr" class="flex-1 rounded-xl bg-blue-700 py-3 text-center font-semibold text-white transition-colors hover:bg-blue-800">
             이메일 문의
           </a>
-          <a href="https://pf.kakao.com/_MdCLG" target="_blank" rel="noopener" class="flex-1 rounded-lg bg-[#FEE500] py-3 text-center font-semibold text-[#3C1E1E] hover:bg-[#FDD800]">
+          <a href="https://pf.kakao.com/_MdCLG" target="_blank" rel="noopener" class="flex-1 rounded-xl bg-[#FEE500] py-3 text-center font-semibold text-[#3C1E1E] transition-colors hover:bg-[#FDD800]">
             카카오톡 상담
           </a>
         </div>
@@ -96,31 +95,31 @@ const contactSchema = {
 
       <!-- 간편 문의 폼 -->
       <div>
-        <h2 class="mb-6 text-2xl font-bold text-primary">빠른 문의</h2>
-        <form class="space-y-4 rounded-xl border border-gray-200 p-6">
+        <h2 class="mb-6 text-2xl font-bold text-slate-900">빠른 문의</h2>
+        <form class="space-y-4 rounded-2xl border border-slate-200 p-6">
           <div class="grid gap-4 sm:grid-cols-2">
             <div>
-              <label for="company" class="mb-1 block text-sm font-medium text-primary">회사명 *</label>
-              <input type="text" id="company" name="company" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="회사명 입력" />
+              <label for="company" class="mb-1 block text-sm font-medium text-slate-700">회사명 *</label>
+              <input type="text" id="company" name="company" required class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition" placeholder="회사명 입력" />
             </div>
             <div>
-              <label for="name" class="mb-1 block text-sm font-medium text-primary">담당자명 *</label>
-              <input type="text" id="name" name="name" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="이름 입력" />
+              <label for="name" class="mb-1 block text-sm font-medium text-slate-700">담당자명 *</label>
+              <input type="text" id="name" name="name" required class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition" placeholder="이름 입력" />
             </div>
           </div>
           <div class="grid gap-4 sm:grid-cols-2">
             <div>
-              <label for="email" class="mb-1 block text-sm font-medium text-primary">이메일 *</label>
-              <input type="email" id="email" name="email" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="email@example.com" />
+              <label for="email" class="mb-1 block text-sm font-medium text-slate-700">이메일 *</label>
+              <input type="email" id="email" name="email" required class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition" placeholder="email@example.com" />
             </div>
             <div>
-              <label for="phone" class="mb-1 block text-sm font-medium text-primary">전화번호 *</label>
-              <input type="tel" id="phone" name="phone" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="010-0000-0000" />
+              <label for="phone" class="mb-1 block text-sm font-medium text-slate-700">전화번호 *</label>
+              <input type="tel" id="phone" name="phone" required class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition" placeholder="010-0000-0000" />
             </div>
           </div>
           <div>
-            <label for="product" class="mb-1 block text-sm font-medium text-primary">관심 제품</label>
-            <select id="product" name="product" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary">
+            <label for="product" class="mb-1 block text-sm font-medium text-slate-700">관심 제품</label>
+            <select id="product" name="product" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition">
               <option value="">선택해 주세요</option>
               <option value="torr-rf">TORR RF</option>
               <option value="ulblanc">ULBLANC</option>
@@ -130,24 +129,24 @@ const contactSchema = {
             </select>
           </div>
           <div>
-            <label for="message" class="mb-1 block text-sm font-medium text-primary">문의 내용</label>
-            <textarea id="message" name="message" rows="4" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="문의 내용을 입력해 주세요"></textarea>
+            <label for="message" class="mb-1 block text-sm font-medium text-slate-700">문의 내용</label>
+            <textarea id="message" name="message" rows="4" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition" placeholder="문의 내용을 입력해 주세요"></textarea>
           </div>
-          <button type="submit" class="w-full rounded-lg bg-primary py-3 font-semibold text-white hover:bg-secondary">
+          <button type="submit" class="w-full rounded-xl bg-blue-700 py-4 font-semibold text-white transition-colors hover:bg-blue-800">
             문의하기
           </button>
-          <p class="text-center text-xs text-text-muted">
-            제출 시 <a href="/privacy" class="underline hover:text-primary">개인정보처리방침</a>에 동의합니다.
+          <p class="text-center text-xs text-slate-500">
+            제출 시 <a href="/privacy" class="underline hover:text-slate-900">개인정보처리방침</a>에 동의합니다.
           </p>
         </form>
       </div>
     </div>
 
     <!-- 지도 영역 -->
-    <section class="my-12">
-      <h2 class="mb-6 text-2xl font-bold text-primary">오시는 길</h2>
-      <div class="flex h-80 items-center justify-center rounded-xl bg-surface">
-        <div class="text-center text-text-muted">
+    <section class="my-16">
+      <h2 class="mb-6 text-2xl font-bold text-slate-900">오시는 길</h2>
+      <div class="flex h-80 items-center justify-center rounded-2xl bg-slate-50">
+        <div class="text-center text-slate-500">
           <p class="mb-2 text-4xl">📍</p>
           <p class="font-medium">지도 영역</p>
           <p class="text-sm">(네이버 지도 또는 카카오맵 임베드 예정)</p>

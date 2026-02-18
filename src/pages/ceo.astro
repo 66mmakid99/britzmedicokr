@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import SchemaOrg from '@components/aeo/SchemaOrg.astro';
-import Breadcrumb from '@components/common/Breadcrumb.astro';
+import PageHero from '@components/common/PageHero.astro';
 import CTASection from '@components/common/CTASection.astro';
 import UpdateDate from '@components/common/UpdateDate.astro';
 import RelatedContent from '@components/common/RelatedContent.astro';
@@ -24,35 +24,34 @@ const ceoSchema = {
 <BaseLayout>
   <SchemaOrg schema={ceoSchema} slot="head" />
 
-  <div class="mx-auto max-w-[1280px] px-4 py-12 md:px-8">
-    <Breadcrumb items={[
+  <PageHero
+    title="CEO 인사말 — 더 나은 미용 의료기기를 향한 여정"
+    breadcrumb={[
       { name: '회사소개', href: '/about' },
       { name: 'CEO 인사말', href: '/ceo' },
-    ]} />
+    ]}
+  />
 
-    <h1 class="mb-6 text-3xl font-bold text-primary md:text-4xl">
-      CEO 인사말 — 더 나은 미용 의료기기를 향한 여정
-    </h1>
-
-    <p class="mb-12 text-lg text-text-muted">
+  <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <p class="mb-12 text-lg text-slate-600">
       브리츠메디 CEO가 전하는 기술 혁신에 대한 신념과 글로벌 비전을 소개합니다.
     </p>
 
     <!-- CEO 프로필 -->
-    <section class="my-12 grid gap-8 md:grid-cols-3">
+    <section class="my-16 grid gap-8 md:grid-cols-3">
       <div class="flex flex-col items-center text-center md:items-start md:text-left">
-        <div class="mb-4 flex h-64 w-full items-center justify-center rounded-xl bg-surface">
-          <span class="text-6xl text-secondary">CEO</span>
+        <div class="mb-4 flex h-64 w-full items-center justify-center rounded-2xl bg-slate-50">
+          <span class="text-6xl text-blue-700">CEO</span>
         </div>
-        <h2 class="text-xl font-bold text-primary">김대표</h2>
-        <p class="text-text-muted">대표이사 (CEO)</p>
-        <p class="text-sm text-text-muted">BRITZMEDI Co., Ltd.</p>
+        <h2 class="text-xl font-bold text-slate-900">김대표</h2>
+        <p class="text-slate-500">대표이사 (CEO)</p>
+        <p class="text-sm text-slate-500">BRITZMEDI Co., Ltd.</p>
       </div>
 
       <!-- 인사말 본문 -->
       <div class="md:col-span-2">
-        <div class="space-y-6 text-text-muted leading-relaxed">
-          <p class="text-lg font-medium text-primary">
+        <div class="space-y-6 text-slate-600 leading-relaxed">
+          <p class="text-lg font-medium text-slate-900">
             "기술로 아름다움을 혁신하고, 전 세계인의 삶의 질을 높이겠습니다."
           </p>
 
@@ -76,7 +75,7 @@ const ceoSchema = {
             감사합니다.
           </p>
 
-          <p class="font-semibold text-primary">
+          <p class="font-semibold text-slate-900">
             브리츠메디 대표이사 김대표
           </p>
         </div>
@@ -84,17 +83,17 @@ const ceoSchema = {
     </section>
 
     <!-- CEO 비전 / 철학 -->
-    <section class="my-12">
-      <h2 class="mb-6 text-2xl font-bold text-primary">CEO 경영 철학</h2>
+    <section class="my-16">
+      <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">CEO 경영 철학</h2>
       <div class="grid gap-6 md:grid-cols-3">
         {[
           { title: '기술 혁신', desc: '기존 RF 방식의 한계를 넘어, 토로이달 코일 기술로 피부 미용 의료기기의 새로운 패러다임을 만들어 갑니다.' },
           { title: '글로벌 신뢰', desc: 'FDA, CE, ISO 등 국제 인증으로 품질과 안전성을 증명하고, 전 세계 파트너와 상생하는 관계를 구축합니다.' },
           { title: '고객 중심', desc: '의료진과 환자 모두에게 최적의 경험을 제공하기 위해, 현장의 목소리에 귀 기울이며 제품을 개선합니다.' },
         ].map((item) => (
-          <div class="rounded-xl border border-gray-200 p-6">
-            <h3 class="mb-3 text-lg font-bold text-accent">{item.title}</h3>
-            <p class="text-sm leading-relaxed text-text-muted">{item.desc}</p>
+          <div class="rounded-2xl border border-slate-200 p-6 transition-all duration-300 hover:shadow-md">
+            <h3 class="mb-3 text-lg font-bold text-blue-600">{item.title}</h3>
+            <p class="text-sm leading-relaxed text-slate-600">{item.desc}</p>
           </div>
         ))}
       </div>
