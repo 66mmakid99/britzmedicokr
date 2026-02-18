@@ -13,72 +13,48 @@ const latestPosts = getAllPosts().slice(0, 4);
   <SchemaOrg schema={organizationSchema()} slot="head" />
 
   <!-- Hero 섹션 — 풀스크린 시네마틱 + 동영상 배경 -->
-  <section class="relative flex min-h-screen items-center overflow-hidden">
-    <!-- 배경: 동영상 우선, 없으면 CSS 그래디언트 폴백 -->
+  <section class="relative flex min-h-screen items-end overflow-hidden">
+    <!-- 배경: 동영상 (모바일 포함) + CSS 폴백 -->
     <div class="absolute inset-0 z-0">
       <video
         autoplay muted loop playsinline
-        class="absolute inset-0 hidden h-full w-full object-cover md:block"
+        class="absolute inset-0 h-full w-full object-cover"
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
-      <div class="absolute inset-0 bg-black/60"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
       <!-- CSS 폴백 배경 (동영상 없을 때 자동 표시) -->
       <div class="absolute inset-0 -z-10 bg-[#0A0A0A]">
         <div class="animate-float absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-[#B8960C]/20 blur-[120px]"></div>
         <div class="animate-float-slow absolute -right-20 -bottom-20 h-[500px] w-[500px] rounded-full bg-neutral-600/15 blur-[100px]"></div>
-        <div class="absolute top-1/2 left-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-neutral-500/10 blur-[80px]"></div>
       </div>
     </div>
 
-    <div class="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-32 sm:px-6 lg:grid-cols-2 lg:px-8">
-      <!-- 좌: 텍스트 -->
-      <div>
+    <div class="relative mx-auto w-full max-w-7xl px-4 pb-24 pt-40 sm:px-6 lg:px-8">
+      <div class="max-w-xl">
         <span class="inline-block rounded-full border border-[#D4AF37]/30 px-4 py-1.5 text-xs uppercase tracking-[0.3em] text-[#D4AF37]">
           Toroidal RF Technology
         </span>
-        <h1 class="mt-8 text-5xl font-bold leading-[1.1] tracking-tight text-white md:text-6xl lg:text-7xl">
+        <h1 class="mt-6 text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
           토로이달 RF 기술로<br />
           <span class="bg-gradient-to-r from-[#D4AF37] to-[#F5F0E1] bg-clip-text text-transparent">피부 미용의 새로운 기준</span>
         </h1>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-neutral-400 md:text-xl">
+        <p class="mt-5 max-w-lg text-base leading-relaxed text-neutral-300 sm:text-lg">
           브리츠메디는 토로이달 코일 기반 Multi-wave RF 기술로 피부 미용 의료기기를 개발·제조하는 한국 기업입니다.
         </p>
-        <div class="mt-10 flex gap-4">
-          <a href="/contact" class="rounded-full bg-white px-8 py-4 text-base font-semibold text-neutral-900 transition-all hover:bg-[#F5F0E1] hover:shadow-lg">
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/contact" class="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-neutral-900 transition-all hover:bg-[#F5F0E1] hover:shadow-lg sm:px-8 sm:py-4 sm:text-base">
             상담 신청
           </a>
-          <a href="/products" class="rounded-full border border-white/30 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/10">
+          <a href="/products" class="rounded-full border border-white/30 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/10 sm:px-8 sm:py-4 sm:text-base">
             제품 알아보기
           </a>
-        </div>
-      </div>
-
-      <!-- 우: 글래스모피즘 카드 -->
-      <div class="hidden items-center justify-center lg:flex">
-        <div class="flex h-[500px] w-[400px] flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm">
-          <p class="text-7xl font-bold text-white/20">TORR</p>
-          <p class="mt-2 text-lg font-semibold text-white/60">RF</p>
-          <div class="mt-8 grid grid-cols-3 gap-6 text-center">
-            <div>
-              <p class="text-2xl font-bold text-[#D4AF37]">360°</p>
-              <p class="mt-1 text-[10px] uppercase tracking-wider text-neutral-500">Uniform</p>
-            </div>
-            <div>
-              <p class="text-2xl font-bold text-[#D4AF37]">3</p>
-              <p class="mt-1 text-[10px] uppercase tracking-wider text-neutral-500">MHz Wave</p>
-            </div>
-            <div>
-              <p class="text-2xl font-bold text-[#D4AF37]">FDA</p>
-              <p class="mt-1 text-[10px] uppercase tracking-wider text-neutral-500">Cleared</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
 
     <!-- 스크롤 인디케이터 -->
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/40">
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/40">
       <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
       </svg>
