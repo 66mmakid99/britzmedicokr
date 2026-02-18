@@ -1,0 +1,42 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumb from '@components/common/Breadcrumb.astro';
+import AuthorInfo from '@components/aeo/AuthorInfo.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  author?: string;
+  publishedAt?: string;
+  category?: string;
+  categoryHref?: string;
+}
+
+const {
+  title,
+  description,
+  author = '브리츠메디 연구소',
+  publishedAt,
+  category,
+  categoryHref = '/blog',
+} = Astro.props;
+
+const breadcrumbItems = [{ name: '블로그', href: '/blog' }];
+if (category) {
+  breadcrumbItems.push({ name: category, href: categoryHref });
+}
+---
+
+<BaseLayout title={title} description={description}>
+  <slot name="head" slot="head" />
+
+  <div class="mx-auto max-w-[1280px] px-4 py-12 md:px-8">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <article>
+      <slot />
+    </article>
+
+    <AuthorInfo name={author} role="Content Author" />
+  </div>
+</BaseLayout>

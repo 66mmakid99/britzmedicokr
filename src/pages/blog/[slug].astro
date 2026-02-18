@@ -1,0 +1,116 @@
+---
+import BlogLayout from '@layouts/BlogLayout.astro';
+import SchemaOrg from '@components/aeo/SchemaOrg.astro';
+import TLDRBox from '@components/aeo/TLDRBox.astro';
+import FAQSection from '@components/aeo/FAQSection.astro';
+import CompareTable from '@components/aeo/CompareTable.astro';
+import UpdateDate from '@components/common/UpdateDate.astro';
+import RelatedContent from '@components/common/RelatedContent.astro';
+import { getAllPosts, getPostBySlug, getRelatedPosts } from '@data/blog';
+import { articleSchema, faqSchema } from '@lib/schema';
+import { formatDateKo } from '@lib/utils';
+
+export function getStaticPaths() {
+  const posts = getAllPosts();
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const post = getPostBySlug(slug as string);
+
+if (!post) {
+  return Astro.redirect('/blog');
+}
+
+const related = getRelatedPosts(post);
+
+const rfCompareHeaders = ['모노폴라 RF', '바이폴라 RF', '토로이달 RF'];
+const rfCompareRows = [
+  { label: '에너지 전달', values: ['단방향 (깊은 침투)', '양극 사이 (얕은 침투)', '360도 균일 전달'] },
+  { label: '침투 깊이', values: ['진피~피하지방', '표피~진피 상부', '표피~피하지방 (Multi-wave)'] },
+  { label: '핫스팟 위험', values: ['높음', '낮음', '없음 (자동 출력 제어)'] },
+  { label: '접지 패드', values: ['필요', '불필요', '불필요'] },
+  { label: '대표 장비', values: ['써마지(Thermage)', '다수 소형 RF', 'TORR RF'] },
+  { label: 'FDA 승인', values: ['있음', '장비별 상이', '있음'] },
+];
+---
+
+<BlogLayout
+  title={post.title}
+  description={post.excerpt}
+  author={post.author}
+  publishedAt={post.publishedAt}
+  category={post.categoryLabel}
+>
+  <SchemaOrg
+    schema={[
+      articleSchema({
+        title: post.title,
+        description: post.excerpt,
+        slug: post.slug,
+        author: post.author,
+        datePublished: post.publishedAt,
+      }),
+      faqSchema(post.faqs),
+    ]}
+    slot="head"
+  />
+
+  <h1 class="mb-4 text-3xl font-bold text-primary md:text-4xl">
+    {post.title}
+  </h1>
+
+  <div class="mb-8 flex flex-wrap items-center gap-3 text-sm text-text-muted">
+    <span>{post.categoryLabel}</span>
+    <span>|</span>
+    <time datetime={post.publishedAt}>{formatDateKo(post.publishedAt)}</time>
+    <span>|</span>
+    <span>{post.author}</span>
+  </div>
+
+  <TLDRBox content={post.excerpt} />
+
+  <div class="prose prose-lg max-w-none my-8 text-text-muted leading-relaxed [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-primary [&>p]:mb-4">
+    <Fragment set:html={post.content} />
+  </div>
+
+  {post.category === 'rf-guide' && (
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">RF 방식별 비교표</h2>
+      <CompareTable headers={rfCompareHeaders} rows={rfCompareRows} highlight={2} />
+    </section>
+  )}
+
+  <FAQSection items={post.faqs} />
+
+  {post.relatedProducts.length > 0 && (
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">관련 제품</h2>
+      <div class="flex flex-wrap gap-3">
+        {post.relatedProducts.map((product) => (
+          <a
+            href={product.href}
+            class="rounded-lg border border-gray-200 px-5 py-3 font-semibold text-primary hover:border-secondary hover:text-secondary transition-colors"
+          >
+            {product.title}
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {related.length > 0 && (
+    <RelatedContent
+      title="관련 블로그 글"
+      items={related.map((r) => ({
+        title: r.title,
+        href: `/blog/${r.slug}`,
+        description: r.excerpt,
+      }))}
+    />
+  )}
+
+  <UpdateDate date={post.publishedAt} />
+</BlogLayout>

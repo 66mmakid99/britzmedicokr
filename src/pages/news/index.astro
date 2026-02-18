@@ -1,0 +1,62 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumb from '@components/common/Breadcrumb.astro';
+import UpdateDate from '@components/common/UpdateDate.astro';
+import { getAllNews } from '@data/news';
+import { formatDateKo } from '@lib/utils';
+
+const newsItems = getAllNews();
+---
+
+<BaseLayout
+  title="브리츠메디 뉴스 — 최신 소식"
+  description="브리츠메디의 학회 참가, 제품 출시, 파트너십, 인증 획득 등 최신 소식을 확인하세요."
+>
+  <div class="mx-auto max-w-[1280px] px-4 py-12 md:px-8">
+    <Breadcrumb items={[{ name: '뉴스', href: '/news' }]} />
+
+    <h1 class="mb-6 text-3xl font-bold text-primary md:text-4xl">
+      브리츠메디 뉴스 — 최신 소식
+    </h1>
+
+    <p class="mb-10 text-lg text-text-muted">
+      브리츠메디의 학회 참가, 글로벌 파트너십 확대, 신제품 출시, 인증 획득 등 주요 소식을 전합니다.
+    </p>
+
+    <!-- 뉴스 목록 -->
+    <div class="space-y-6">
+      {newsItems.map((news) => (
+        <a
+          href={`/news/${news.slug}`}
+          class="group block rounded-xl border border-gray-200 bg-white p-6 hover:border-secondary hover:shadow-lg transition-shadow"
+        >
+          <div class="mb-2 flex items-center gap-3">
+            <time datetime={news.publishedAt} class="text-sm font-medium text-accent">
+              {formatDateKo(news.publishedAt)}
+            </time>
+            <span class="inline-block rounded-full bg-surface px-3 py-1 text-xs font-semibold text-text-muted">
+              {news.category}
+            </span>
+          </div>
+
+          <h2 class="mb-2 text-xl font-bold text-primary group-hover:text-secondary">
+            {news.title}
+          </h2>
+
+          <p class="text-text-muted leading-relaxed">
+            {news.excerpt}
+          </p>
+
+          <span class="mt-4 inline-flex items-center text-sm font-semibold text-secondary">
+            자세히 보기
+            <svg class="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <UpdateDate />
+  </div>
+</BaseLayout>
