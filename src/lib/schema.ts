@@ -16,7 +16,7 @@ export function organizationSchema() {
       addressRegion: company.address.region,
       addressCountry: company.address.country,
     },
-    sameAs: [company.urlEn, company.contact.kakao],
+    sameAs: [company.urlEn],
     hasCredential: company.certifications.map((cert) => ({
       '@type': 'EducationalOccupationalCredential',
       credentialCategory: cert,

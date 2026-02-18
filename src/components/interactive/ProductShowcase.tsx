@@ -58,7 +58,7 @@ export default function ProductShowcase() {
   return (
     <section className="bg-white">
       {/* 탭 바 */}
-      <div className="sticky top-16 z-30 border-b border-slate-100 bg-white/90 backdrop-blur md:top-20">
+      <div className="sticky top-16 z-30 border-b border-neutral-100 bg-white/90 backdrop-blur md:top-20">
         <div className="mx-auto flex max-w-7xl items-center justify-center gap-0">
           {products.map((p, i) => (
             <button
@@ -66,8 +66,8 @@ export default function ProductShowcase() {
               onClick={() => setActive(i)}
               className={`px-6 py-4 text-sm font-semibold tracking-wider transition-colors md:px-10 ${
                 i === active
-                  ? 'border-b-2 border-blue-700 text-blue-700'
-                  : 'text-slate-400 hover:text-slate-600'
+                  ? 'border-b-2 border-[#B8960C] text-[#B8960C]'
+                  : 'text-neutral-400 hover:text-neutral-600'
               }`}
             >
               {p.name}
@@ -79,39 +79,39 @@ export default function ProductShowcase() {
       {/* 콘텐츠 */}
       <div className="grid min-h-[80vh] md:grid-cols-2">
         {/* 좌: 비주얼 */}
-        <div className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 p-12 md:p-20">
-          <span className="select-none text-[120px] font-black leading-none text-slate-100 md:text-[180px] lg:text-[200px]">
+        <div className="relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100 p-12 md:p-20">
+          <span className="select-none text-[120px] font-black leading-none text-neutral-100 md:text-[180px] lg:text-[200px]">
             {product.name.charAt(0)}
           </span>
-          <div className="absolute bottom-8 left-8 text-xs tracking-widest text-slate-300 md:bottom-12 md:left-12">
+          <div className="absolute bottom-8 left-8 text-xs tracking-widest text-neutral-300 md:bottom-12 md:left-12">
             {product.id.toUpperCase()}
           </div>
         </div>
 
         {/* 우: 정보 */}
         <div className="flex flex-col justify-center px-8 py-16 md:px-12 lg:px-20">
-          <p className="text-sm font-semibold uppercase tracking-wider text-blue-600">
+          <p className="text-sm font-semibold uppercase tracking-wider text-[#B8960C]">
             {product.category}
           </p>
-          <h3 className="mt-3 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
+          <h3 className="mt-3 text-4xl font-bold tracking-tight text-neutral-900 md:text-5xl">
             {product.name}
           </h3>
-          <p className="mt-4 text-xl leading-relaxed text-slate-600">
+          <p className="mt-4 text-xl leading-relaxed text-neutral-600">
             {product.tagline}
           </p>
 
           <div className="mt-8 space-y-4">
             {product.features.map((f, i) => (
               <div key={i} className="flex items-start gap-4">
-                <span className="text-3xl font-bold text-blue-600">{f.number}</span>
-                <span className="pt-2 text-sm text-slate-600">{f.label}</span>
+                <span className="text-3xl font-bold text-[#B8960C]">{f.number}</span>
+                <span className="pt-2 text-sm text-neutral-600">{f.label}</span>
               </div>
             ))}
           </div>
 
           <a
             href={product.href}
-            className="mt-10 inline-flex items-center text-base font-semibold text-blue-700 transition-colors hover:text-blue-900 hover:underline"
+            className="mt-10 inline-flex items-center text-base font-semibold text-[#B8960C] transition-colors hover:text-neutral-800 hover:underline"
           >
             자세히 보기 →
           </a>

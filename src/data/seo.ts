@@ -44,7 +44,7 @@ export const pageSEO: Record<string, PageSEO> = {
   '/contact': {
     title: '연락처 / 오시는 길 | 브리츠메디',
     description:
-      '브리츠메디에 문의하세요. 주소, 전화번호, 이메일, 카카오톡 채널 안내. 제품 상담 및 파트너십 문의를 환영합니다.',
+      '브리츠메디에 문의하세요. 주소, 이메일 안내. 제품 상담 및 파트너십 문의를 환영합니다.',
     ogImage: '/images/og/contact.jpg',
     hreflangs: { ko: '/contact', en: '/contact' },
   },

@@ -14,11 +14,9 @@ export const company = {
   contact: {
     phone: '',
     email: '',
-    kakao: 'https://pf.kakao.com/_MdCLG',
   },
   social: {
     global: 'https://www.britzmedi.com',
-    kakao: 'https://pf.kakao.com/_MdCLG',
   },
   certifications: ['FDA 510(k)', 'CE Mark', 'ISO 13485'],
 } as const;

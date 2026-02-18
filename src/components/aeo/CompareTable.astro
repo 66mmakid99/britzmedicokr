@@ -8,17 +8,17 @@ interface Props {
 const { headers, rows, highlight } = Astro.props;
 ---
 
-<div class="my-8 overflow-x-auto rounded-2xl border border-slate-200">
+<div class="my-8 overflow-x-auto rounded-2xl border border-neutral-200">
   <table class="w-full min-w-[600px] border-collapse text-sm">
     <thead>
       <tr>
-        <th class="bg-slate-900 px-6 py-4 text-left text-sm font-semibold text-white"></th>
+        <th class="bg-neutral-900 px-6 py-4 text-left text-sm font-semibold text-white"></th>
         {headers.map((h, i) => (
           <th class:list={[
             'px-6 py-4 text-center text-sm font-semibold',
-            i === highlight ? 'border-t-4 border-blue-500 bg-blue-50 text-blue-700' : 'bg-slate-900 text-white',
+            i === highlight ? 'border-t-4 border-[#B8960C] bg-[#F5F0E1] text-[#B8960C]' : 'bg-neutral-900 text-white',
           ]}>
-            {i === highlight && <span class="mb-1 block text-xs font-bold text-blue-500">추천</span>}
+            {i === highlight && <span class="mb-1 block text-xs font-bold text-[#B8960C]">추천</span>}
             {h}
           </th>
         ))}
@@ -26,12 +26,12 @@ const { headers, rows, highlight } = Astro.props;
     </thead>
     <tbody>
       {rows.map((row, ri) => (
-        <tr class={ri % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
-          <td class="border-b border-slate-100 px-6 py-4 font-medium text-slate-900">{row.label}</td>
+        <tr class={ri % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}>
+          <td class="border-b border-neutral-100 px-6 py-4 font-medium text-neutral-900">{row.label}</td>
           {row.values.map((v, vi) => (
             <td class:list={[
-              'border-b border-slate-100 px-6 py-4 text-center',
-              vi === highlight ? 'bg-blue-50/50 font-semibold text-slate-900' : 'text-slate-600',
+              'border-b border-neutral-100 px-6 py-4 text-center',
+              vi === highlight ? 'bg-[#F5F0E1]/50 font-semibold text-neutral-900' : 'text-neutral-600',
             ]}>
               {v}
             </td>
