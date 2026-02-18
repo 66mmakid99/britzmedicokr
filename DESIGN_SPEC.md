@@ -1,7 +1,7 @@
 지금부터 전체 사이트 디자인 업그레이드 + 남은 이슈를 한번에 처리해줘.
 현재 24개 페이지의 구조는 유지하면서, 2026년 프리미엄 의료기기 B2B 사이트 수준으로 디자인을 입혀.
 
-## 🎨 디자인 레퍼런스: https://apr-in.com/ (에이피알)
+## 디자인 레퍼런스: https://apr-in.com/ (에이피알)
 한국 뷰티테크/의료기기 상장기업 사이트. 우리도 이 수준의 비주얼 임팩트를 목표로 해.
 
 ### APR 사이트에서 가져올 핵심 디자인 요소:
@@ -23,6 +23,8 @@
 4. Tailwind CSS 유틸리티 클래스로만 스타일링 (커스텀 CSS 최소화)
 5. 모바일 퍼스트 반응형 — 모바일에서도 예뻐야 해
 6. 이미지 없이도 고급스러워 보여야 함 — CSS 그래디언트, 도형, 블러 효과, 큰 타이포로 비주얼 임팩트 만들기
+7. KakaoChat 컴포넌트 완전 제거 — KakaoChat.astro 파일 삭제, BaseLayout 등 모든 페이지에서 KakaoChat import/사용 제거. 플로팅 버튼은 ChatBot 하나만 남기기
+8. [최우선] 이모지(emoji) 절대 금지 — 사이트 전체 어디에도 이모지를 쓰지 마. 기존 코드에 있는 이모지도 전부 제거해. 아이콘이 필요하면 인라인 SVG를 직접 만들어서 써 (Heroicons 스타일, stroke-width 1.5~2, 24x24, currentColor). 이모지는 아마추어 사이트 느낌을 줌
 
 ---
 
@@ -164,16 +166,46 @@ H3: text-xl md:text-2xl font-semibold
 
 ## STEP 5: 홈페이지 리디자인
 
-### Hero 섹션 (APR 스타일 — 풀스크린, 시네마틱)
+### Hero 섹션 (APR 스타일 — 풀스크린, 시네마틱, 배경 동영상 지원)
 ```
 - 풀스크린: min-h-screen flex items-center relative overflow-hidden
-- 배경: 멀티 레이어 CSS 그래디언트로 시네마틱 효과
-  bg-[#0A0E1A] (베이스)
-  + absolute 원형 블러 요소들:
-    - 좌상단: w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] absolute -top-40 -left-40
-    - 우하단: w-[500px] h-[500px] bg-indigo-500/15 rounded-full blur-[100px] absolute -bottom-20 -right-20
-    - 중앙: w-[300px] h-[300px] bg-cyan-400/10 rounded-full blur-[80px] absolute top-1/2 left-1/2
-  + 미세한 그리드 패턴 오버레이 (선택): CSS background-image로 subtle grid
+
+- 배경: 동영상 우선, 없으면 CSS 그래디언트 폴백
+  구조:
+  <div class="absolute inset-0 z-0">
+    <!-- 동영상 배경 (파일이 있을 때만 렌더링) -->
+    <video
+      autoplay muted loop playsinline
+      poster="/images/hero-poster.jpg"
+      class="absolute inset-0 w-full h-full object-cover"
+    >
+      <source src="/videos/hero.mp4" type="video/mp4" />
+    </video>
+    <!-- 다크 오버레이 (동영상 위에) -->
+    <div class="absolute inset-0 bg-black/60"></div>
+    <!-- 동영상 없을 때 CSS 폴백 배경 -->
+    <div class="absolute inset-0 bg-[#0A0E1A] -z-10"></div>
+  </div>
+
+  동영상 파일 규격:
+  - 경로: public/videos/hero.mp4
+  - 포스터 이미지: public/images/hero-poster.jpg (동영상 로드 전 표시)
+  - 권장: 1920x1080, 10~20초 루프, 5MB 이하, 자동재생+음소거+루프
+  - 지금은 파일이 없으므로 CSS 그래디언트 폴백이 보임
+  - 나중에 동영상 파일만 넣으면 자동으로 적용됨
+
+  CSS 그래디언트 폴백 (동영상 없을 때 보이는 배경):
+    bg-[#0A0E1A]
+    + absolute 원형 블러 요소들:
+      - 좌상단: w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] absolute -top-40 -left-40 animate-float
+      - 우하단: w-[500px] h-[500px] bg-indigo-500/15 rounded-full blur-[100px] absolute -bottom-20 -right-20 animate-float-slow
+      - 중앙: w-[300px] h-[300px] bg-cyan-400/10 rounded-full blur-[80px] absolute top-1/2 left-1/2
+
+  구현 방식:
+  - video 태그는 항상 렌더링하되, src 파일이 없으면 자연스럽게 폴백 배경이 보임
+  - 모바일에서는 동영상 대신 poster 이미지만 표시하는 것도 고려 (md: 이상에서만 video 표시)
+  - 오버레이 투명도(bg-black/60)로 텍스트 가독성 확보
+```
 - 콘텐츠 중앙:
   - 상단에 작은 태그: "TOROIDAL RF TECHNOLOGY" (text-xs tracking-[0.3em] text-blue-400 uppercase border border-blue-400/30 px-4 py-1.5 rounded-full)
   - 메인 헤드라인: text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight
@@ -220,9 +252,9 @@ H3: text-xl md:text-2xl font-semibold
   - 제목: font-bold text-lg
   - 설명: text-slate-600 text-sm leading-relaxed
 - 차별점 3가지:
-  1. 🔬 독자적 토로이달 RF 기술
-  2. 🌍 40개국+ 글로벌 파트너 네트워크
-  3. ✅ FDA/CE/ISO 트리플 인증
+  1. 독자적 토로이달 RF 기술 (아이콘: SVG 또는 Tailwind로 만든 원형 아이콘 — bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center 안에 심플한 SVG 아이콘. 이모지 절대 쓰지 마)
+  2. 40개국+ 글로벌 파트너 네트워크 (동일 스타일 아이콘)
+  3. FDA/CE/ISO 트리플 인증 (동일 스타일 아이콘)
 ```
 
 ### 숫자 섹션 (APR 스타일 — 풀와이드 대형 숫자)
@@ -300,7 +332,7 @@ H3: text-xl md:text-2xl font-semibold
 ### TLDRBox 리디자인
 ```
 - bg-blue-50 border-l-4 border-blue-500 rounded-r-xl p-6
-- 왼쪽에 💡 아이콘 or "핵심 요약" 라벨 (text-blue-700 text-xs font-bold uppercase tracking-wider)
+- "핵심 요약" 라벨 (text-blue-700 text-xs font-bold uppercase tracking-wider) — 이모지 쓰지 말고 텍스트 라벨만
 - 본문: text-slate-700 text-base leading-relaxed
 ```
 
@@ -345,7 +377,7 @@ H3: text-xl md:text-2xl font-semibold
 ### /contact
 - 왼쪽: 연락처 정보 카드 (아이콘 + 텍스트)
 - 오른쪽: 간단한 문의 폼 or 지도 플레이스홀더 (bg-slate-100 rounded-2xl h-80 with "지도 준비 중" 텍스트)
-- 카카오톡 버튼 강조
+- 하단에 "상담 신청" CTA 버튼
 
 → npm run build 확인
 
@@ -397,7 +429,7 @@ H3: text-xl md:text-2xl font-semibold
 - 미니 히어로
 - 인증 카드들: 골드 테마
   bg-gradient-to-br from-amber-50 to-white border border-amber-200 rounded-2xl p-8
-  상단에 인증 아이콘(🏆 or ✅), 인증명, 인증번호, 취득일
+  상단에 심플한 SVG 아이콘 (이모지 절대 쓰지 마), 인증명, 인증번호, 취득일
 - 특허 리스트: 깔끔한 테이블 or 카드
 ```
 
@@ -456,11 +488,9 @@ H3: text-xl md:text-2xl font-semibold
     input(border rounded-xl px-4 py-2.5 text-sm flex-1) + 전송 버튼
 ```
 
-### KakaoChat
+### ChatBot 위치
 ```
-- 카카오 노란색 버튼: fixed bottom-6 right-24 (챗봇 왼쪽)
-  bg-[#FEE500] text-[#3C1E1E] w-14 h-14 rounded-full shadow-lg
-  카카오톡 아이콘 (SVG) 또는 "K" 텍스트
+- 플로팅 버튼: fixed bottom-6 right-6 (카카오톡 없이 챗봇만 단독 배치)
 ```
 
 ### CookieConsent
@@ -625,7 +655,7 @@ git push
 ✅ 제품 페이지: 히어로 + 8섹션 디자인
 ✅ 회사소개 5페이지: 디자인 적용
 ✅ 블로그/뉴스: 디자인 적용
-✅ 인터랙티브 컴포넌트: ChatBot, KakaoChat, ContactForm, CookieConsent
+✅ 인터랙티브 컴포넌트: ChatBot, ContactForm, CookieConsent
 ✅ 마이크로 애니메이션: 적용 여부
 ✅ AEO 구조: 유지 확인 (Schema.org, FAQ, TLDRBox 등)
 ✅ 빌드: 성공/실패

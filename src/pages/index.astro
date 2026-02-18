@@ -12,12 +12,25 @@ const latestPosts = getAllPosts().slice(0, 4);
 <BaseLayout>
   <SchemaOrg schema={organizationSchema()} slot="head" />
 
-  <!-- Hero 섹션 — 풀스크린 시네마틱 -->
-  <section class="relative flex min-h-screen items-center overflow-hidden bg-[#0A0E1A]">
-    <!-- 배경 글로우 -->
-    <div class="animate-float absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-blue-600/20 blur-[120px]"></div>
-    <div class="animate-float-slow absolute -right-20 -bottom-20 h-[500px] w-[500px] rounded-full bg-indigo-500/15 blur-[100px]"></div>
-    <div class="absolute top-1/2 left-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[80px]"></div>
+  <!-- Hero 섹션 — 풀스크린 시네마틱 + 동영상 배경 -->
+  <section class="relative flex min-h-screen items-center overflow-hidden">
+    <!-- 배경: 동영상 우선, 없으면 CSS 그래디언트 폴백 -->
+    <div class="absolute inset-0 z-0">
+      <video
+        autoplay muted loop playsinline
+        poster="/images/hero-poster.jpg"
+        class="absolute inset-0 hidden h-full w-full object-cover md:block"
+      >
+        <source src="/videos/hero.mp4" type="video/mp4" />
+      </video>
+      <div class="absolute inset-0 bg-black/60"></div>
+      <!-- CSS 폴백 배경 (동영상 없을 때 자동 표시) -->
+      <div class="absolute inset-0 -z-10 bg-[#0A0E1A]">
+        <div class="animate-float absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-blue-600/20 blur-[120px]"></div>
+        <div class="animate-float-slow absolute -right-20 -bottom-20 h-[500px] w-[500px] rounded-full bg-indigo-500/15 blur-[100px]"></div>
+        <div class="absolute top-1/2 left-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[80px]"></div>
+      </div>
+    </div>
 
     <div class="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-32 sm:px-6 lg:grid-cols-2 lg:px-8">
       <!-- 좌: 텍스트 -->
@@ -83,19 +96,36 @@ const latestPosts = getAllPosts().slice(0, 4);
         <h2 class="mb-3 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">왜 브리츠메디인가</h2>
       </div>
       <div class="reveal-stagger grid gap-8 md:grid-cols-3">
-        {[
-          { icon: '\u{1F52C}', title: '독자적 토로이달 RF 기술', desc: '기존 모노폴라/바이폴라 방식 대비 균일한 에너지 전달과 깊은 침투 깊이를 구현하는 특허 기술입니다.' },
-          { icon: '\u{1F30D}', title: '40개국+ 글로벌 파트너 네트워크', desc: '전 세계 40개국 이상의 파트너 네트워크를 통해 글로벌 시장에서 입증된 브랜드입니다.' },
-          { icon: '\u2705', title: 'FDA/CE/ISO 트리플 인증', desc: 'FDA 510(k), CE Mark, ISO 13485 등 주요 글로벌 의료기기 인증을 획득하여 품질과 안전성을 보증합니다.' },
-        ].map((item) => (
-          <div class="rounded-2xl border border-slate-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md">
-            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-2xl">
-              {item.icon}
-            </div>
-            <h3 class="mb-3 text-lg font-bold text-slate-900">{item.title}</h3>
-            <p class="text-sm leading-relaxed text-slate-600">{item.desc}</p>
+        <!-- 독자적 토로이달 RF 기술 -->
+        <div class="rounded-2xl border border-slate-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md">
+          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+            <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714a2.25 2.25 0 00.659 1.591L19 14.5M14.25 3.104c.251.023.501.05.75.082M19 14.5l-2.47 2.47a2.25 2.25 0 01-1.59.659H9.06a2.25 2.25 0 01-1.591-.659L5 14.5m14 0V17a2.25 2.25 0 01-2.25 2.25H7.25A2.25 2.25 0 015 17v-2.5" />
+            </svg>
           </div>
-        ))}
+          <h3 class="mb-3 text-lg font-bold text-slate-900">독자적 토로이달 RF 기술</h3>
+          <p class="text-sm leading-relaxed text-slate-600">기존 모노폴라/바이폴라 방식 대비 균일한 에너지 전달과 깊은 침투 깊이를 구현하는 특허 기술입니다.</p>
+        </div>
+        <!-- 40개국+ 글로벌 파트너 네트워크 -->
+        <div class="rounded-2xl border border-slate-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md">
+          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+            <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A8.966 8.966 0 013 12c0-1.777.516-3.434 1.404-4.832" />
+            </svg>
+          </div>
+          <h3 class="mb-3 text-lg font-bold text-slate-900">40개국+ 글로벌 파트너 네트워크</h3>
+          <p class="text-sm leading-relaxed text-slate-600">전 세계 40개국 이상의 파트너 네트워크를 통해 글로벌 시장에서 입증된 브랜드입니다.</p>
+        </div>
+        <!-- FDA/CE/ISO 트리플 인증 -->
+        <div class="rounded-2xl border border-slate-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md">
+          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+            <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+            </svg>
+          </div>
+          <h3 class="mb-3 text-lg font-bold text-slate-900">FDA/CE/ISO 트리플 인증</h3>
+          <p class="text-sm leading-relaxed text-slate-600">FDA 510(k), CE Mark, ISO 13485 등 주요 글로벌 의료기기 인증을 획득하여 품질과 안전성을 보증합니다.</p>
+        </div>
       </div>
     </div>
   </section>
