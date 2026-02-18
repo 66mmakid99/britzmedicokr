@@ -1,0 +1,103 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SchemaOrg from '@components/aeo/SchemaOrg.astro';
+import TLDRBox from '@components/aeo/TLDRBox.astro';
+import FAQSection from '@components/aeo/FAQSection.astro';
+import SpecTable from '@components/aeo/SpecTable.astro';
+import Breadcrumb from '@components/common/Breadcrumb.astro';
+import CTASection from '@components/common/CTASection.astro';
+import UpdateDate from '@components/common/UpdateDate.astro';
+import RelatedContent from '@components/common/RelatedContent.astro';
+import { getProduct } from '@data/products';
+import { medicalDeviceSchema, faqSchema } from '@lib/schema';
+
+const product = getProduct('lumino-wave')!;
+
+const deviceSchema = medicalDeviceSchema({
+  name: product.name,
+  nameKo: product.nameKo,
+  description: product.firstSentence,
+});
+---
+
+<BaseLayout>
+  <SchemaOrg schema={[deviceSchema, faqSchema(product.faqs)]} slot="head" />
+
+  <div class="mx-auto max-w-[1280px] px-4 py-12 md:px-8">
+    <Breadcrumb items={[
+      { name: '제품 라인업', href: '/products' },
+      { name: product.name, href: `/products/${product.slug}` },
+    ]} />
+
+    <!-- 1. H1 + 첫 문장 -->
+    <h1 class="mb-6 text-3xl font-bold text-primary md:text-4xl">
+      {product.nameKo} ({product.name}) — {product.tagline}
+    </h1>
+
+    <p class="mb-8 text-lg text-text-muted">
+      {product.firstSentence}
+    </p>
+
+    <!-- 2. TL;DR -->
+    <TLDRBox content={product.tldr} />
+
+    <!-- 3. 핵심 기술 -->
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">{product.techTitle}</h2>
+      <div class="space-y-4 text-text-muted">
+        {product.techDescription.map((text) => (
+          <p>{text}</p>
+        ))}
+      </div>
+    </section>
+
+    <!-- 4. 제품 사양 -->
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">제품 사양</h2>
+      <SpecTable specs={product.specs} />
+    </section>
+
+    <!-- 5. 인증 배지 -->
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">인증 현황</h2>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {product.certifications.map((cert) => (
+          <div class="rounded-lg border border-gray-200 p-5 text-center">
+            <div class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-success/10">
+              <svg class="h-6 w-6 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <p class="font-semibold text-primary">{cert.name}</p>
+            <p class="mt-1 text-xs text-text-muted">{cert.number}</p>
+            <p class="mt-1 text-xs text-text-muted">{cert.date}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. 적용 분야 -->
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">적용 분야</h2>
+      <div class="grid gap-6 sm:grid-cols-2">
+        {product.applications.map((app) => (
+          <div class="rounded-lg border border-gray-200 p-6">
+            <h3 class="mb-2 text-lg font-semibold text-primary">{app.title}</h3>
+            <p class="text-sm text-text-muted">{app.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <FAQSection items={product.faqs} />
+
+    <!-- 8. CTA -->
+    <CTASection title={`${product.name} 도입 상담을 받아보세요`} description="LED + RF 복합 솔루션으로 클리닉 경쟁력을 높여 보세요." />
+
+    <!-- 관련 콘텐츠 -->
+    <RelatedContent items={product.relatedContent} />
+
+    <UpdateDate />
+  </div>
+</BaseLayout>
