@@ -1,0 +1,166 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SchemaOrg from '@components/aeo/SchemaOrg.astro';
+import Breadcrumb from '@components/common/Breadcrumb.astro';
+import UpdateDate from '@components/common/UpdateDate.astro';
+import RelatedContent from '@components/common/RelatedContent.astro';
+import { company } from '@data/company';
+
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: company.name,
+  alternateName: company.nameKo,
+  url: company.url,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: '서울',
+    addressRegion: '서울특별시',
+    addressCountry: 'KR',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    availableLanguage: ['Korean', 'English'],
+  },
+};
+---
+
+<BaseLayout>
+  <SchemaOrg schema={contactSchema} slot="head" />
+
+  <div class="mx-auto max-w-[1280px] px-4 py-12 md:px-8">
+    <Breadcrumb items={[{ name: '연락처', href: '/contact' }]} />
+
+    <h1 class="mb-6 text-3xl font-bold text-primary md:text-4xl">
+      연락처 / 오시는 길
+    </h1>
+
+    <p class="mb-12 text-lg text-text-muted">
+      브리츠메디에 문의하세요. 제품 상담, 파트너십, 기술 문의 등 무엇이든 환영합니다.
+    </p>
+
+    <div class="grid gap-8 lg:grid-cols-2">
+      <!-- 연락처 정보 -->
+      <div>
+        <h2 class="mb-6 text-2xl font-bold text-primary">연락처 정보</h2>
+        <div class="space-y-6">
+          {[
+            { icon: '🏢', label: '회사명', value: '(주)브리츠메디 / BRITZMEDI Co., Ltd.' },
+            { icon: '📍', label: '주소', value: '서울특별시' },
+            { icon: '📧', label: '이메일', value: 'info@britzmedi.co.kr', href: 'mailto:info@britzmedi.co.kr' },
+            { icon: '💬', label: '카카오톡', value: '카카오톡 채널 상담', href: 'https://pf.kakao.com/_MdCLG' },
+            { icon: '🌐', label: '영문 사이트', value: 'www.britzmedi.com', href: 'https://www.britzmedi.com' },
+          ].map((item) => (
+            <div class="flex items-start gap-4">
+              <span class="text-2xl">{item.icon}</span>
+              <div>
+                <p class="text-sm font-medium text-text-muted">{item.label}</p>
+                {item.href ? (
+                  <a href={item.href} class="font-semibold text-secondary hover:underline" target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener' : undefined}>
+                    {item.value}
+                  </a>
+                ) : (
+                  <p class="font-semibold text-primary">{item.value}</p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- 영업 시간 -->
+        <div class="mt-8 rounded-lg border border-gray-200 p-6">
+          <h3 class="mb-4 text-lg font-bold text-primary">영업 시간</h3>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-text-muted">월요일 — 금요일</span>
+              <span class="font-medium text-primary">09:00 — 18:00</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-text-muted">토요일 · 일요일 · 공휴일</span>
+              <span class="font-medium text-error">휴무</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 빠른 문의 버튼 -->
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="mailto:info@britzmedi.co.kr" class="flex-1 rounded-lg bg-primary py-3 text-center font-semibold text-white hover:bg-secondary">
+            이메일 문의
+          </a>
+          <a href="https://pf.kakao.com/_MdCLG" target="_blank" rel="noopener" class="flex-1 rounded-lg bg-[#FEE500] py-3 text-center font-semibold text-[#3C1E1E] hover:bg-[#FDD800]">
+            카카오톡 상담
+          </a>
+        </div>
+      </div>
+
+      <!-- 간편 문의 폼 -->
+      <div>
+        <h2 class="mb-6 text-2xl font-bold text-primary">빠른 문의</h2>
+        <form class="space-y-4 rounded-xl border border-gray-200 p-6">
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="company" class="mb-1 block text-sm font-medium text-primary">회사명 *</label>
+              <input type="text" id="company" name="company" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="회사명 입력" />
+            </div>
+            <div>
+              <label for="name" class="mb-1 block text-sm font-medium text-primary">담당자명 *</label>
+              <input type="text" id="name" name="name" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="이름 입력" />
+            </div>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="email" class="mb-1 block text-sm font-medium text-primary">이메일 *</label>
+              <input type="email" id="email" name="email" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="email@example.com" />
+            </div>
+            <div>
+              <label for="phone" class="mb-1 block text-sm font-medium text-primary">전화번호 *</label>
+              <input type="tel" id="phone" name="phone" required class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="010-0000-0000" />
+            </div>
+          </div>
+          <div>
+            <label for="product" class="mb-1 block text-sm font-medium text-primary">관심 제품</label>
+            <select id="product" name="product" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary">
+              <option value="">선택해 주세요</option>
+              <option value="torr-rf">TORR RF</option>
+              <option value="ulblanc">ULBLANC</option>
+              <option value="newchae">NEWCHAE</option>
+              <option value="lumino-wave">LUMINO WAVE</option>
+              <option value="other">기타</option>
+            </select>
+          </div>
+          <div>
+            <label for="message" class="mb-1 block text-sm font-medium text-primary">문의 내용</label>
+            <textarea id="message" name="message" rows="4" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-secondary focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="문의 내용을 입력해 주세요"></textarea>
+          </div>
+          <button type="submit" class="w-full rounded-lg bg-primary py-3 font-semibold text-white hover:bg-secondary">
+            문의하기
+          </button>
+          <p class="text-center text-xs text-text-muted">
+            제출 시 <a href="/privacy" class="underline hover:text-primary">개인정보처리방침</a>에 동의합니다.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- 지도 영역 -->
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">오시는 길</h2>
+      <div class="flex h-80 items-center justify-center rounded-xl bg-surface">
+        <div class="text-center text-text-muted">
+          <p class="mb-2 text-4xl">📍</p>
+          <p class="font-medium">지도 영역</p>
+          <p class="text-sm">(네이버 지도 또는 카카오맵 임베드 예정)</p>
+        </div>
+      </div>
+    </section>
+
+    <RelatedContent items={[
+      { title: '파트너십 문의', href: '/support/partnership', description: '해외/국내 파트너십 문의' },
+      { title: '제품 라인업', href: '/products', description: '브리츠메디 전체 제품 보기' },
+      { title: '기업소개', href: '/about', description: '브리츠메디 회사 소개' },
+    ]} />
+
+    <UpdateDate />
+  </div>
+</BaseLayout>

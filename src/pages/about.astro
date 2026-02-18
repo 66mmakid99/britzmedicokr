@@ -1,0 +1,142 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SchemaOrg from '@components/aeo/SchemaOrg.astro';
+import TLDRBox from '@components/aeo/TLDRBox.astro';
+import FAQSection from '@components/aeo/FAQSection.astro';
+import Breadcrumb from '@components/common/Breadcrumb.astro';
+import CTASection from '@components/common/CTASection.astro';
+import UpdateDate from '@components/common/UpdateDate.astro';
+import RelatedContent from '@components/common/RelatedContent.astro';
+import { organizationSchema } from '@lib/schema';
+---
+
+<BaseLayout>
+  <SchemaOrg schema={organizationSchema()} slot="head" />
+
+  <div class="mx-auto max-w-[1280px] px-4 py-12 md:px-8">
+    <Breadcrumb items={[{ name: '회사소개', href: '/about' }]} />
+
+    <h1 class="mb-6 text-3xl font-bold text-primary md:text-4xl">
+      브리츠메디 — 혁신적인 RF 의료기기를 만드는 사람들
+    </h1>
+
+    <p class="mb-8 text-lg text-text-muted">
+      브리츠메디는 2019년 설립된 한국의 의료기기 전문 기업으로, 독자적인 토로이달 코일 RF 기술을 바탕으로 피부 미용 의료기기를 개발합니다.
+    </p>
+
+    <TLDRBox content="브리츠메디(BRITZMEDI)는 토로이달 코일 기반 Multi-wave RF 기술을 보유한 한국 의료기기 기업입니다. 2019년 설립 이후 FDA 510(k), CE Mark, ISO 13485 인증을 획득하고, 40개국 이상의 파트너 네트워크를 구축하며 글로벌 피부 미용 의료기기 시장에서 빠르게 성장하고 있습니다." />
+
+    <!-- 회사 개요 -->
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">회사 개요</h2>
+      <div class="grid gap-8 md:grid-cols-2">
+        <div>
+          <p class="mb-4 leading-relaxed text-text-muted">
+            브리츠메디는 '기술로 아름다움을 혁신한다'는 비전 아래, 기존 RF 방식의 한계를 돌파하는 토로이달 코일 기술을 독자 개발했습니다. 이 기술은 피부 조직에 균일한 에너지를 전달하여 시술 효과와 안전성을 동시에 높입니다.
+          </p>
+          <p class="leading-relaxed text-text-muted">
+            서울에 본사를 두고 있으며, 연구개발·제조·글로벌 영업을 수직 통합 운영하고 있습니다. TORR RF, ULBLANC, NEWCHAE, LUMINO WAVE 등 다양한 제품 라인업으로 글로벌 시장을 공략하고 있습니다.
+          </p>
+        </div>
+        <div class="overflow-hidden rounded-lg border border-gray-200">
+          <table class="w-full text-sm">
+            <tbody>
+              {[
+                { label: '회사명', value: '(주)브리츠메디 / BRITZMEDI Co., Ltd.' },
+                { label: '설립', value: '2019년' },
+                { label: '대표이사', value: '김대표' },
+                { label: '소재지', value: '서울특별시' },
+                { label: '사업 분야', value: 'RF 피부 미용 의료기기 개발·제조' },
+                { label: '주요 인증', value: 'FDA 510(k), CE Mark, ISO 13485' },
+                { label: '글로벌 파트너', value: '40개국 이상' },
+              ].map((row, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white' : 'bg-surface'}>
+                  <td class="w-1/3 px-4 py-3 font-medium text-primary">{row.label}</td>
+                  <td class="px-4 py-3 text-text-muted">{row.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 연혁 타임라인 -->
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">연혁</h2>
+      <div class="space-y-6 border-l-2 border-secondary pl-8">
+        {[
+          { year: '2019', events: ['브리츠메디 설립', '토로이달 코일 RF 기술 개발 착수'] },
+          { year: '2020', events: ['TORR RF 1세대 제품 출시', '국내 의료기기 허가 취득'] },
+          { year: '2021', events: ['CE Mark 인증 획득', '해외 시장 첫 진출 (동남아시아)'] },
+          { year: '2022', events: ['FDA 510(k) 승인', 'ISO 13485 인증 획득', 'ULBLANC 출시'] },
+          { year: '2023', events: ['NEWCHAE 출시', '글로벌 파트너 30개국 돌파'] },
+          { year: '2024', events: ['LUMINO WAVE 출시', 'TORR RF 2세대 업그레이드'] },
+          { year: '2025', events: ['글로벌 파트너 40개국 돌파', '누적 시술 100,000건 달성'] },
+        ].map((item) => (
+          <div class="relative">
+            <div class="absolute -left-10 top-1 h-4 w-4 rounded-full border-2 border-secondary bg-white"></div>
+            <p class="mb-2 text-lg font-bold text-accent">{item.year}</p>
+            <ul class="space-y-1">
+              {item.events.map((e) => (
+                <li class="text-sm text-text-muted">• {e}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 주요 성과 -->
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">주요 성과</h2>
+      <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+        {[
+          { number: '3+', label: '글로벌 인증' },
+          { number: '10+', label: '특허 보유' },
+          { number: '40+', label: '파트너 국가' },
+          { number: '100K+', label: '누적 시술' },
+        ].map((stat) => (
+          <div class="rounded-xl bg-surface p-6 text-center">
+            <p class="text-3xl font-bold text-accent md:text-4xl">{stat.number}</p>
+            <p class="mt-2 text-sm text-text-muted">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 글로벌 네트워크 -->
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">글로벌 네트워크</h2>
+      <p class="mb-6 text-text-muted">
+        브리츠메디는 아시아, 유럽, 중동, 남미 등 전 세계 40개국 이상의 디스트리뷰터 및 의료기관과 파트너십을 맺고 있습니다.
+      </p>
+      <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+        {['아시아 태평양', '유럽', '중동 · 아프리카', '남미'].map((region) => (
+          <div class="rounded-lg border border-gray-200 p-4 text-center">
+            <p class="font-semibold text-primary">{region}</p>
+            <p class="mt-1 text-sm text-text-muted">10개국+</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <FAQSection items={[
+      { question: '브리츠메디는 어떤 회사인가요?', answer: '브리츠메디는 2019년 설립된 한국의 의료기기 전문 기업으로, 토로이달 코일 기반 Multi-wave RF 기술을 독자 개발하여 피부 미용 의료기기를 제조·판매하고 있습니다.' },
+      { question: '어디에서 제품을 구매할 수 있나요?', answer: '브리츠메디 제품은 전 세계 40개국 이상의 공식 파트너(디스트리뷰터)를 통해 구매할 수 있습니다. 한국 내에서는 직접 문의를 통해 상담 후 구매 가능합니다.' },
+      { question: '어떤 인증을 보유하고 있나요?', answer: 'FDA 510(k), CE Mark, ISO 13485 등 주요 글로벌 의료기기 인증을 보유하고 있으며, 다수의 RF 기술 관련 특허를 등록하였습니다.' },
+      { question: '파트너십은 어떻게 문의하나요?', answer: '파트너십 문의 페이지 또는 카카오톡 채널을 통해 문의하실 수 있습니다. 해외 파트너십은 영문 사이트(britzmedi.com)에서도 문의 가능합니다.' },
+    ]} />
+
+    <CTASection title="브리츠메디와 함께하고 싶으신가요?" description="제품 상담, 파트너십 문의 등 무엇이든 편하게 연락주세요." />
+
+    <RelatedContent items={[
+      { title: 'CEO 인사말', href: '/ceo', description: '브리츠메디 CEO가 전하는 비전과 철학' },
+      { title: '브리츠 WAY', href: '/way', description: '우리가 일하는 방식과 핵심 가치' },
+      { title: 'R&D / 기술력', href: '/rnd', description: '토로이달 RF 기술의 혁신' },
+    ]} />
+
+    <UpdateDate />
+  </div>
+</BaseLayout>

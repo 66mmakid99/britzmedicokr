@@ -1,0 +1,115 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import TLDRBox from '@components/aeo/TLDRBox.astro';
+import Breadcrumb from '@components/common/Breadcrumb.astro';
+import CTASection from '@components/common/CTASection.astro';
+import UpdateDate from '@components/common/UpdateDate.astro';
+import RelatedContent from '@components/common/RelatedContent.astro';
+---
+
+<BaseLayout>
+  <div class="mx-auto max-w-[1280px] px-4 py-12 md:px-8">
+    <Breadcrumb items={[
+      { name: '회사소개', href: '/about' },
+      { name: '브리츠 WAY', href: '/way' },
+    ]} />
+
+    <h1 class="mb-6 text-3xl font-bold text-primary md:text-4xl">
+      브리츠 WAY — 우리가 일하는 방식
+    </h1>
+
+    <p class="mb-8 text-lg text-text-muted">
+      브리츠메디는 기술 혁신, 품질 우선, 고객 중심, 글로벌 지향이라는 4가지 핵심 가치를 바탕으로 일합니다.
+    </p>
+
+    <TLDRBox content="브리츠 WAY는 브리츠메디가 제품을 개발하고 고객과 소통하는 모든 과정에 적용되는 행동 원칙입니다. '기술로 차별화하고, 품질로 증명하며, 현장의 목소리에 응답하고, 세계 시장에서 경쟁한다' — 이것이 우리가 일하는 방식입니다." />
+
+    <!-- 핵심 가치 -->
+    <section class="my-12">
+      <h2 class="mb-8 text-2xl font-bold text-primary">핵심 가치</h2>
+      <div class="grid gap-6 md:grid-cols-2">
+        {[
+          {
+            number: '01',
+            title: '기술 혁신 (Innovation)',
+            desc: "기존 방식에 안주하지 않고, 더 나은 기술을 끊임없이 탐구합니다. 토로이달 코일 RF 기술은 이 철학의 결과물입니다. 우리는 '다르게' 생각하고 '더 깊이' 연구합니다.",
+            color: 'bg-secondary',
+          },
+          {
+            number: '02',
+            title: '품질 우선 (Quality First)',
+            desc: '의료기기는 사람의 피부에 직접 닿는 제품입니다. 타협 없는 품질 관리는 브리츠메디의 가장 기본적인 약속입니다. FDA, CE, ISO 인증은 이 약속의 증거입니다.',
+            color: 'bg-accent',
+          },
+          {
+            number: '03',
+            title: '고객 중심 (Customer Focus)',
+            desc: '우리의 고객은 전 세계 의료진과 그 환자들입니다. 현장의 피드백이 곧 제품 개발의 출발점입니다. 기술이 아닌 고객의 필요에서 시작합니다.',
+            color: 'bg-success',
+          },
+          {
+            number: '04',
+            title: '글로벌 지향 (Global Reach)',
+            desc: '한국에서 만들어 세계로 나아갑니다. 40개국 이상의 파트너와 함께 성장하며, 각 시장의 규제와 문화를 존중하는 현지화 전략을 실천합니다.',
+            color: 'bg-primary',
+          },
+        ].map((item) => (
+          <div class="overflow-hidden rounded-xl border border-gray-200">
+            <div class={`${item.color} px-6 py-4`}>
+              <span class="text-sm font-bold text-white/70">{item.number}</span>
+              <h3 class="text-lg font-bold text-white">{item.title}</h3>
+            </div>
+            <div class="p-6">
+              <p class="leading-relaxed text-text-muted">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 기술 철학 -->
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">기술 철학</h2>
+      <div class="rounded-xl bg-surface p-8">
+        <blockquote class="mb-6 border-l-4 border-accent pl-6 text-lg italic text-primary">
+          "RF 기술의 핵심은 에너지의 균일한 전달입니다. 우리는 토로이달 코일이라는 답을 찾았습니다."
+        </blockquote>
+        <div class="space-y-4 text-text-muted">
+          <p>
+            기존 모노폴라·바이폴라 RF 방식은 에너지가 특정 지점에 집중되어 불균일한 결과를 초래할 수 있었습니다. 브리츠메디는 이 문제를 근본적으로 해결하기 위해 토로이달 코일 구조를 의료기기에 최초로 적용했습니다.
+          </p>
+          <p>
+            토로이달 코일은 360도 방향으로 균일한 전자기장을 형성하여, 피부 조직 전체에 고른 에너지를 전달합니다. 이는 시술 효과의 일관성과 안전성을 동시에 높이는 핵심 기술입니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 품질 철학 -->
+    <section class="my-12">
+      <h2 class="mb-6 text-2xl font-bold text-primary">품질 철학</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        {[
+          { title: '설계 단계', desc: '제품 설계 시점부터 국제 규격(IEC 60601)을 기준으로 안전성과 성능을 동시에 설계합니다.' },
+          { title: '제조 단계', desc: 'ISO 13485 인증 품질관리 시스템 하에서 모든 제조 공정을 관리하며, 전수 검사를 실시합니다.' },
+          { title: '출하 후 관리', desc: '글로벌 파트너와 함께 사후 관리 체계를 운영하며, 현장 피드백을 통해 지속적으로 제품을 개선합니다.' },
+        ].map((item) => (
+          <div class="rounded-xl border border-gray-200 p-6">
+            <h3 class="mb-3 text-lg font-bold text-primary">{item.title}</h3>
+            <p class="text-sm leading-relaxed text-text-muted">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <CTASection title="브리츠메디와 함께 성장하세요" description="파트너십, 제품 문의 등 편하게 연락주세요." />
+
+    <RelatedContent items={[
+      { title: '기업소개', href: '/about', description: '브리츠메디의 역사와 성과' },
+      { title: 'CEO 인사말', href: '/ceo', description: 'CEO가 전하는 비전과 철학' },
+      { title: 'R&D / 기술력', href: '/rnd', description: '토로이달 RF 기술 상세 설명' },
+    ]} />
+
+    <UpdateDate />
+  </div>
+</BaseLayout>
