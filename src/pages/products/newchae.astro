@@ -22,92 +22,139 @@ const deviceSchema = medicalDeviceSchema({
 <BaseLayout>
   <SchemaOrg schema={[deviceSchema, faqSchema(product.faqs)]} slot="head" />
 
-  <!-- Product Hero -->
-  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 px-4 py-16 sm:px-6 md:py-24 lg:px-8">
-    <div class="mx-auto max-w-7xl">
-      <div class="grid items-center gap-8 md:grid-cols-2">
+  <!-- CINEMATIC PRODUCT HERO -->
+  <section class="relative flex min-h-[80vh] items-center overflow-hidden bg-[#0A0E1A]">
+    <!-- Background glow effects -->
+    <div class="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-blue-600/15 blur-[120px]"></div>
+    <div class="absolute -bottom-20 right-1/4 h-[400px] w-[400px] rounded-full bg-indigo-500/10 blur-[100px]"></div>
+    <div class="absolute -right-20 top-1/3 h-[300px] w-[300px] rounded-full bg-blue-400/5 blur-[80px]"></div>
+
+    <div class="relative mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div class="grid items-center gap-12 md:grid-cols-2">
+        <!-- Left side -->
         <div>
-          <p class="mb-2 text-sm font-medium uppercase tracking-wider text-blue-400">{product.nameKo}</p>
-          <h1 class="mb-4 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+          <p class="text-xs font-medium uppercase tracking-[0.3em] text-blue-400">{product.nameKo}</p>
+          <h1 class="mt-4 text-5xl font-bold tracking-tight text-white md:text-6xl">
             {product.name}
           </h1>
-          <p class="mb-6 text-lg text-slate-300">{product.tagline}</p>
-          <p class="mb-8 text-slate-400">{product.firstSentence}</p>
-          <div class="flex flex-wrap gap-4">
-            <a href="/contact" class="rounded-xl bg-blue-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-blue-700 hover:shadow-lg">상담 신청</a>
-            <a href="/products" class="rounded-xl border-2 border-white/20 px-8 py-4 font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5">제품 비교</a>
+          <p class="mt-4 text-xl text-slate-400">{product.tagline}</p>
+
+          <!-- Key specs -->
+          <div class="mt-8 flex flex-wrap gap-8">
+            <div>
+              <p class="text-3xl font-bold text-white">50<span class="ml-1 text-lg font-normal text-slate-400">W</span></p>
+              <p class="mt-1 text-sm text-slate-500">최대 출력</p>
+            </div>
+            <div>
+              <p class="text-3xl font-bold text-white">1<span class="ml-1 text-lg font-normal text-slate-400">MHz</span></p>
+              <p class="mt-1 text-sm text-slate-500">단일 주파수</p>
+            </div>
+            <div>
+              <p class="text-3xl font-bold text-white">6<span class="ml-1 text-lg font-normal text-slate-400">kg</span></p>
+              <p class="mt-1 text-sm text-slate-500">경량 설계</p>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a href="/contact" class="rounded-full bg-white px-8 py-4 font-semibold text-slate-900 transition-all duration-300 hover:bg-slate-100 hover:shadow-lg">상담 신청</a>
+            <a href="/certifications" class="rounded-full border border-white/30 px-8 py-4 font-semibold text-white transition-all duration-300 hover:border-white/50 hover:bg-white/5">카탈로그</a>
           </div>
         </div>
+
+        <!-- Right side: product visual -->
         <div class="flex items-center justify-center">
-          <div class="flex h-64 w-full items-center justify-center rounded-3xl bg-white/10 backdrop-blur-sm md:h-80">
-            <span class="text-7xl font-bold text-white/20">{product.name.charAt(0)}</span>
+          <div class="flex h-72 w-full items-center justify-center rounded-3xl border border-white/10 bg-white/5 p-12 backdrop-blur md:h-96">
+            <span class="text-8xl font-bold text-white/10">{product.name.charAt(0)}</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-    <!-- 2. TL;DR -->
-    <TLDRBox content={product.tldr} />
+  <!-- 1. TL;DR Section (bg-white) -->
+  <section class="bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <TLDRBox content={product.tldr} />
+    </div>
+  </section>
 
-    <!-- 3. 핵심 기술 -->
-    <section class="my-16">
+  <!-- 2. Core Technology Section (bg-slate-50) -->
+  <section class="bg-slate-50 py-16 md:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">{product.techTitle}</h2>
       <div class="space-y-4 text-slate-600">
         {product.techDescription.map((text) => (
           <p>{text}</p>
         ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 4. 제품 사양 -->
-    <section class="my-16">
+  <!-- 3. Spec Table Section (bg-white) -->
+  <section class="bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">제품 사양</h2>
       <SpecTable specs={product.specs} />
-    </section>
+    </div>
+  </section>
 
-    <!-- 5. 인증 배지 - GOLD THEME -->
-    <section class="my-16">
-      <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">인증 현황</h2>
+  <!-- 4. Certification Section (dark bg, gold theme) -->
+  <section class="bg-[#0A0E1A] py-16 md:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h2 class="mb-8 text-2xl font-bold text-white md:text-3xl">인증 현황</h2>
       <div class="grid gap-4 sm:grid-cols-2">
         {product.certifications.map((cert) => (
-          <div class="rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-5 text-center">
-            <div class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-amber-100">
-              <svg class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="rounded-2xl border border-amber-500/20 bg-white/5 p-5 text-center backdrop-blur">
+            <div class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10">
+              <svg class="h-6 w-6 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <p class="font-semibold text-slate-900">{cert.name}</p>
-            <p class="mt-1 text-xs text-slate-500">{cert.number}</p>
-            <p class="mt-1 text-xs text-slate-500">{cert.date}</p>
+            <p class="font-semibold text-amber-400">{cert.name}</p>
+            <p class="mt-1 text-xs text-slate-400">{cert.number}</p>
+            <p class="mt-1 text-xs text-slate-400">{cert.date}</p>
           </div>
         ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 6. 적용 분야 -->
-    <section class="my-16">
+  <!-- 5. Application Areas (bg-white) -->
+  <section class="bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">적용 분야</h2>
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {product.applications.map((app) => (
-          <div class="rounded-2xl border border-slate-200 p-6 transition-all duration-300 hover:shadow-md">
+          <div class="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50">
+              <svg class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
             <h3 class="mb-2 text-lg font-semibold text-slate-900">{app.title}</h3>
             <p class="text-sm text-slate-600">{app.desc}</p>
           </div>
         ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 7. FAQ -->
-    <FAQSection items={product.faqs} />
+  <!-- 6. FAQ Section (bg-slate-50) -->
+  <section class="bg-slate-50 py-16 md:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <FAQSection items={product.faqs} />
+    </div>
+  </section>
 
-    <!-- 8. CTA -->
-    <CTASection title={`${product.name} 도입을 검토 중이신가요?`} description="브리츠메디 전문 상담팀이 맞춤 솔루션을 안내해 드립니다." />
+  <!-- 7. CTA Section -->
+  <CTASection title={`${product.name} 도입을 검토 중이신가요?`} description="브리츠메디 전문 상담팀이 맞춤 솔루션을 안내해 드립니다." />
 
-    <!-- 관련 콘텐츠 -->
-    <RelatedContent items={product.relatedContent} />
-
-    <UpdateDate />
-  </div>
+  <!-- 8. Related Content (bg-white) -->
+  <section class="bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <RelatedContent items={product.relatedContent} />
+      <UpdateDate />
+    </div>
+  </section>
 </BaseLayout>

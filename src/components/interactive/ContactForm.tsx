@@ -89,7 +89,7 @@ export default function ContactForm() {
 
   const inputClass =
     "w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20";
-  const labelClass = "mb-1.5 block text-sm font-semibold text-slate-700";
+  const labelClass = "mb-1.5 block text-sm font-medium text-slate-700";
 
   return (
     <div className="relative">
@@ -230,7 +230,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-xl bg-blue-700 px-8 py-4 text-sm font-semibold text-white transition-colors hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+          className="w-full rounded-xl bg-blue-700 py-4 font-semibold text-white transition-colors hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSubmitting ? "전송 중..." : "문의하기"}
         </button>

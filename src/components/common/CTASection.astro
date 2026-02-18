@@ -5,20 +5,23 @@ interface Props {
 }
 
 const {
-  title = '제품에 대해 더 알고 싶으신가요?',
-  description = '브리츠메디 전문 상담팀이 맞춤 솔루션을 안내해 드립니다.',
+  title = '함께 성장할 파트너를 찾고 있습니다',
+  description = '브리츠메디의 기술력을 직접 경험해보세요',
 } = Astro.props;
 ---
 
-<section class="my-16 rounded-2xl bg-blue-700 px-6 py-12 text-center text-white md:px-12">
-  <h2 class="mb-3 text-2xl font-bold md:text-3xl">{title}</h2>
-  <p class="mx-auto mb-8 max-w-xl text-blue-100">{description}</p>
-  <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
-    <a href="/contact" class="rounded-xl bg-white px-8 py-4 font-semibold text-blue-700 transition-all duration-300 hover:bg-blue-50 hover:shadow-lg">
-      상담 신청
-    </a>
-    <a href="https://pf.kakao.com/_MdCLG" target="_blank" rel="noopener" class="rounded-xl border-2 border-white/30 px-8 py-4 font-semibold transition-all duration-300 hover:bg-white/10">
-      카카오톡 문의
-    </a>
+<section class="relative overflow-hidden bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 px-4 py-20 text-center text-white sm:px-6 lg:px-8 md:py-28">
+  <div class="absolute -right-20 -top-20 h-[300px] w-[300px] rounded-full bg-white/5 blur-[80px]"></div>
+  <div class="relative mx-auto max-w-3xl">
+    <h2 class="text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">{title}</h2>
+    <p class="mt-4 text-lg text-blue-100">{description}</p>
+    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a href="/contact" class="rounded-full bg-white px-10 py-4 text-base font-semibold text-blue-700 transition-all hover:shadow-xl">
+        무료 상담 신청
+      </a>
+      <a href="https://pf.kakao.com/_MdCLG" target="_blank" rel="noopener" class="rounded-full border-2 border-white px-10 py-4 text-base font-semibold transition-all hover:bg-white/10">
+        카카오톡 문의
+      </a>
+    </div>
   </div>
 </section>

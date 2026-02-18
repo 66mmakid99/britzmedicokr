@@ -78,7 +78,7 @@ export default function ChatBot() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed right-5 bottom-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-blue-700 text-white shadow-xl transition-transform hover:scale-105 hover:bg-blue-800 hover:shadow-2xl"
+          className="fixed right-6 bottom-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-blue-700 text-white shadow-xl transition-transform hover:scale-105 hover:bg-blue-800 hover:shadow-2xl"
           aria-label="AI 상담 열기"
         >
           <svg
@@ -99,7 +99,7 @@ export default function ChatBot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed right-5 bottom-5 z-50 flex h-[520px] w-[380px] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl">
+        <div className="fixed right-6 bottom-24 z-50 flex max-h-[600px] w-[380px] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
           {/* Header */}
           <div className="flex items-center justify-between bg-slate-900 px-5 py-4">
             <h3 className="text-sm font-bold text-white">
@@ -159,11 +159,11 @@ export default function ChatBot() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="메시지를 입력하세요..."
-              className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+              className="flex-1 rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
             />
             <button
               type="submit"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-700 text-white transition-colors hover:bg-blue-800"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-700 text-white transition-colors hover:bg-blue-800"
               aria-label="전송"
             >
               <svg

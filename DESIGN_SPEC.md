@@ -1,12 +1,28 @@
 지금부터 전체 사이트 디자인 업그레이드 + 남은 이슈를 한번에 처리해줘.
 현재 24개 페이지의 구조는 유지하면서, 2026년 프리미엄 의료기기 B2B 사이트 수준으로 디자인을 입혀.
 
+## 🎨 디자인 레퍼런스: https://apr-in.com/ (에이피알)
+한국 뷰티테크/의료기기 상장기업 사이트. 우리도 이 수준의 비주얼 임팩트를 목표로 해.
+
+### APR 사이트에서 가져올 핵심 디자인 요소:
+1. **풀스크린 히어로** — 화면 가득 채우는 비주얼 (min-h-screen). 비디오 대신 CSS 그래디언트 + 애니메이션으로 임팩트 만들기
+2. **비주얼 > 텍스트** — 텍스트는 최소화, 큰 타이포 + 여백으로 고급스러움 연출
+3. **탭 전환 쇼케이스** — 제품/솔루션을 탭으로 전환하면서 큰 비주얼이 바뀌는 방식
+4. **대형 숫자 강조** — 매출/인증/파트너 수를 화면 가득 큰 숫자로 (text-6xl ~ text-8xl)
+5. **풀와이드 섹션** — 컨테이너 제한 없이 화면 폭 100% 사용하는 섹션들
+6. **시네마틱 다크 섹션** — 다크 배경 위에 밝은 텍스트, 고급스러운 느낌
+7. **뉴스룸 스타일** — 깔끔한 리스트형 뉴스 (날짜 + 카테고리 태그 + 제목)
+8. **부드러운 전환** — 섹션 간 자연스러운 스크롤 애니메이션
+9. **브랜드 로고 바** — 하단에 관련 브랜드/파트너 로고 나열
+10. **미니멀 Footer** — 깔끔하고 정돈된 Footer
+
 ⚠️ 중요 규칙:
 1. 기존 AEO 구조(H1/H2/H3, Schema.org, TLDRBox, FAQ 등)는 절대 건드리지 마
 2. 작업 단위별로 npm run build 해서 에러 확인 → 에러 있으면 즉시 수정
 3. 전체 완료 후 git commit + git push
 4. Tailwind CSS 유틸리티 클래스로만 스타일링 (커스텀 CSS 최소화)
 5. 모바일 퍼스트 반응형 — 모바일에서도 예뻐야 해
+6. 이미지 없이도 고급스러워 보여야 함 — CSS 그래디언트, 도형, 블러 효과, 큰 타이포로 비주얼 임팩트 만들기
 
 ---
 
@@ -90,39 +106,56 @@ H3: text-xl md:text-2xl font-semibold
 
 ---
 
-## STEP 3: Header 리디자인
+## STEP 3: Header 리디자인 (APR 스타일 — 미니멀, 투명)
 
 ```
 디자인:
-- 배경: bg-white/80 backdrop-blur-lg border-b border-slate-100 (스크롤 시)
-- 최상단에서는 bg-transparent (히어로 위에 떠있는 느낌)
-- 로고: "BRITZMEDI" 텍스트 (font-bold text-xl tracking-widest text-slate-900)
-- 로고 옆에 작은 구분선 + "RF Medical Device" 텍스트 (text-xs text-slate-400 tracking-wider uppercase)
-- 네비 링크: text-sm font-medium text-slate-600 hover:text-blue-700 transition
-- 드롭다운: bg-white rounded-xl shadow-xl border border-slate-100 py-3
-- CTA 버튼: "상담 신청" (bg-blue-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold)
-- 모바일: 햄버거 메뉴 → 풀스크린 오버레이 (bg-white) 또는 슬라이드
-- sticky top-0 z-50
+- 홈페이지에서: absolute top-0 w-full z-50 bg-transparent (히어로 위에 떠있음)
+  텍스트: text-white (다크 배경 위이므로)
+- 스크롤 시: fixed top-0 bg-white/90 backdrop-blur-xl border-b border-slate-100 shadow-sm
+  텍스트: text-slate-900 (전환 애니메이션: transition-all duration-300)
+- 서브페이지에서: bg-white border-b border-slate-100 (항상 라이트)
+
+- 높이: h-16 md:h-20
+- 로고: "BRITZMEDI" (font-bold text-lg md:text-xl tracking-[0.15em] uppercase)
+  + 옆에 구분선(|) + "RF Medical Device" (text-[10px] tracking-[0.2em] text-slate-400 uppercase)
+- 네비 링크: text-[13px] font-medium tracking-wide hover:text-blue-500 transition
+  간격: gap-8 md:gap-10
+- 드롭다운: bg-white rounded-xl shadow-2xl border border-slate-100 py-4 px-2 min-w-[200px]
+  - 아이템: px-4 py-2.5 text-sm hover:bg-slate-50 rounded-lg transition
+- CTA 버튼: "상담 신청" (bg-blue-600 text-white px-5 py-2 rounded-full text-xs font-semibold tracking-wide hover:bg-blue-700)
+- 모바일: 햄버거 → 풀스크린 오버레이 (bg-white inset-0 z-50)
+  - 메뉴 아이템: text-2xl font-light py-4 border-b border-slate-100
+  - APR처럼 깔끔한 풀스크린 메뉴
 ```
 
 → npm run build 확인
 
 ---
 
-## STEP 4: Footer 리디자인
+## STEP 4: Footer 리디자인 (APR 스타일 — 미니멀)
 
 ```
 디자인:
-- 배경: bg-slate-900 text-white
-- 4컬럼 그리드 (md:grid-cols-4):
-  1열: BRITZMEDI 로고 + 한줄 설명 + SNS 아이콘(없으면 생략)
-  2열: 제품 링크 (TORR RF, ULBLANC, NEWCHAE, LUMINO WAVE)
-  3열: 회사 링크 (회사소개, CEO, R&D, 인증/특허)
-  4열: 고객지원 (상담신청, 파트너십, 블로그, 연락처)
-- 하단: border-t border-slate-700 py-6
-  - 왼쪽: © 2026 BRITZMEDI. All rights reserved.
-  - 오른쪽: 개인정보처리방침 | 이용약관
-  - 중간: 인증 배지 작게 (FDA · CE · ISO 13485) — text-amber-400
+- 배경: bg-slate-950 text-slate-400
+
+- 상단: py-16 md:py-20
+  4컬럼 그리드 (md:grid-cols-4 gap-12):
+  1열: "BRITZMEDI" 로고 (text-white font-bold text-lg tracking-[0.15em])
+       + 한줄 설명 (text-xs text-slate-500 mt-3 leading-relaxed)
+       + "대표번호: 02-XXXX-XXXX" (text-xs text-slate-500 mt-4)
+  2열: "Products" (text-xs text-white tracking-wider uppercase font-semibold mb-4)
+       링크들: text-sm text-slate-500 hover:text-white transition space-y-3
+  3열: "Company" (동일 스타일)
+       링크들
+  4열: "Support" (동일 스타일)
+       링크들
+
+- 하단: border-t border-slate-800 py-6
+  flex justify-between items-center text-xs text-slate-600
+  좌: © 2026 BRITZMEDI Corp. All rights reserved.
+  우: 개인정보처리방침 · 이용약관 (hover:text-white)
+  중간: 인증 텍스트 "FDA 510(k) · CE · ISO 13485" (text-amber-500/60)
 ```
 
 → npm run build 확인
@@ -131,32 +164,51 @@ H3: text-xl md:text-2xl font-semibold
 
 ## STEP 5: 홈페이지 리디자인
 
-### Hero 섹션
+### Hero 섹션 (APR 스타일 — 풀스크린, 시네마틱)
 ```
-- 풀와이드 다크 배경: bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900
-- 왼쪽에 미묘한 빛 효과: 블루 radial gradient 원형 (CSS로 absolute positioned div)
-- 큰 헤드라인: text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight
-  "토로이달 RF 기술로\n피부 미용의 새로운 기준을\n만듭니다"
-- 서브: text-slate-300 text-lg md:text-xl max-w-2xl
-- 버튼 2개: "상담 신청" (블루), "제품 알아보기" (화이트 아웃라인)
-- 우측에 제품 이미지 자리 (플레이스홀더: 블루 그라데이션 박스 with 기기 실루엣 또는 아이콘)
-- 하단에 신뢰 배지 바: "FDA 510(k) · CE Mark · ISO 13485 · XX개국 파트너"
-  (bg-white/5 backdrop-blur px-6 py-4 rounded-2xl 안에)
-- 높이: min-h-[85vh] md:min-h-[90vh]
+- 풀스크린: min-h-screen flex items-center relative overflow-hidden
+- 배경: 멀티 레이어 CSS 그래디언트로 시네마틱 효과
+  bg-[#0A0E1A] (베이스)
+  + absolute 원형 블러 요소들:
+    - 좌상단: w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] absolute -top-40 -left-40
+    - 우하단: w-[500px] h-[500px] bg-indigo-500/15 rounded-full blur-[100px] absolute -bottom-20 -right-20
+    - 중앙: w-[300px] h-[300px] bg-cyan-400/10 rounded-full blur-[80px] absolute top-1/2 left-1/2
+  + 미세한 그리드 패턴 오버레이 (선택): CSS background-image로 subtle grid
+- 콘텐츠 중앙:
+  - 상단에 작은 태그: "TOROIDAL RF TECHNOLOGY" (text-xs tracking-[0.3em] text-blue-400 uppercase border border-blue-400/30 px-4 py-1.5 rounded-full)
+  - 메인 헤드라인: text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight
+    "토로이달 RF 기술로" (첫줄)
+    "피부 미용의 새로운 기준" (둘째줄, 이 줄만 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300)
+  - 서브: text-slate-400 text-lg md:text-xl mt-6 max-w-xl leading-relaxed
+  - 버튼 2개 (mt-10 flex gap-4):
+    "상담 신청" (bg-white text-slate-900 px-8 py-4 rounded-full font-semibold text-base hover:bg-blue-50 transition)
+    "제품 알아보기" (border border-white/30 text-white px-8 py-4 rounded-full font-semibold text-base hover:bg-white/10 transition)
+- 하단에 스크롤 인디케이터: absolute bottom-10 left-1/2 (작은 마우스 아이콘 + 아래 화살표, animate-bounce)
+- 우측에 제품 비주얼 영역 (lg:block hidden):
+  큰 원형 글래스모피즘 카드 (bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl w-[400px] h-[500px])
+  안에 제품 실루엣 자리 or "TORR RF" 큰 텍스트 + 간단한 스펙
 ```
 
-### 제품 쇼케이스 섹션
+### 솔루션 쇼케이스 섹션 (APR 탭 전환 스타일)
 ```
-- 배경: bg-white py-20 md:py-28
-- 섹션 제목: "제품 라인업" 중앙 정렬 + 밑에 "세계가 인정한 RF 기술" 서브텍스트
-- 4개 카드 그리드 (md:grid-cols-2 lg:grid-cols-4 gap-6)
-- 각 카드:
-  - bg-white rounded-2xl border border-slate-100 p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300
-  - 상단: 제품 이미지 영역 (bg-slate-50 rounded-xl h-48 flex items-center justify-center)
-    (실제 이미지 없으면 제품명 이니셜 큰 글자로 표시)
-  - 제품명: text-lg font-bold mt-4
-  - 한줄 설명: text-sm text-slate-500
-  - 하단: "자세히 보기 →" 링크 (text-blue-700 text-sm font-semibold)
+- 풀와이드: bg-white py-0 (여백 없이 임팩트)
+- 상단 탭 바: sticky top-16 z-30 bg-white/90 backdrop-blur border-b border-slate-100
+  중앙 정렬 탭 4개:
+  "TORR RF" | "ULBLANC" | "NEWCHAE" | "LUMINO WAVE"
+  (text-sm font-semibold tracking-wider, 선택된 탭: text-blue-700 border-b-2 border-blue-700)
+- 각 탭 콘텐츠:
+  풀와이드 (min-h-[80vh]) 2컬럼 레이아웃
+  좌측 50%: 제품 비주얼 영역 (bg-gradient-to-br from-slate-50 to-slate-100 전체 높이)
+    (이미지 없으면: 제품명 초대형 텍스트 text-[200px] text-slate-100 font-black + 가운데 작은 아이콘)
+  우측 50%: py-20 px-12 md:px-20
+    - 카테고리: text-blue-600 text-sm font-semibold tracking-wider uppercase
+    - 제품명: text-4xl md:text-5xl font-bold text-slate-900 mt-3
+    - 한줄 설명: text-xl text-slate-600 mt-4 leading-relaxed
+    - 핵심 특장점 3개 (mt-8 space-y-4):
+      각각 flex gap-4 items-start
+      (왼쪽 숫자: text-3xl font-bold text-blue-600, 오른쪽 텍스트: text-sm text-slate-600)
+    - CTA: "자세히 보기 →" (mt-10, text-blue-700 font-semibold text-base hover:underline)
+- 탭 전환은 React client:load로 구현 (탭 클릭 시 콘텐츠 전환, 간단한 fade 트랜지션)
 ```
 
 ### 왜 브리츠메디 섹션
@@ -173,29 +225,57 @@ H3: text-xl md:text-2xl font-semibold
   3. ✅ FDA/CE/ISO 트리플 인증
 ```
 
-### 숫자 섹션
+### 숫자 섹션 (APR 스타일 — 풀와이드 대형 숫자)
 ```
-- 배경: bg-gradient-to-r from-slate-900 to-blue-900 text-white py-16
-- 4개 숫자 (md:grid-cols-4 gap-8 text-center)
+- 풀와이드: bg-[#0A0E1A] text-white py-24 md:py-32 relative overflow-hidden
+- 배경에 서틀한 빛 효과 (absolute blur 원형, blue-900/30)
+- 섹션 타이틀: "Sustained Growth" (text-xs tracking-[0.3em] text-blue-400 uppercase text-center)
+- 서브: "브리츠메디의 성장을 확인하세요" (text-center text-slate-400 mt-2)
+- 4개 숫자 (mt-16 grid md:grid-cols-4 gap-8 text-center)
 - 각 항목:
-  - 숫자: text-4xl md:text-5xl font-bold text-white (카운터 애니메이션은 선택)
-  - 라벨: text-slate-300 text-sm mt-2
-  - 구분: 골드 색상으로 작은 포인트 (border-b-2 border-amber-400 w-12 mx-auto)
-- 항목: FDA/CE/ISO 인증 | 특허 보유 | 파트너 국가 | 글로벌 시술 건수
+  - 숫자: text-6xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight
+    (APR처럼 이탤릭 느낌: italic 또는 font-style로)
+  - 단위: text-2xl text-blue-400 ml-1 (예: "건+", "개국+", "개+")
+  - 라벨: text-sm text-slate-500 mt-3 tracking-wider
+  - 각 숫자 사이 구분: 세로선 (hidden md:block absolute right-0 top-1/4 h-1/2 w-px bg-slate-700)
+- 항목: 40+ 파트너 국가 | 3 트리플 인증 | 15+ 특허 보유 | 50,000+ 글로벌 시술 건수
 ```
 
-### CTA 섹션
+### CTA 섹션 (풀와이드 임팩트)
 ```
-- bg-blue-700 py-16 text-center text-white
-- 큰 제목 + 서브텍스트
-- 2개 버튼: "무료 상담 신청" (white bg), "카탈로그 다운로드" (white 아웃라인)
+- 풀와이드: bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 py-20 md:py-28 relative overflow-hidden
+- 배경 장식: absolute 원형 white/5 블러 요소
+- 중앙 정렬:
+  - "함께 성장할 파트너를 찾고 있습니다" (text-white text-3xl md:text-4xl lg:text-5xl font-bold text-center leading-tight)
+  - "브리츠메디의 기술력을 직접 경험해보세요" (text-blue-100 text-lg mt-4 text-center)
+  - 2개 버튼 (mt-10 flex justify-center gap-4):
+    "무료 상담 신청" (bg-white text-blue-700 px-10 py-4 rounded-full font-semibold text-base hover:shadow-xl transition)
+    "카탈로그 요청" (border-2 border-white text-white px-10 py-4 rounded-full font-semibold text-base hover:bg-white/10 transition)
 ```
 
-### 최신 소식 섹션
+### 최신 소식 섹션 (APR 뉴스룸 스타일)
 ```
-- bg-white py-20
-- 블로그/뉴스 최신 3개 카드 (md:grid-cols-3 gap-6)
-- 각 카드: 이미지 영역(bg-slate-100 h-48 rounded-t-2xl) + 카테고리 태그 + 제목 + 날짜
+- bg-white py-20 md:py-28
+- 상단: flex justify-between items-end
+  좌: "News Room" (text-3xl md:text-4xl font-bold) + 서브 (text-slate-500)
+  우: "더보기 →" 링크 (text-sm font-semibold text-slate-900 hover:text-blue-700)
+- 뉴스 리스트 (mt-12, divide-y divide-slate-200):
+  각 아이템: py-6 flex justify-between items-center group cursor-pointer hover:bg-slate-50 -mx-6 px-6 rounded-xl transition
+  좌: flex gap-4 items-center
+    - 카테고리 태그 (text-xs font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full)
+    - 제목 (text-base md:text-lg font-medium text-slate-900 group-hover:text-blue-700 transition)
+  우: 날짜 (text-sm text-slate-400)
+- APR처럼 리스트형이 카드형보다 세련됨
+```
+
+### 인증/파트너 로고 바 (APR 브랜드 바 스타일)
+```
+- bg-slate-50 py-12 border-t border-slate-100
+- 중앙 라벨: "Trusted by" 또는 "인증 현황" (text-xs tracking-wider text-slate-400 uppercase text-center mb-8)
+- 로고들: flex items-center justify-center gap-12 md:gap-16
+  FDA · CE · ISO 13485 · KFDA (각각 text-slate-300 hover:text-slate-600 transition)
+  (로고 이미지 없으면 텍스트로: text-xl font-bold tracking-wider)
+- 아래에 "40개국+ 글로벌 파트너 네트워크" (text-sm text-slate-400 text-center mt-6)
 ```
 
 → npm run build 확인
@@ -204,12 +284,17 @@ H3: text-xl md:text-2xl font-semibold
 
 ## STEP 6: 회사소개 페이지들 디자인 (/about, /ceo, /way, /rnd, /contact)
 
-### 공통
+### 공통 (APR 스타일 서브페이지)
 ```
-- 모든 서브페이지 상단: 미니 히어로 배너
-  bg-gradient-to-r from-slate-900 to-slate-800 py-16 md:py-20
-  중앙에 Breadcrumb(text-slate-400) + H1(text-white text-3xl md:text-4xl font-bold)
-- 본문 영역: bg-white py-16 max-w-4xl mx-auto (읽기 편한 폭)
+- 모든 서브페이지 상단: 풀와이드 미니 히어로
+  bg-[#0A0E1A] py-20 md:py-28 relative overflow-hidden
+  배경 장식: 서틀한 블루 글로우 (absolute blur)
+  중앙에:
+    - Breadcrumb (text-slate-500 text-xs tracking-wider)
+    - H1 (text-white text-3xl md:text-4xl lg:text-5xl font-bold mt-4 tracking-tight)
+    - 한줄 서브텍스트 (text-slate-400 text-base mt-3)
+- 본문 영역: bg-white py-16 md:py-20
+  (콘텐츠 폭: max-w-4xl mx-auto for 읽기 페이지, max-w-6xl for 카드 레이아웃)
 ```
 
 ### TLDRBox 리디자인
@@ -278,22 +363,28 @@ H3: text-xl md:text-2xl font-semibold
 - 하단에 4개 제품 비교 테이블
 ```
 
-### 제품 상세 (/products/torr-rf 등)
+### 제품 상세 (/products/torr-rf 등) — APR 스타일 시네마틱
 ```
-- 제품 히어로:
-  bg-gradient-to-br from-slate-900 to-blue-900 py-16 md:py-24
-  좌: 제품명(큰), 한줄 설명, "상담 신청" + "카탈로그" 버튼
-  우: 제품 이미지 영역 (bg-white/10 rounded-3xl p-8)
+- 제품 히어로 (풀스크린):
+  min-h-[80vh] bg-[#0A0E1A] relative overflow-hidden flex items-center
+  배경: 블루 글로우 효과 (absolute blur 원형들)
+  좌측: 
+    카테고리 태그 (text-xs tracking-[0.3em] text-blue-400 uppercase)
+    제품명 (text-5xl md:text-6xl font-bold text-white tracking-tight)
+    한줄 설명 (text-xl text-slate-400 mt-4)
+    핵심 스펙 3개 (mt-8, 가로 나열: 숫자+단위+라벨)
+    버튼: "상담 신청" + "카탈로그" (rounded-full 스타일)
+  우측: 제품 비주얼 (bg-white/5 backdrop-blur border border-white/10 rounded-3xl p-12)
 
-- 8섹션 순서대로:
-  1. TLDRBox (위에서 디자인한 대로)
-  2. 핵심 기술 — CompareTable 포함
-  3. 스펙 테이블 — SpecTable 디자인
-  4. 인증 배지 — 골드 테마 카드 (bg-amber-50 border border-amber-200)
-  5. 적용 분야 — 아이콘 + 카드 그리드
-  6. FAQ — FAQSection 디자인
-  7. CTA — bg-blue-700 풀와이드
-  8. 관련 콘텐츠 — 카드 3개
+- 8섹션 순서대로 (풀와이드, 섹션 배경 교대):
+  1. TLDRBox (위에서 디자인한 대로, bg-white 섹션)
+  2. 핵심 기술 — 풀와이드 bg-slate-50, CompareTable 포함
+  3. 스펙 테이블 — bg-white, SpecTable 디자인
+  4. 인증 배지 — bg-[#0A0E1A] 다크 섹션, 골드 테마 (text-amber-400)
+  5. 적용 분야 — bg-white, 아이콘 + 카드 그리드
+  6. FAQ — bg-slate-50, FAQSection 디자인
+  7. CTA — 풀와이드 블루 그래디언트 (위의 CTA 섹션과 동일)
+  8. 관련 콘텐츠 — bg-white, 카드 3개
 ```
 
 → npm run build 확인
@@ -418,34 +509,73 @@ H3: text-xl md:text-2xl font-semibold
 
 ---
 
-## STEP 12: 마이크로 애니메이션 (CSS only)
+## STEP 12: 마이크로 애니메이션 (APR 스타일 — 부드럽고 고급스러운 전환)
 
 ### global.css에 추가
 ```css
-/* 페이드인 애니메이션 */
+/* 페이드인 업 */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+/* 페이드인 (방향 없이) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* 스크롤 시 나타나기 위한 기본 상태 */
+/* 스케일 인 */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 스크롤 reveal 기본 상태 */
 .reveal {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* 순차적 딜레이 (자식 요소들이 순서대로 나타남) */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-stagger.visible > *:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+
+/* 히어로 배경 글로우 애니메이션 (서서히 움직이는 느낌) */
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, -20px); }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 12s ease-in-out infinite;
+}
+
+/* 부드러운 스크롤 */
+html {
+  scroll-behavior: smooth;
+}
 ```
 
-### 간단한 IntersectionObserver (BaseLayout에 인라인 스크립트)
+### IntersectionObserver (BaseLayout에 인라인 스크립트)
 ```html
 <script>
   const observer = new IntersectionObserver((entries) => {
@@ -454,16 +584,18 @@ H3: text-xl md:text-2xl font-semibold
         entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.observe(el));
 </script>
 ```
 
 ### 적용 위치
-- 홈페이지 각 섹션에 class="reveal"
-- 제품 카드에 reveal
-- 숫자 카운터 섹션
-- 무리하게 모든 곳에 넣지 말고, 홈페이지 위주로
+- 홈페이지: 모든 섹션에 class="reveal", 카드 그리드에 class="reveal-stagger"
+- 히어로 배경 글로우 요소에: class="animate-float" / "animate-float-slow"
+- 제품 페이지: 각 섹션에 reveal
+- 숫자 섹션: reveal-stagger로 숫자가 순차적으로 나타나게
+- 과하게 쓰지 말 것 — 홈페이지 + 제품 상세 위주로만
 
 → npm run build 확인
 

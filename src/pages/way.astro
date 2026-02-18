@@ -9,23 +9,29 @@ import RelatedContent from '@components/common/RelatedContent.astro';
 
 <BaseLayout>
   <PageHero
-    title="브리츠 WAY — 우리가 일하는 방식"
+    title="브리츠 WAY"
+    subtitle="우리가 일하는 방식"
     breadcrumb={[
       { name: '회사소개', href: '/about' },
       { name: '브리츠 WAY', href: '/way' },
     ]}
   />
 
-  <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-    <p class="mb-8 text-lg text-slate-600">
-      브리츠메디는 기술 혁신, 품질 우선, 고객 중심, 글로벌 지향이라는 4가지 핵심 가치를 바탕으로 일합니다.
-    </p>
+  <!-- Section 1: 소개 + TLDRBox (white) -->
+  <section class="bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <p class="mb-8 text-lg leading-relaxed text-slate-600">
+        브리츠메디는 기술 혁신, 품질 우선, 고객 중심, 글로벌 지향이라는 4가지 핵심 가치를 바탕으로 일합니다.
+      </p>
 
-    <TLDRBox content="브리츠 WAY는 브리츠메디가 제품을 개발하고 고객과 소통하는 모든 과정에 적용되는 행동 원칙입니다. '기술로 차별화하고, 품질로 증명하며, 현장의 목소리에 응답하고, 세계 시장에서 경쟁한다' — 이것이 우리가 일하는 방식입니다." />
+      <TLDRBox content="브리츠 WAY는 브리츠메디가 제품을 개발하고 고객과 소통하는 모든 과정에 적용되는 행동 원칙입니다. '기술로 차별화하고, 품질로 증명하며, 현장의 목소리에 응답하고, 세계 시장에서 경쟁한다' — 이것이 우리가 일하는 방식입니다." />
+    </div>
+  </section>
 
-    <!-- 핵심 가치 -->
-    <section class="my-16">
-      <h2 class="mb-8 text-2xl font-bold text-slate-900 md:text-3xl">핵심 가치</h2>
+  <!-- Section 2: 핵심 가치 카드 (slate-50) -->
+  <section class="bg-slate-50 py-16 md:py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <h2 class="mb-10 text-2xl font-bold text-slate-900 md:text-3xl">핵심 가치</h2>
       <div class="grid gap-6 md:grid-cols-2">
         {[
           {
@@ -53,10 +59,10 @@ import RelatedContent from '@components/common/RelatedContent.astro';
             color: 'bg-slate-900',
           },
         ].map((item) => (
-          <div class="overflow-hidden rounded-2xl border border-slate-200">
-            <div class={`${item.color} px-6 py-4`}>
-              <span class="text-sm font-bold text-white/70">{item.number}</span>
-              <h3 class="text-lg font-bold text-white">{item.title}</h3>
+          <div class="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class={`${item.color} px-6 py-5`}>
+              <span class="text-sm font-bold text-white/60">{item.number}</span>
+              <h3 class="mt-1 text-lg font-bold text-white">{item.title}</h3>
             </div>
             <div class="p-6">
               <p class="leading-relaxed text-slate-600">{item.desc}</p>
@@ -64,12 +70,14 @@ import RelatedContent from '@components/common/RelatedContent.astro';
           </div>
         ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 기술 철학 -->
-    <section class="my-16">
-      <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">기술 철학</h2>
-      <div class="rounded-2xl bg-slate-50 p-8">
+  <!-- Section 3: 기술 철학 (white) -->
+  <section class="bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h2 class="mb-8 text-2xl font-bold text-slate-900 md:text-3xl">기술 철학</h2>
+      <div class="rounded-2xl border border-slate-100 bg-slate-50 p-8 shadow-sm md:p-10">
         <blockquote class="mb-6 border-l-4 border-blue-500 pl-6 text-lg italic text-slate-900">
           "RF 기술의 핵심은 에너지의 균일한 전달입니다. 우리는 토로이달 코일이라는 답을 찾았습니다."
         </blockquote>
@@ -82,33 +90,40 @@ import RelatedContent from '@components/common/RelatedContent.astro';
           </p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 품질 철학 -->
-    <section class="my-16">
-      <h2 class="mb-6 text-2xl font-bold text-slate-900 md:text-3xl">품질 철학</h2>
+  <!-- Section 4: 품질 철학 (slate-50) -->
+  <section class="bg-slate-50 py-16 md:py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <h2 class="mb-8 text-2xl font-bold text-slate-900 md:text-3xl">품질 철학</h2>
       <div class="grid gap-6 md:grid-cols-3">
         {[
           { title: '설계 단계', desc: '제품 설계 시점부터 국제 규격(IEC 60601)을 기준으로 안전성과 성능을 동시에 설계합니다.' },
           { title: '제조 단계', desc: 'ISO 13485 인증 품질관리 시스템 하에서 모든 제조 공정을 관리하며, 전수 검사를 실시합니다.' },
           { title: '출하 후 관리', desc: '글로벌 파트너와 함께 사후 관리 체계를 운영하며, 현장 피드백을 통해 지속적으로 제품을 개선합니다.' },
         ].map((item) => (
-          <div class="rounded-2xl border border-slate-200 p-6 transition-all duration-300 hover:shadow-md">
+          <div class="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
             <h3 class="mb-3 text-lg font-bold text-slate-900">{item.title}</h3>
             <p class="text-sm leading-relaxed text-slate-600">{item.desc}</p>
           </div>
         ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <CTASection title="브리츠메디와 함께 성장하세요" description="파트너십, 제품 문의 등 편하게 연락주세요." />
+  <!-- Section 5: CTA + Related (white) -->
+  <section class="bg-white py-16 md:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <CTASection title="브리츠메디와 함께 성장하세요" description="파트너십, 제품 문의 등 편하게 연락주세요." />
 
-    <RelatedContent items={[
-      { title: '기업소개', href: '/about', description: '브리츠메디의 역사와 성과' },
-      { title: 'CEO 인사말', href: '/ceo', description: 'CEO가 전하는 비전과 철학' },
-      { title: 'R&D / 기술력', href: '/rnd', description: '토로이달 RF 기술 상세 설명' },
-    ]} />
+      <RelatedContent items={[
+        { title: '기업소개', href: '/about', description: '브리츠메디의 역사와 성과' },
+        { title: 'CEO 인사말', href: '/ceo', description: 'CEO가 전하는 비전과 철학' },
+        { title: 'R&D / 기술력', href: '/rnd', description: '토로이달 RF 기술 상세 설명' },
+      ]} />
 
-    <UpdateDate />
-  </div>
+      <UpdateDate />
+    </div>
+  </section>
 </BaseLayout>

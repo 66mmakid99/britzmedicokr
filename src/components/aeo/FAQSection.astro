@@ -15,7 +15,7 @@ const { items, schemaEnabled = true } = Astro.props;
   <div class="divide-y divide-slate-200">
     {items.map((item, i) => (
       <details class="group" open={i === 0}>
-        <summary class="flex cursor-pointer items-center justify-between py-5 font-semibold text-slate-900 transition-colors hover:text-blue-700">
+        <summary class="flex cursor-pointer items-center justify-between py-5 text-left font-semibold text-slate-900 transition-colors hover:text-blue-700">
           <span>{item.question}</span>
           <svg class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />

@@ -82,8 +82,8 @@ const hreflangs = seo?.hreflangs;
             entry.target.classList.add('visible');
           }
         });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.observe(el));
     </script>
   </body>
 </html>
