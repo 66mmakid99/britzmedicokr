@@ -27,3 +27,5 @@ Thumbs.db
 # Misc
 *.log
 npm-debug.log*
+src.zip
+public/videos/hero-original.mp4
