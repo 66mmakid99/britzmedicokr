@@ -10,20 +10,14 @@ interface Props {
 const { title, subtitle, breadcrumb } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-zinc-950 px-4 py-20 sm:px-6 lg:px-8 md:py-28">
-  <!-- 배경 글로우 -->
-  <div class="absolute -top-20 -left-20 h-[400px] w-[400px] rounded-full bg-zinc-400/10 blur-[100px]"></div>
-  <div class="absolute -right-20 -bottom-20 h-[300px] w-[300px] rounded-full bg-zinc-600/15 blur-[80px]"></div>
-
-  <div class="relative mx-auto max-w-7xl text-center">
-    <div class="mb-4">
-      <Breadcrumb items={breadcrumb} theme="dark" />
-    </div>
-    <h1 class="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+<section class="border-b border-zinc-100 bg-white px-4 pt-32 pb-12 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <Breadcrumb items={breadcrumb} />
+    <h1 class="text-4xl font-bold tracking-tight text-zinc-900 md:text-5xl">
       {title}
     </h1>
     {subtitle && (
-      <p class="mx-auto mt-3 max-w-2xl text-base text-zinc-400">{subtitle}</p>
+      <p class="mt-3 max-w-2xl text-lg text-zinc-500">{subtitle}</p>
     )}
   </div>
 </section>

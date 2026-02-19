@@ -12,7 +12,7 @@ const allItems = [{ name: '홈', href: '/' }, ...items];
 const isDark = theme === 'dark';
 ---
 
-<nav aria-label="breadcrumb" class="mb-6">
+<nav aria-label="breadcrumb" class="mb-4">
   <ol class:list={['flex flex-wrap items-center gap-1 text-xs tracking-wider', isDark ? 'text-zinc-500' : 'text-text-muted']}>
     {allItems.map((item, i) => (
       <li class="flex items-center gap-1">
