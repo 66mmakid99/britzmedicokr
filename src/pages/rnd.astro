@@ -75,13 +75,13 @@ const rndSchema = {
         </div>
         <div class="flex items-center justify-center rounded-2xl border border-zinc-100 bg-white p-8 shadow-sm">
           <div class="text-center">
-            <div class="mb-4 text-6xl text-zinc-400">&#9889;</div>
+            <div class="mb-4 text-6xl text-teal-600">&#9889;</div>
             <p class="text-lg font-bold text-zinc-900">Toroidal Coil</p>
             <p class="text-sm text-zinc-500">360도 균일 에너지 전달</p>
             <div class="mt-6 space-y-3">
-              <div class="rounded-xl bg-zinc-100 px-4 py-2 text-sm text-zinc-400">표피 &rarr; 탄력 개선</div>
-              <div class="rounded-xl bg-zinc-100 px-4 py-2 text-sm text-zinc-400">진피 &rarr; 콜라겐 리모델링</div>
-              <div class="rounded-xl bg-zinc-100 px-4 py-2 text-sm text-zinc-400">피하 &rarr; 리프팅 효과</div>
+              <div class="rounded-xl bg-teal-50 px-4 py-2 text-sm text-teal-600">표피 &rarr; 탄력 개선</div>
+              <div class="rounded-xl bg-teal-50 px-4 py-2 text-sm text-teal-600">진피 &rarr; 콜라겐 리모델링</div>
+              <div class="rounded-xl bg-teal-50 px-4 py-2 text-sm text-teal-600">피하 &rarr; 리프팅 효과</div>
             </div>
           </div>
         </div>
@@ -127,7 +127,7 @@ const rndSchema = {
         ].map((patent) => (
           <div class="rounded-2xl border border-zinc-100 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md">
             <div class="mb-3 flex items-center gap-2">
-              <span class={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${patent.status === '등록' ? 'bg-zinc-100 text-zinc-700' : 'bg-zinc-100 text-zinc-700'}`}>
+              <span class={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${patent.status === '등록' ? 'bg-teal-50 text-teal-700' : 'bg-zinc-100 text-zinc-700'}`}>
                 {patent.status}
               </span>
             </div>
@@ -149,7 +149,7 @@ const rndSchema = {
           { number: '0건', label: '심각한 부작용', desc: '임상 시험 기간 중 심각한 부작용 보고 0건' },
         ].map((data) => (
           <div class="rounded-2xl border border-zinc-100 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:shadow-md">
-            <p class="text-4xl font-bold text-zinc-400">{data.number}</p>
+            <p class="text-4xl font-bold text-teal-600">{data.number}</p>
             <p class="mt-2 font-semibold text-zinc-900">{data.label}</p>
             <p class="mt-1 text-sm text-zinc-500">{data.desc}</p>
           </div>

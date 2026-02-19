@@ -26,14 +26,14 @@ export default function CookieConsent() {
           이 웹사이트는 더 나은 서비스를 위해 쿠키를 사용합니다.{" "}
           <a
             href="/privacy"
-            className="text-zinc-300 underline underline-offset-2 hover:text-zinc-100"
+            className="text-teal-400 underline underline-offset-2 hover:text-teal-300"
           >
             자세히 보기
           </a>
         </p>
         <button
           onClick={handleAccept}
-          className="shrink-0 rounded-lg bg-white px-6 py-2 text-sm font-semibold text-zinc-900 transition-colors hover:bg-zinc-100"
+          className="shrink-0 rounded-lg bg-teal-600 px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-teal-500"
         >
           동의합니다
         </button>

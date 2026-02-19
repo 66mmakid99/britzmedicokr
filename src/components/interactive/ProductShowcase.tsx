@@ -66,8 +66,8 @@ export default function ProductShowcase() {
               onClick={() => setActive(i)}
               className={`px-6 py-4 text-sm font-semibold tracking-wider transition-colors md:px-10 ${
                 i === active
-                  ? 'border-b-2 border-zinc-400 text-zinc-400'
-                  : 'text-zinc-400 hover:text-zinc-600'
+                  ? 'border-b-2 border-teal-600 text-teal-600'
+                  : 'text-zinc-400 hover:text-teal-600'
               }`}
             >
               {p.name}
@@ -103,7 +103,7 @@ export default function ProductShowcase() {
           <div className="mt-8 space-y-4">
             {product.features.map((f, i) => (
               <div key={i} className="flex items-start gap-4">
-                <span className="text-3xl font-bold text-zinc-400">{f.number}</span>
+                <span className="text-3xl font-bold text-teal-600">{f.number}</span>
                 <span className="pt-2 text-sm text-zinc-600">{f.label}</span>
               </div>
             ))}
@@ -111,7 +111,7 @@ export default function ProductShowcase() {
 
           <a
             href={product.href}
-            className="mt-10 inline-flex items-center text-base font-semibold text-zinc-400 transition-colors hover:text-zinc-800 hover:underline"
+            className="mt-10 inline-flex items-center text-base font-semibold text-teal-600 transition-colors hover:text-teal-500 hover:underline"
           >
             자세히 보기 →
           </a>

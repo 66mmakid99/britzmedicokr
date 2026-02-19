@@ -18,9 +18,9 @@ const isDark = theme === 'dark';
       <li class="flex items-center gap-1">
         {i > 0 && <span class="mx-1">/</span>}
         {i === allItems.length - 1 ? (
-          <span class:list={['font-medium', isDark ? 'text-white' : 'text-primary']}>{item.name}</span>
+          <span class:list={['font-medium', isDark ? 'text-teal-400' : 'text-teal-600']}>{item.name}</span>
         ) : (
-          <a href={item.href} class:list={[isDark ? 'hover:text-white' : 'hover:text-primary']}>{item.name}</a>
+          <a href={item.href} class:list={[isDark ? 'hover:text-teal-400' : 'hover:text-teal-600']}>{item.name}</a>
         )}
       </li>
     ))}

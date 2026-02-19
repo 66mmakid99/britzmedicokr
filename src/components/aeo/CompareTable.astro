@@ -16,9 +16,9 @@ const { headers, rows, highlight } = Astro.props;
         {headers.map((h, i) => (
           <th class:list={[
             'px-6 py-4 text-center text-sm font-semibold',
-            i === highlight ? 'border-t-4 border-zinc-400 bg-zinc-100 text-zinc-400' : 'bg-zinc-900 text-white',
+            i === highlight ? 'border-t-4 border-teal-500 bg-teal-50 text-teal-600' : 'bg-zinc-900 text-white',
           ]}>
-            {i === highlight && <span class="mb-1 block text-xs font-bold text-zinc-400">추천</span>}
+            {i === highlight && <span class="mb-1 block text-xs font-bold bg-teal-600 text-white rounded px-2 py-0.5 inline-block">추천</span>}
             {h}
           </th>
         ))}
@@ -31,7 +31,7 @@ const { headers, rows, highlight } = Astro.props;
           {row.values.map((v, vi) => (
             <td class:list={[
               'border-b border-zinc-100 px-6 py-4 text-center',
-              vi === highlight ? 'bg-zinc-100/50 font-semibold text-zinc-900' : 'text-zinc-600',
+              vi === highlight ? 'bg-teal-50/50 font-semibold text-zinc-900' : 'text-zinc-600',
             ]}>
               {v}
             </td>
