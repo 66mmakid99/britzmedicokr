@@ -78,7 +78,7 @@ export default function ChatBot() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed right-6 bottom-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#B8960C] text-white shadow-xl transition-transform hover:scale-105 hover:bg-[#9A7D0A] hover:shadow-2xl"
+          className="fixed right-6 bottom-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-900 text-white shadow-xl transition-transform hover:scale-105 hover:bg-zinc-800 hover:shadow-2xl"
           aria-label="AI 상담 열기"
         >
           <svg
@@ -101,7 +101,7 @@ export default function ChatBot() {
       {isOpen && (
         <div className="fixed right-6 bottom-24 z-50 flex max-h-[600px] w-[380px] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
           {/* Header */}
-          <div className="flex items-center justify-between bg-neutral-900 px-5 py-4">
+          <div className="flex items-center justify-between bg-zinc-900 px-5 py-4">
             <h3 className="text-sm font-bold text-white">
               브리츠메디 AI 상담
             </h3>
@@ -137,8 +137,8 @@ export default function ChatBot() {
                 <div
                   className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                     msg.role === "user"
-                      ? "rounded-br-md bg-[#B8960C] text-white"
-                      : "rounded-bl-md bg-neutral-100 text-neutral-900"
+                      ? "rounded-br-md bg-zinc-900 text-white"
+                      : "rounded-bl-md bg-zinc-100 text-zinc-900"
                   }`}
                 >
                   {msg.text}
@@ -151,7 +151,7 @@ export default function ChatBot() {
           {/* Input */}
           <form
             onSubmit={handleSend}
-            className="flex items-center gap-2 border-t border-neutral-200 px-4 py-3"
+            className="flex items-center gap-2 border-t border-zinc-200 px-4 py-3"
           >
             <input
               ref={inputRef}
@@ -159,11 +159,11 @@ export default function ChatBot() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="메시지를 입력하세요..."
-              className="flex-1 rounded-xl border border-neutral-200 px-4 py-2.5 text-sm text-neutral-900 outline-none focus:border-[#B8960C] focus:ring-2 focus:ring-[#B8960C]/20"
+              className="flex-1 rounded-xl border border-zinc-200 px-4 py-2.5 text-sm text-zinc-900 outline-none focus:border-zinc-400 focus:ring-2 focus:ring-zinc-400/20"
             />
             <button
               type="submit"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#B8960C] text-white transition-colors hover:bg-[#9A7D0A]"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-zinc-900 text-white transition-colors hover:bg-zinc-800"
               aria-label="전송"
             >
               <svg

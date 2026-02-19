@@ -24,26 +24,26 @@ const latestPosts = getAllPosts().slice(0, 4);
       </video>
       <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
       <!-- CSS 폴백 배경 (동영상 없을 때 자동 표시) -->
-      <div class="absolute inset-0 -z-10 bg-[#0A0A0A]">
-        <div class="animate-float absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-[#B8960C]/20 blur-[120px]"></div>
-        <div class="animate-float-slow absolute -right-20 -bottom-20 h-[500px] w-[500px] rounded-full bg-neutral-600/15 blur-[100px]"></div>
+      <div class="absolute inset-0 -z-10 bg-zinc-950">
+        <div class="animate-float absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-zinc-400/10 blur-[120px]"></div>
+        <div class="animate-float-slow absolute -right-20 -bottom-20 h-[500px] w-[500px] rounded-full bg-zinc-600/15 blur-[100px]"></div>
       </div>
     </div>
 
     <div class="relative mx-auto w-full max-w-7xl px-4 pb-24 pt-40 sm:px-6 lg:px-8">
       <div class="max-w-xl">
-        <span class="inline-block rounded-full border border-[#D4AF37]/30 px-4 py-1.5 text-xs uppercase tracking-[0.3em] text-[#D4AF37]">
+        <span class="inline-block rounded-full border border-zinc-300/30 px-4 py-1.5 text-xs uppercase tracking-[0.3em] text-zinc-300">
           Toroidal RF Technology
         </span>
         <h1 class="mt-6 text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
           토로이달 RF 기술로<br />
-          <span class="bg-gradient-to-r from-[#D4AF37] to-[#F5F0E1] bg-clip-text text-transparent">피부 미용의 새로운 기준</span>
+          <span class="bg-gradient-to-r from-zinc-300 to-white bg-clip-text text-transparent">피부 미용의 새로운 기준</span>
         </h1>
-        <p class="mt-5 max-w-lg text-base leading-relaxed text-neutral-300 sm:text-lg">
+        <p class="mt-5 max-w-lg text-base leading-relaxed text-zinc-300 sm:text-lg">
           브리츠메디는 토로이달 코일 기반 Multi-wave RF 기술로 피부 미용 의료기기를 개발·제조하는 한국 기업입니다.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/contact" class="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-neutral-900 transition-all hover:bg-[#F5F0E1] hover:shadow-lg sm:px-8 sm:py-4 sm:text-base">
+          <a href="/contact" class="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-zinc-900 transition-all hover:bg-zinc-100 hover:shadow-lg sm:px-8 sm:py-4 sm:text-base">
             상담 신청
           </a>
           <a href="/products" class="rounded-full border border-white/30 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/10 sm:px-8 sm:py-4 sm:text-base">
@@ -65,52 +65,52 @@ const latestPosts = getAllPosts().slice(0, 4);
   <ProductShowcase client:load />
 
   <!-- 왜 브리츠메디 -->
-  <section class="reveal bg-neutral-50 px-4 py-20 sm:px-6 lg:px-8 md:py-28">
+  <section class="reveal bg-zinc-50 px-4 py-20 sm:px-6 lg:px-8 md:py-28">
     <div class="mx-auto max-w-7xl">
       <div class="mb-12 text-center">
-        <h2 class="mb-3 text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">왜 브리츠메디인가</h2>
+        <h2 class="mb-3 text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">왜 브리츠메디인가</h2>
       </div>
       <div class="reveal-stagger grid gap-8 md:grid-cols-3">
         <!-- 독자적 토로이달 RF 기술 -->
-        <div class="rounded-2xl border border-neutral-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md">
-          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#F5F0E1] text-[#B8960C]">
+        <div class="rounded-2xl border border-zinc-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md">
+          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-zinc-100 text-zinc-400">
             <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714a2.25 2.25 0 00.659 1.591L19 14.5M14.25 3.104c.251.023.501.05.75.082M19 14.5l-2.47 2.47a2.25 2.25 0 01-1.59.659H9.06a2.25 2.25 0 01-1.591-.659L5 14.5m14 0V17a2.25 2.25 0 01-2.25 2.25H7.25A2.25 2.25 0 015 17v-2.5" />
             </svg>
           </div>
-          <h3 class="mb-3 text-lg font-bold text-neutral-900">독자적 토로이달 RF 기술</h3>
-          <p class="text-sm leading-relaxed text-neutral-600">기존 모노폴라/바이폴라 방식 대비 균일한 에너지 전달과 깊은 침투 깊이를 구현하는 특허 기술입니다.</p>
+          <h3 class="mb-3 text-lg font-bold text-zinc-900">독자적 토로이달 RF 기술</h3>
+          <p class="text-sm leading-relaxed text-zinc-600">기존 모노폴라/바이폴라 방식 대비 균일한 에너지 전달과 깊은 침투 깊이를 구현하는 특허 기술입니다.</p>
         </div>
         <!-- 40개국+ 글로벌 파트너 네트워크 -->
-        <div class="rounded-2xl border border-neutral-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md">
-          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#F5F0E1] text-[#B8960C]">
+        <div class="rounded-2xl border border-zinc-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md">
+          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-zinc-100 text-zinc-400">
             <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A8.966 8.966 0 013 12c0-1.777.516-3.434 1.404-4.832" />
             </svg>
           </div>
-          <h3 class="mb-3 text-lg font-bold text-neutral-900">40개국+ 글로벌 파트너 네트워크</h3>
-          <p class="text-sm leading-relaxed text-neutral-600">전 세계 40개국 이상의 파트너 네트워크를 통해 글로벌 시장에서 입증된 브랜드입니다.</p>
+          <h3 class="mb-3 text-lg font-bold text-zinc-900">40개국+ 글로벌 파트너 네트워크</h3>
+          <p class="text-sm leading-relaxed text-zinc-600">전 세계 40개국 이상의 파트너 네트워크를 통해 글로벌 시장에서 입증된 브랜드입니다.</p>
         </div>
         <!-- FDA/CE/ISO 트리플 인증 -->
-        <div class="rounded-2xl border border-neutral-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md">
-          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#F5F0E1] text-[#B8960C]">
+        <div class="rounded-2xl border border-zinc-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-md">
+          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-zinc-100 text-zinc-400">
             <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
             </svg>
           </div>
-          <h3 class="mb-3 text-lg font-bold text-neutral-900">FDA/CE/ISO 트리플 인증</h3>
-          <p class="text-sm leading-relaxed text-neutral-600">FDA 510(k), CE Mark, ISO 13485 등 주요 글로벌 의료기기 인증을 획득하여 품질과 안전성을 보증합니다.</p>
+          <h3 class="mb-3 text-lg font-bold text-zinc-900">FDA/CE/ISO 트리플 인증</h3>
+          <p class="text-sm leading-relaxed text-zinc-600">FDA 510(k), CE Mark, ISO 13485 등 주요 글로벌 의료기기 인증을 획득하여 품질과 안전성을 보증합니다.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- 숫자 섹션 — 풀와이드 대형 숫자 -->
-  <section class="reveal relative overflow-hidden bg-[#0A0E1A] px-4 py-24 text-white sm:px-6 lg:px-8 md:py-32">
-    <div class="absolute left-1/4 top-1/3 h-[400px] w-[400px] rounded-full bg-neutral-700/20 blur-[120px]"></div>
+  <section class="reveal relative overflow-hidden bg-zinc-950 px-4 py-24 text-white sm:px-6 lg:px-8 md:py-32">
+    <div class="absolute left-1/4 top-1/3 h-[400px] w-[400px] rounded-full bg-zinc-700/20 blur-[120px]"></div>
     <div class="relative mx-auto max-w-7xl">
-      <p class="text-center text-xs uppercase tracking-[0.3em] text-[#D4AF37]">Sustained Growth</p>
-      <p class="mt-2 text-center text-neutral-400">브리츠메디의 성장을 확인하세요</p>
+      <p class="text-center text-xs uppercase tracking-[0.3em] text-zinc-300">Sustained Growth</p>
+      <p class="mt-2 text-center text-zinc-400">브리츠메디의 성장을 확인하세요</p>
       <div class="reveal-stagger mt-16 grid grid-cols-2 gap-8 md:grid-cols-4">
         {[
           { number: '40', unit: '개국+', label: '파트너 국가' },
@@ -120,10 +120,10 @@ const latestPosts = getAllPosts().slice(0, 4);
         ].map((stat, i) => (
           <div class="relative text-center">
             <p class="text-6xl font-bold italic tracking-tight text-white md:text-7xl lg:text-8xl">
-              {stat.number}<span class="text-2xl text-[#D4AF37]">{stat.unit}</span>
+              {stat.number}<span class="text-2xl text-zinc-300">{stat.unit}</span>
             </p>
-            <p class="mt-3 text-sm tracking-wider text-neutral-500">{stat.label}</p>
-            {i < 3 && <div class="absolute right-0 top-1/4 hidden h-1/2 w-px bg-neutral-700 md:block"></div>}
+            <p class="mt-3 text-sm tracking-wider text-zinc-500">{stat.label}</p>
+            {i < 3 && <div class="absolute right-0 top-1/4 hidden h-1/2 w-px bg-zinc-700 md:block"></div>}
           </div>
         ))}
       </div>
@@ -131,13 +131,13 @@ const latestPosts = getAllPosts().slice(0, 4);
   </section>
 
   <!-- CTA 섹션 -->
-  <section class="reveal relative overflow-hidden bg-gradient-to-r from-[#1C1C1C] via-[#0A0A0A] to-[#171717] px-4 py-20 sm:px-6 lg:px-8 md:py-28">
+  <section class="reveal relative overflow-hidden bg-gradient-to-r from-zinc-900 via-zinc-950 to-zinc-900 px-4 py-20 sm:px-6 lg:px-8 md:py-28">
     <div class="absolute -right-20 -top-20 h-[300px] w-[300px] rounded-full bg-white/5 blur-[80px]"></div>
     <div class="relative mx-auto max-w-3xl text-center">
       <h2 class="text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">함께 성장할 파트너를 찾고 있습니다</h2>
-      <p class="mt-4 text-lg text-neutral-200">브리츠메디의 기술력을 직접 경험해보세요</p>
+      <p class="mt-4 text-lg text-zinc-200">브리츠메디의 기술력을 직접 경험해보세요</p>
       <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="/contact" class="rounded-full bg-white px-10 py-4 text-base font-semibold text-[#B8960C] transition-all hover:shadow-xl">
+        <a href="/contact" class="rounded-full bg-white px-10 py-4 text-base font-semibold text-zinc-900 transition-all hover:shadow-xl">
           무료 상담 신청
         </a>
         <a href="/products" class="rounded-full border-2 border-white px-10 py-4 text-base font-semibold text-white transition-all hover:bg-white/10">
@@ -152,19 +152,19 @@ const latestPosts = getAllPosts().slice(0, 4);
     <div class="mx-auto max-w-7xl">
       <div class="flex items-end justify-between">
         <div>
-          <h2 class="text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">News Room</h2>
-          <p class="mt-1 text-neutral-500">브리츠메디의 최신 소식</p>
+          <h2 class="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">News Room</h2>
+          <p class="mt-1 text-zinc-500">브리츠메디의 최신 소식</p>
         </div>
-        <a href="/blog" class="text-sm font-semibold text-neutral-900 transition-colors hover:text-[#B8960C]">더보기 &rarr;</a>
+        <a href="/blog" class="text-sm font-semibold text-zinc-900 transition-colors hover:text-zinc-400">더보기 &rarr;</a>
       </div>
-      <div class="mt-12 divide-y divide-neutral-200">
+      <div class="mt-12 divide-y divide-zinc-200">
         {latestPosts.map((post) => (
-          <a href={`/blog/${post.slug}`} class="group -mx-6 flex items-center justify-between rounded-xl px-6 py-6 transition-colors hover:bg-neutral-50">
+          <a href={`/blog/${post.slug}`} class="group -mx-6 flex items-center justify-between rounded-xl px-6 py-6 transition-colors hover:bg-zinc-50">
             <div class="flex items-center gap-4">
-              <span class="rounded-full bg-[#F5F0E1] px-3 py-1 text-xs font-medium text-[#B8960C]">{post.categoryLabel}</span>
-              <span class="text-base font-medium text-neutral-900 transition-colors group-hover:text-[#B8960C] md:text-lg">{post.title}</span>
+              <span class="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-400">{post.categoryLabel}</span>
+              <span class="text-base font-medium text-zinc-900 transition-colors group-hover:text-zinc-400 md:text-lg">{post.title}</span>
             </div>
-            <span class="hidden text-sm text-neutral-400 sm:block">{post.publishedAt}</span>
+            <span class="hidden text-sm text-zinc-400 sm:block">{post.publishedAt}</span>
           </a>
         ))}
       </div>
@@ -172,14 +172,14 @@ const latestPosts = getAllPosts().slice(0, 4);
   </section>
 
   <!-- 인증 로고 바 -->
-  <section class="border-t border-neutral-100 bg-neutral-50 px-4 py-12 sm:px-6 lg:px-8">
-    <p class="mb-8 text-center text-xs uppercase tracking-wider text-neutral-400">Trusted by</p>
+  <section class="border-t border-zinc-100 bg-zinc-50 px-4 py-12 sm:px-6 lg:px-8">
+    <p class="mb-8 text-center text-xs uppercase tracking-wider text-zinc-400">Trusted by</p>
     <div class="flex flex-wrap items-center justify-center gap-12 md:gap-16">
       {['FDA', 'CE', 'ISO 13485', 'KFDA'].map((cert) => (
-        <span class="text-xl font-bold tracking-wider text-neutral-300 transition-colors hover:text-neutral-600">{cert}</span>
+        <span class="text-xl font-bold tracking-wider text-zinc-300 transition-colors hover:text-zinc-600">{cert}</span>
       ))}
     </div>
-    <p class="mt-6 text-center text-sm text-neutral-400">40개국+ 글로벌 파트너 네트워크</p>
+    <p class="mt-6 text-center text-sm text-zinc-400">40개국+ 글로벌 파트너 네트워크</p>
   </section>
 
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

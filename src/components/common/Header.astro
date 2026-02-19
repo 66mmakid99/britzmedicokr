@@ -13,16 +13,16 @@ const isHome = currentPath === '/';
   id="site-header"
   class:list={[
     'fixed top-0 z-50 w-full transition-all duration-300',
-    isHome ? 'bg-transparent' : 'border-b border-neutral-100 bg-white/90 backdrop-blur-xl',
+    isHome ? 'bg-transparent' : 'border-b border-zinc-100 bg-white/90 backdrop-blur-xl',
   ]}
   data-home={isHome ? 'true' : 'false'}
 >
   <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 md:h-20">
     <!-- 로고 -->
     <a href="/" class="flex items-center gap-3">
-      <span class:list={['text-lg font-bold tracking-[0.15em] uppercase transition-colors duration-300 md:text-xl', isHome ? 'text-white' : 'text-neutral-900']} id="logo-text">BRITZMEDI</span>
-      <span class:list={['hidden h-5 w-px sm:block transition-colors duration-300', isHome ? 'bg-white/30' : 'bg-neutral-200']} id="logo-divider"></span>
-      <span class:list={['hidden text-[10px] tracking-[0.2em] uppercase sm:block transition-colors duration-300', isHome ? 'text-neutral-400' : 'text-neutral-400']} id="logo-sub">RF Medical Device</span>
+      <span class:list={['text-lg font-bold tracking-[0.15em] uppercase transition-colors duration-300 md:text-xl', isHome ? 'text-white' : 'text-zinc-900']} id="logo-text">BRITZMEDI</span>
+      <span class:list={['hidden h-5 w-px sm:block transition-colors duration-300', isHome ? 'bg-white/30' : 'bg-zinc-200']} id="logo-divider"></span>
+      <span class:list={['hidden text-[10px] tracking-[0.2em] uppercase sm:block transition-colors duration-300', isHome ? 'text-zinc-400' : 'text-zinc-400']} id="logo-sub">RF Medical Device</span>
     </a>
 
     <!-- 데스크톱 네비게이션 -->
@@ -32,20 +32,20 @@ const isHome = currentPath === '/';
           <div class="group relative">
             <button class:list={[
               'nav-link flex items-center gap-1 py-2 text-[13px] font-medium tracking-wide transition-colors',
-              isHome ? 'text-white/80 hover:text-white' : 'text-neutral-600 hover:text-[#B8960C]',
+              isHome ? 'text-white/80 hover:text-white' : 'text-zinc-600 hover:text-zinc-400',
             ]}>
               {item.label}
               <svg class="h-3.5 w-3.5 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div class="invisible absolute left-0 top-full z-50 min-w-[200px] rounded-xl border border-neutral-100 bg-white px-2 py-4 shadow-2xl opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+            <div class="invisible absolute left-0 top-full z-50 min-w-[200px] rounded-xl border border-zinc-100 bg-white px-2 py-4 shadow-2xl opacity-0 transition-all group-hover:visible group-hover:opacity-100">
               {item.children.map((child) => (
                 <a
                   href={child.href}
                   class:list={[
-                    'block rounded-lg px-4 py-2.5 text-sm transition-colors hover:bg-neutral-50',
-                    currentPath === child.href ? 'font-semibold text-[#B8960C]' : 'text-neutral-600 hover:text-[#B8960C]',
+                    'block rounded-lg px-4 py-2.5 text-sm transition-colors hover:bg-zinc-50',
+                    currentPath === child.href ? 'font-semibold text-zinc-400' : 'text-zinc-600 hover:text-zinc-400',
                   ]}
                 >
                   {child.label}
@@ -59,8 +59,8 @@ const isHome = currentPath === '/';
             class:list={[
               'nav-link py-2 text-[13px] font-medium tracking-wide transition-colors',
               currentPath === item.href
-                ? (isHome ? 'text-white' : 'text-[#B8960C]')
-                : (isHome ? 'text-white/80 hover:text-white' : 'text-neutral-600 hover:text-[#B8960C]'),
+                ? (isHome ? 'text-white' : 'text-zinc-400')
+                : (isHome ? 'text-white/80 hover:text-white' : 'text-zinc-600 hover:text-zinc-400'),
             ]}
           >
             {item.label}
@@ -71,11 +71,11 @@ const isHome = currentPath === '/';
 
     <!-- CTA + 모바일 토글 -->
     <div class="flex items-center gap-3">
-      <a href="/contact" class="hidden rounded-full bg-[#B8960C] px-5 py-2 text-xs font-semibold tracking-wide text-white transition-all hover:bg-[#9A7D0A] sm:inline-block">
+      <a href="/contact" class="hidden rounded-full bg-zinc-900 px-5 py-2 text-xs font-semibold tracking-wide text-white transition-all hover:bg-zinc-800 sm:inline-block">
         상담 신청
       </a>
-      <button id="mobile-menu-toggle" class:list={['rounded-lg p-2 transition-colors lg:hidden', isHome ? 'hover:bg-white/10' : 'hover:bg-neutral-50']} aria-label="메뉴 열기">
-        <svg id="hamburger-icon" class:list={['h-6 w-6 transition-colors duration-300', isHome ? 'text-white' : 'text-neutral-900']} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <button id="mobile-menu-toggle" class:list={['rounded-lg p-2 transition-colors lg:hidden', isHome ? 'hover:bg-white/10' : 'hover:bg-zinc-50']} aria-label="메뉴 열기">
+        <svg id="hamburger-icon" class:list={['h-6 w-6 transition-colors duration-300', isHome ? 'text-white' : 'text-zinc-900']} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
@@ -86,9 +86,9 @@ const isHome = currentPath === '/';
 <!-- 모바일 풀스크린 메뉴 -->
 <div id="mobile-menu" class="fixed inset-0 z-[60] hidden bg-white">
   <div class="flex h-16 items-center justify-between px-4 sm:px-6 md:h-20">
-    <span class="text-lg font-bold tracking-[0.15em] uppercase text-neutral-900">BRITZMEDI</span>
-    <button id="mobile-menu-close" class="rounded-lg p-2 hover:bg-neutral-50" aria-label="메뉴 닫기">
-      <svg class="h-6 w-6 text-neutral-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <span class="text-lg font-bold tracking-[0.15em] uppercase text-zinc-900">BRITZMEDI</span>
+    <button id="mobile-menu-close" class="rounded-lg p-2 hover:bg-zinc-50" aria-label="메뉴 닫기">
+      <svg class="h-6 w-6 text-zinc-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
@@ -96,15 +96,15 @@ const isHome = currentPath === '/';
   <nav class="flex flex-col px-6 pt-8" aria-label="모바일 메뉴">
     {mainNav.map((item) =>
       'children' in item ? (
-        <div class="border-b border-neutral-100 py-4">
-          <p class="text-xs font-semibold uppercase tracking-wider text-neutral-400">{item.label}</p>
+        <div class="border-b border-zinc-100 py-4">
+          <p class="text-xs font-semibold uppercase tracking-wider text-zinc-400">{item.label}</p>
           <div class="mt-3 space-y-1">
             {item.children.map((child) => (
               <a
                 href={child.href}
                 class:list={[
-                  'block py-2 text-2xl font-light transition-colors hover:text-[#B8960C]',
-                  currentPath === child.href ? 'text-[#B8960C]' : 'text-neutral-900',
+                  'block py-2 text-2xl font-light transition-colors hover:text-zinc-400',
+                  currentPath === child.href ? 'text-zinc-400' : 'text-zinc-900',
                 ]}
               >
                 {child.label}
@@ -116,15 +116,15 @@ const isHome = currentPath === '/';
         <a
           href={item.href}
           class:list={[
-            'border-b border-neutral-100 py-4 text-2xl font-light transition-colors hover:text-[#B8960C]',
-            currentPath === item.href ? 'text-[#B8960C]' : 'text-neutral-900',
+            'border-b border-zinc-100 py-4 text-2xl font-light transition-colors hover:text-zinc-400',
+            currentPath === item.href ? 'text-zinc-400' : 'text-zinc-900',
           ]}
         >
           {item.label}
         </a>
       )
     )}
-    <a href="/contact" class="mt-8 block rounded-full bg-[#B8960C] py-4 text-center text-base font-semibold text-white transition-colors hover:bg-[#9A7D0A]">
+    <a href="/contact" class="mt-8 block rounded-full bg-zinc-900 py-4 text-center text-base font-semibold text-white transition-colors hover:bg-zinc-800">
       상담 신청
     </a>
   </nav>
@@ -146,29 +146,29 @@ const isHome = currentPath === '/';
       const scrolled = window.scrollY > 50;
       if (scrolled) {
         header.classList.remove('bg-transparent');
-        header.classList.add('bg-white/90', 'backdrop-blur-xl', 'border-b', 'border-neutral-100', 'shadow-sm');
+        header.classList.add('bg-white/90', 'backdrop-blur-xl', 'border-b', 'border-zinc-100', 'shadow-sm');
         logoText?.classList.remove('text-white');
-        logoText?.classList.add('text-neutral-900');
+        logoText?.classList.add('text-zinc-900');
         logoDivider?.classList.remove('bg-white/30');
-        logoDivider?.classList.add('bg-neutral-200');
+        logoDivider?.classList.add('bg-zinc-200');
         hamburger?.classList.remove('text-white');
-        hamburger?.classList.add('text-neutral-900');
+        hamburger?.classList.add('text-zinc-900');
         navLinks.forEach(link => {
           link.classList.remove('text-white/80', 'hover:text-white', 'text-white');
-          link.classList.add('text-neutral-600', 'hover:text-[#B8960C]');
+          link.classList.add('text-zinc-600', 'hover:text-zinc-400');
         });
       } else {
         header.classList.add('bg-transparent');
-        header.classList.remove('bg-white/90', 'backdrop-blur-xl', 'border-b', 'border-neutral-100', 'shadow-sm');
+        header.classList.remove('bg-white/90', 'backdrop-blur-xl', 'border-b', 'border-zinc-100', 'shadow-sm');
         logoText?.classList.add('text-white');
-        logoText?.classList.remove('text-neutral-900');
+        logoText?.classList.remove('text-zinc-900');
         logoDivider?.classList.add('bg-white/30');
-        logoDivider?.classList.remove('bg-neutral-200');
+        logoDivider?.classList.remove('bg-zinc-200');
         hamburger?.classList.add('text-white');
-        hamburger?.classList.remove('text-neutral-900');
+        hamburger?.classList.remove('text-zinc-900');
         navLinks.forEach(link => {
           link.classList.add('text-white/80', 'hover:text-white');
-          link.classList.remove('text-neutral-600', 'hover:text-[#B8960C]');
+          link.classList.remove('text-zinc-600', 'hover:text-zinc-400');
         });
       }
     };

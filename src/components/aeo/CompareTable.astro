@@ -8,17 +8,17 @@ interface Props {
 const { headers, rows, highlight } = Astro.props;
 ---
 
-<div class="my-8 overflow-x-auto rounded-2xl border border-neutral-200">
+<div class="my-8 overflow-x-auto rounded-2xl border border-zinc-200">
   <table class="w-full min-w-[600px] border-collapse text-sm">
     <thead>
       <tr>
-        <th class="bg-neutral-900 px-6 py-4 text-left text-sm font-semibold text-white"></th>
+        <th class="bg-zinc-900 px-6 py-4 text-left text-sm font-semibold text-white"></th>
         {headers.map((h, i) => (
           <th class:list={[
             'px-6 py-4 text-center text-sm font-semibold',
-            i === highlight ? 'border-t-4 border-[#B8960C] bg-[#F5F0E1] text-[#B8960C]' : 'bg-neutral-900 text-white',
+            i === highlight ? 'border-t-4 border-zinc-400 bg-zinc-100 text-zinc-400' : 'bg-zinc-900 text-white',
           ]}>
-            {i === highlight && <span class="mb-1 block text-xs font-bold text-[#B8960C]">추천</span>}
+            {i === highlight && <span class="mb-1 block text-xs font-bold text-zinc-400">추천</span>}
             {h}
           </th>
         ))}
@@ -26,12 +26,12 @@ const { headers, rows, highlight } = Astro.props;
     </thead>
     <tbody>
       {rows.map((row, ri) => (
-        <tr class={ri % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}>
-          <td class="border-b border-neutral-100 px-6 py-4 font-medium text-neutral-900">{row.label}</td>
+        <tr class={ri % 2 === 0 ? 'bg-white' : 'bg-zinc-50'}>
+          <td class="border-b border-zinc-100 px-6 py-4 font-medium text-zinc-900">{row.label}</td>
           {row.values.map((v, vi) => (
             <td class:list={[
-              'border-b border-neutral-100 px-6 py-4 text-center',
-              vi === highlight ? 'bg-[#F5F0E1]/50 font-semibold text-neutral-900' : 'text-neutral-600',
+              'border-b border-zinc-100 px-6 py-4 text-center',
+              vi === highlight ? 'bg-zinc-100/50 font-semibold text-zinc-900' : 'text-zinc-600',
             ]}>
               {v}
             </td>

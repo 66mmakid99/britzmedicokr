@@ -23,41 +23,41 @@ const deviceSchema = medicalDeviceSchema({
   <SchemaOrg schema={[deviceSchema, faqSchema(product.faqs)]} slot="head" />
 
   <!-- CINEMATIC PRODUCT HERO -->
-  <section class="relative flex min-h-[80vh] items-center overflow-hidden bg-[#0A0E1A]">
+  <section class="relative flex min-h-[80vh] items-center overflow-hidden bg-zinc-950">
     <!-- Background glow effects -->
-    <div class="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-[#B8960C]/10 blur-[120px]"></div>
-    <div class="absolute -bottom-20 right-1/4 h-[400px] w-[400px] rounded-full bg-neutral-600/10 blur-[100px]"></div>
-    <div class="absolute -right-20 top-1/3 h-[300px] w-[300px] rounded-full bg-[#B8960C]/5 blur-[80px]"></div>
+    <div class="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-zinc-400/10 blur-[120px]"></div>
+    <div class="absolute -bottom-20 right-1/4 h-[400px] w-[400px] rounded-full bg-zinc-600/10 blur-[100px]"></div>
+    <div class="absolute -right-20 top-1/3 h-[300px] w-[300px] rounded-full bg-zinc-500/5 blur-[80px]"></div>
 
     <div class="relative mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <div class="grid items-center gap-12 md:grid-cols-2">
         <!-- Left side -->
         <div>
-          <p class="text-xs font-medium uppercase tracking-[0.3em] text-[#D4AF37]">{product.nameKo}</p>
+          <p class="text-xs font-medium uppercase tracking-[0.3em] text-zinc-300">{product.nameKo}</p>
           <h1 class="mt-4 text-5xl font-bold tracking-tight text-white md:text-6xl">
             {product.name}
           </h1>
-          <p class="mt-4 text-xl text-neutral-400">{product.tagline}</p>
+          <p class="mt-4 text-xl text-zinc-400">{product.tagline}</p>
 
           <!-- Key specs -->
           <div class="mt-8 flex flex-wrap gap-8">
             <div>
-              <p class="text-3xl font-bold text-white">80<span class="ml-1 text-lg font-normal text-neutral-400">W</span></p>
-              <p class="mt-1 text-sm text-neutral-500">RF 최대 출력</p>
+              <p class="text-3xl font-bold text-white">80<span class="ml-1 text-lg font-normal text-zinc-400">W</span></p>
+              <p class="mt-1 text-sm text-zinc-500">RF 최대 출력</p>
             </div>
             <div>
-              <p class="text-3xl font-bold text-white">630<span class="ml-1 text-lg font-normal text-neutral-400">nm</span></p>
-              <p class="mt-1 text-sm text-neutral-500">Red LED</p>
+              <p class="text-3xl font-bold text-white">630<span class="ml-1 text-lg font-normal text-zinc-400">nm</span></p>
+              <p class="mt-1 text-sm text-zinc-500">Red LED</p>
             </div>
             <div>
-              <p class="text-3xl font-bold text-white">850<span class="ml-1 text-lg font-normal text-neutral-400">nm</span></p>
-              <p class="mt-1 text-sm text-neutral-500">NIR LED</p>
+              <p class="text-3xl font-bold text-white">850<span class="ml-1 text-lg font-normal text-zinc-400">nm</span></p>
+              <p class="mt-1 text-sm text-zinc-500">NIR LED</p>
             </div>
           </div>
 
           <!-- Buttons -->
           <div class="mt-10 flex flex-wrap gap-4">
-            <a href="/contact" class="rounded-full bg-white px-8 py-4 font-semibold text-neutral-900 transition-all duration-300 hover:bg-neutral-100 hover:shadow-lg">상담 신청</a>
+            <a href="/contact" class="rounded-full bg-white px-8 py-4 font-semibold text-zinc-900 transition-all duration-300 hover:bg-zinc-100 hover:shadow-lg">상담 신청</a>
             <a href="/certifications" class="rounded-full border border-white/30 px-8 py-4 font-semibold text-white transition-all duration-300 hover:border-white/50 hover:bg-white/5">카탈로그</a>
           </div>
         </div>
@@ -79,11 +79,11 @@ const deviceSchema = medicalDeviceSchema({
     </div>
   </section>
 
-  <!-- 2. Core Technology Section (bg-neutral-50) -->
-  <section class="bg-neutral-50 py-16 md:py-20">
+  <!-- 2. Core Technology Section (bg-zinc-50) -->
+  <section class="bg-zinc-50 py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mb-6 text-2xl font-bold text-neutral-900 md:text-3xl">{product.techTitle}</h2>
-      <div class="space-y-4 text-neutral-600">
+      <h2 class="mb-6 text-2xl font-bold text-zinc-900 md:text-3xl">{product.techTitle}</h2>
+      <div class="space-y-4 text-zinc-600">
         {product.techDescription.map((text) => (
           <p>{text}</p>
         ))}
@@ -94,26 +94,26 @@ const deviceSchema = medicalDeviceSchema({
   <!-- 3. Spec Table Section (bg-white) -->
   <section class="bg-white py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mb-6 text-2xl font-bold text-neutral-900 md:text-3xl">제품 사양</h2>
+      <h2 class="mb-6 text-2xl font-bold text-zinc-900 md:text-3xl">제품 사양</h2>
       <SpecTable specs={product.specs} />
     </div>
   </section>
 
   <!-- 4. Certification Section (dark bg, gold theme) -->
-  <section class="bg-[#0A0E1A] py-16 md:py-20">
+  <section class="bg-zinc-950 py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <h2 class="mb-8 text-2xl font-bold text-white md:text-3xl">인증 현황</h2>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {product.certifications.map((cert) => (
-          <div class="rounded-2xl border border-[#D4AF37]/20 bg-white/5 p-5 text-center backdrop-blur">
-            <div class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#D4AF37]/10">
-              <svg class="h-6 w-6 text-[#D4AF37]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="rounded-2xl border border-zinc-300/20 bg-white/5 p-5 text-center backdrop-blur">
+            <div class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-zinc-300/10">
+              <svg class="h-6 w-6 text-zinc-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <p class="font-semibold text-[#D4AF37]">{cert.name}</p>
-            <p class="mt-1 text-xs text-neutral-400">{cert.number}</p>
-            <p class="mt-1 text-xs text-neutral-400">{cert.date}</p>
+            <p class="font-semibold text-zinc-300">{cert.name}</p>
+            <p class="mt-1 text-xs text-zinc-400">{cert.number}</p>
+            <p class="mt-1 text-xs text-zinc-400">{cert.date}</p>
           </div>
         ))}
       </div>
@@ -123,25 +123,25 @@ const deviceSchema = medicalDeviceSchema({
   <!-- 5. Application Areas (bg-white) -->
   <section class="bg-white py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mb-6 text-2xl font-bold text-neutral-900 md:text-3xl">적용 분야</h2>
+      <h2 class="mb-6 text-2xl font-bold text-zinc-900 md:text-3xl">적용 분야</h2>
       <div class="grid gap-6 sm:grid-cols-2">
         {product.applications.map((app) => (
-          <div class="rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
-            <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#F5F0E1]">
-              <svg class="h-5 w-5 text-[#B8960C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <div class="rounded-2xl border border-zinc-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-100">
+              <svg class="h-5 w-5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <h3 class="mb-2 text-lg font-semibold text-neutral-900">{app.title}</h3>
-            <p class="text-sm text-neutral-600">{app.desc}</p>
+            <h3 class="mb-2 text-lg font-semibold text-zinc-900">{app.title}</h3>
+            <p class="text-sm text-zinc-600">{app.desc}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- 6. FAQ Section (bg-neutral-50) -->
-  <section class="bg-neutral-50 py-16 md:py-20">
+  <!-- 6. FAQ Section (bg-zinc-50) -->
+  <section class="bg-zinc-50 py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <FAQSection items={product.faqs} />
     </div>

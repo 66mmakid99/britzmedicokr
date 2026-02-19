@@ -58,7 +58,7 @@ const rfCompareRows = [
     slot="head"
   />
 
-  <div class="mb-8 flex flex-wrap items-center gap-3 text-sm text-neutral-500">
+  <div class="mb-8 flex flex-wrap items-center gap-3 text-sm text-zinc-500">
     <span>{post.categoryLabel}</span>
     <span>|</span>
     <time datetime={post.publishedAt}>{formatDateKo(post.publishedAt)}</time>
@@ -68,13 +68,13 @@ const rfCompareRows = [
 
   <TLDRBox content={post.excerpt} />
 
-  <div class="prose prose-lg max-w-none my-8 text-neutral-600 leading-relaxed [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-neutral-900 [&>p]:mb-4">
+  <div class="prose prose-lg max-w-none my-8 text-zinc-600 leading-relaxed [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-zinc-900 [&>p]:mb-4">
     <Fragment set:html={post.content} />
   </div>
 
   {post.category === 'rf-guide' && (
     <section class="my-12">
-      <h2 class="mb-6 text-2xl font-bold text-neutral-900">RF 방식별 비교표</h2>
+      <h2 class="mb-6 text-2xl font-bold text-zinc-900">RF 방식별 비교표</h2>
       <CompareTable headers={rfCompareHeaders} rows={rfCompareRows} highlight={2} />
     </section>
   )}
@@ -83,12 +83,12 @@ const rfCompareRows = [
 
   {post.relatedProducts.length > 0 && (
     <section class="my-12">
-      <h2 class="mb-6 text-2xl font-bold text-neutral-900">관련 제품</h2>
+      <h2 class="mb-6 text-2xl font-bold text-zinc-900">관련 제품</h2>
       <div class="flex flex-wrap gap-3">
         {post.relatedProducts.map((product) => (
           <a
             href={product.href}
-            class="rounded-lg border border-neutral-200 px-5 py-3 font-semibold text-neutral-900 hover:border-[#B8960C] hover:text-[#B8960C] transition-colors"
+            class="rounded-lg border border-zinc-200 px-5 py-3 font-semibold text-zinc-900 hover:border-zinc-400 hover:text-zinc-400 transition-colors"
           >
             {product.title}
           </a>

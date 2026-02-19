@@ -13,7 +13,7 @@ const isDark = theme === 'dark';
 ---
 
 <nav aria-label="breadcrumb" class="mb-6">
-  <ol class:list={['flex flex-wrap items-center gap-1 text-xs tracking-wider', isDark ? 'text-neutral-500' : 'text-text-muted']}>
+  <ol class:list={['flex flex-wrap items-center gap-1 text-xs tracking-wider', isDark ? 'text-zinc-500' : 'text-text-muted']}>
     {allItems.map((item, i) => (
       <li class="flex items-center gap-1">
         {i > 0 && <span class="mx-1">/</span>}
