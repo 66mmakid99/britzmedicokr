@@ -33,9 +33,9 @@
 - robots.txt: AI 봇 6개 Allow (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Googlebot, Yeti)
 
 ### 디자인
-- Primary: #1A1A2E (딥 네이비)
-- Secondary: #2D4A7A (블루)
-- Accent: #C4A265 (골드)
+- Base: zinc 모노크롬 시스템 (zinc-50 ~ zinc-950)
+- Accent: teal 포인트 컬러 (teal-400 ~ teal-700)
+- Dark sections: zinc-950 배경 + teal 액센트
 - TL;DR 박스: 배경 #EBF5FF, 왼쪽 테두리 #3B82F6
 - 최대 너비: 1280px
 - 모바일 퍼스트 반응형
@@ -50,5 +50,7 @@
 - 카카오톡: https://pf.kakao.com/_MdCLG
 
 ## 현재 진행 상황
-- Phase: P0 (초기 세팅)
-- 다음 할 일: P1 시작 — Astro 프로젝트 초기화 + 기본 레이아웃 + 홈페이지 + 회사소개 5페이지
+- Phase: IR 기반 콘텐츠 보강 완료, 잔존 용어 정리 완료
+- 완료된 페이지: 24페이지 프론트엔드 + IR 기반 업데이트 반영
+- 디자인: teal 포인트 컬러 + zinc 모노크롬 시스템 적용 완료
+- 다음 작업: admin (Content Factory) 구축 예정

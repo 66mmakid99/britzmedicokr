@@ -25,14 +25,14 @@ if (!post) {
 
 const related = getRelatedPosts(post);
 
-const rfCompareHeaders = ['모노폴라 RF', '바이폴라 RF', '토로이달 RF'];
+const rfCompareHeaders = ['단일 에너지 (기존)', '복합 다중 에너지 (BRITZMEDI)'];
 const rfCompareRows = [
-  { label: '에너지 전달', values: ['단방향 (깊은 침투)', '양극 사이 (얕은 침투)', '360도 균일 전달'] },
-  { label: '침투 깊이', values: ['진피~피하지방', '표피~진피 상부', '표피~피하지방 (Multi-wave)'] },
-  { label: '핫스팟 위험', values: ['높음', '낮음', '없음 (자동 출력 제어)'] },
-  { label: '접지 패드', values: ['필요', '불필요', '불필요'] },
-  { label: '대표 장비', values: ['써마지(Thermage)', '다수 소형 RF', 'TORR RF'] },
-  { label: 'FDA 승인', values: ['있음', '장비별 상이', '있음'] },
+  { label: '접근 방식', values: ['출력 증가로 효과 극대화', '에너지 조합 구조 재설계로 효율 극대화'] },
+  { label: '출력 수준', values: ['고출력 필요', '저출력으로 동등한 효과'] },
+  { label: '시술자 숙련도 의존도', values: ['높음 (결과 편차 발생)', '낮음 (재현성·안정성 확보)'] },
+  { label: '안전성', values: ['고출력에 따른 부작용 위험', '저출력 구조로 높은 안전성'] },
+  { label: '적응증 범위', values: ['단일 에너지 한계', '복합 적응증 대응 가능'] },
+  { label: '대표 기기', values: ['기존 모노폴라/바이폴라 RF', 'TORR RF (BRITZMEDI)'] },
 ];
 ---
 
@@ -69,7 +69,7 @@ const rfCompareRows = [
   {post.category === 'rf-guide' && (
     <section class="my-12">
       <h2 class="mb-6 text-2xl font-bold text-zinc-900">RF 방식별 비교표</h2>
-      <CompareTable headers={rfCompareHeaders} rows={rfCompareRows} highlight={2} />
+      <CompareTable headers={rfCompareHeaders} rows={rfCompareRows} highlight={1} />
     </section>
   )}
 

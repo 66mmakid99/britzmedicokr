@@ -90,20 +90,20 @@ const deviceSchema = medicalDeviceSchema({
         ))}
       </div>
 
-      <!-- RF 방식 비교 테이블 -->
+      <!-- 에너지 방식 비교 테이블 -->
       <div class="mt-10">
-        <h3 class="mb-4 text-xl font-semibold text-zinc-900">RF 방식 비교: 토로이달 vs 모노폴라 vs 바이폴라</h3>
+        <h3 class="mb-4 text-xl font-semibold text-zinc-900">에너지 방식 비교: 단일 에너지 vs 복합 다중 에너지</h3>
         <CompareTable
-          headers={['모노폴라 RF', '바이폴라 RF', '토로이달 RF (BRITZMEDI)']}
+          headers={['단일 에너지 (기존)', '복합 다중 에너지 (BRITZMEDI)']}
           rows={[
-            { label: '에너지 전달 방식', values: ['단극 — 한 점에서 깊이 침투', '양극 — 두 전극 사이 표면', '토로이달 코일 — 360도 균일 전달'] },
-            { label: '침투 깊이', values: ['깊음 (불균일)', '얕음 (표피 위주)', '깊음 + 균일'] },
-            { label: '에너지 균일도', values: ['낮음 (핫스팟 발생)', '중간', '높음 (균일 분포)'] },
-            { label: '안전성', values: ['화상 위험 있음', '비교적 안전', '높은 안전성'] },
-            { label: '시술 효과', values: ['깊은 리프팅', '표면 탄력', '복합 (리프팅 + 탄력 + 콜라겐)'] },
-            { label: '대표 기기', values: ['써마지 (Thermage)', '인모드 FX 등', 'TORR RF (BRITZMEDI)'] },
+            { label: '접근 방식', values: ['출력 증가로 효과 극대화', '에너지 조합 구조 재설계로 효율 극대화'] },
+            { label: '출력 수준', values: ['고출력 필요', '저출력으로 동등한 효과'] },
+            { label: '시술자 숙련도 의존도', values: ['높음 (결과 편차 발생)', '낮음 (재현성·안정성 확보)'] },
+            { label: '안전성', values: ['고출력에 따른 부작용 위험', '저출력 구조로 높은 안전성'] },
+            { label: '적응증 범위', values: ['단일 에너지 한계', '복합 적응증 대응 가능'] },
+            { label: '대표 기기', values: ['기존 모노폴라/바이폴라 RF', 'TORR RF (BRITZMEDI)'] },
           ]}
-          highlight={2}
+          highlight={1}
         />
       </div>
     </div>
