@@ -14,8 +14,9 @@ const contactSchema = {
   url: company.url,
   address: {
     '@type': 'PostalAddress',
-    addressLocality: '서울',
-    addressRegion: '서울특별시',
+    streetAddress: '상대원동 둔촌대로388 크란츠테크노 1211호',
+    addressLocality: '성남',
+    addressRegion: '경기도 성남시',
     addressCountry: 'KR',
   },
   contactPoint: {
@@ -64,7 +65,8 @@ const contactSchema = {
               </span>
               <div>
                 <p class="text-sm font-medium text-zinc-500">주소</p>
-                <p class="font-semibold text-zinc-900">서울특별시</p>
+                <p class="font-semibold text-zinc-900">경기도 성남시 상대원동 둔촌대로388</p>
+                <p class="text-sm text-zinc-500">크란츠테크노 1211호</p>
               </div>
             </div>
             <!-- 이메일 -->
@@ -142,7 +144,7 @@ const contactSchema = {
                 <option value="">선택해 주세요</option>
                 <option value="torr-rf">TORR RF</option>
                 <option value="ulblanc">ULBLANC</option>
-                <option value="newchae">NEWCHAE</option>
+                <option value="newchae">NEWCHAE Shot</option>
                 <option value="lumino-wave">LUMINO WAVE</option>
                 <option value="other">기타</option>
               </select>

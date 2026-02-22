@@ -13,11 +13,11 @@ function getBotResponse(input: string): string {
   const lower = input.toLowerCase();
 
   if (lower.includes("토르") || lower.includes("torr")) {
-    return "TORR RF는 브리츠메디의 대표 제품으로, 토로이달 코일 기반 Multi-wave RF 기술을 적용한 피부 미용 의료기기입니다. FDA 510(k), CE Mark 인증을 획득했으며, 균일한 에너지 전달과 깊은 침투 깊이가 특징입니다. 자세한 내용은 /products/torr-rf 페이지를 참고해 주세요.";
+    return "TORR RF는 브리츠메디의 대표 제품으로, 비침습 고주파 에너지를 이용하여 스킨타이트닝과 바디컨투어링에 적용하는 의료기기입니다. 멀티웨이브 고주파 기술로 적은 출력으로도 원하는 깊이에 균일한 에너지를 전달합니다. FDA 510(k), CE, ISO, MFDS 인증을 획득했습니다. 자세한 내용은 /products/torr-rf 페이지를 참고해 주세요.";
   }
 
   if (lower.includes("제품")) {
-    return "브리츠메디의 제품 라인업은 TORR RF(Multi-wave RF 피부 미용 의료기기), ULBLANC(프리미엄 RF 스킨케어 디바이스), NEWCHAE(차세대 RF 피부 관리 솔루션), LUMINO WAVE(LED + RF 복합 디바이스)로 구성되어 있습니다. 각 제품 상세 페이지에서 더 자세한 정보를 확인하실 수 있습니다.";
+    return "브리츠메디의 제품 라인업은 TORR RF(멀티웨이브 RF 스킨타이트닝·바디컨투어링), ULBLANC(저주파·고주파·초음파 다적응증 의료기기), NEWCHAE Shot(고주파 타이트닝 3모드 시스템), LUMINO WAVE(초음파+레이저+고주파 복합 다중 에너지)로 구성되어 있습니다. 각 제품 상세 페이지에서 더 자세한 정보를 확인하실 수 있습니다.";
   }
 
   if (lower.includes("인증") || lower.includes("fda") || lower.includes("ce")) {

@@ -7,23 +7,23 @@ export interface PageSEO {
 
 export const pageSEO: Record<string, PageSEO> = {
   '/': {
-    title: '브리츠메디 — 한국의 RF 피부 미용 의료기기 전문 제조사',
+    title: '브리츠메디 — 다중 에너지 설계 피부 미용 의료기기 전문 기업',
     description:
-      '브리츠메디(BRITZMEDI)는 토로이달 코일 기반 Multi-wave RF 기술로 피부 미용 의료기기를 개발·제조하는 한국 기업입니다. FDA, CE, ISO 인증.',
+      '브리츠메디(BRITZMEDI)는 다중 에너지 설계(Multi-Energy Design) 기술로 피부 치료 및 미용 의료기기를 개발하는 한국 기업입니다. FDA, CE, ISO 인증.',
     ogImage: '/images/og/home.jpg',
     hreflangs: { ko: '/', en: '/' },
   },
   '/about': {
-    title: '브리츠메디 기업소개 — 혁신적인 RF 의료기기를 만드는 사람들',
+    title: '브리츠메디 기업소개 — 다중 에너지 설계 의료기기 전문 기업',
     description:
-      '브리츠메디는 2019년 설립된 한국의 의료기기 전문 기업으로, 독자적인 토로이달 코일 RF 기술을 바탕으로 피부 미용 의료기기를 개발합니다.',
+      '브리츠메디는 2019년 설립된 한국의 의료기기 전문 기업으로, 다중 에너지 설계(Multi-Energy Design) 기술로 피부 치료 및 미용 의료기기를 개발합니다.',
     ogImage: '/images/og/about.jpg',
     hreflangs: { ko: '/about', en: '/about' },
   },
   '/ceo': {
     title: 'CEO 인사말 — 더 나은 미용 의료기기를 향한 여정 | 브리츠메디',
     description:
-      '브리츠메디 CEO가 전하는 인사말. 토로이달 RF 기술 혁신을 통해 글로벌 피부 미용 의료기기 시장을 선도합니다.',
+      '브리츠메디 CEO 이신재가 전하는 인사말. 다중 에너지 설계 기술 혁신을 통해 글로벌 피부 미용 의료기기 시장을 선도합니다.',
     ogImage: '/images/og/ceo.jpg',
     hreflangs: { ko: '/ceo', en: '/ceo' },
   },
@@ -35,9 +35,9 @@ export const pageSEO: Record<string, PageSEO> = {
     hreflangs: { ko: '/way', en: '/about' },
   },
   '/rnd': {
-    title: '브리츠메디 R&D — 토로이달 RF 기술의 혁신',
+    title: '브리츠메디 R&D — 다중 에너지 설계 기술의 혁신',
     description:
-      '브리츠메디 R&D센터는 토로이달 코일 기반의 Multi-wave RF 기술을 연구·개발하며, 기존 모노폴라/바이폴라 방식 대비 균일한 에너지 전달을 구현합니다.',
+      '브리츠메디는 에너지를 조합하는 구조를 재설계하는 의료기기 회사입니다. 초음파·레이저·고주파 복합 다중 에너지 기술로 저출력 고효율 시술을 구현합니다.',
     ogImage: '/images/og/rnd.jpg',
     hreflangs: { ko: '/rnd', en: '/technology' },
   },
@@ -56,30 +56,30 @@ export const pageSEO: Record<string, PageSEO> = {
     hreflangs: { ko: '/products', en: '/products' },
   },
   '/products/torr-rf': {
-    title: '토르 RF (TORR RF) — Multi-wave RF 피부 미용 의료기기 | 브리츠메디',
+    title: '토르 RF (TORR RF) — 비침습 멀티웨이브 RF 의료기기 | 브리츠메디',
     description:
-      '토르 RF는 브리츠메디가 개발한 토로이달 코일 기반 Multi-wave RF 피부 미용 의료기기로, 균일한 에너지 전달로 얼굴 리프팅과 피부 탄력 개선에 사용됩니다.',
+      '토르 RF는 비침습 고주파 에너지를 이용하여 스킨타이트닝과 바디컨투어링에 적용하는 브리츠메디의 대표 의료기기입니다. FDA, CE, ISO, MFDS 인증.',
     ogImage: '/images/og/torr-rf.jpg',
     hreflangs: { ko: '/products/torr-rf', en: '/products/torr-rf' },
   },
   '/products/ulblanc': {
-    title: '울블랑 (ULBLANC) — 프리미엄 RF 스킨케어 디바이스 | 브리츠메디',
+    title: '울블랑 (ULBLANC) — 저주파·고주파·초음파 다적응증 의료기기 | 브리츠메디',
     description:
-      '울블랑은 브리츠메디의 프리미엄 RF 스킨케어 디바이스로, 의원급 클리닉에 최적화된 컴팩트한 설계와 정밀한 RF 에너지 제어를 제공합니다.',
+      '울블랑은 저주파, 고주파, 초음파 각각의 파장으로 다양한 적응증 시술이 가능한 브리츠메디의 다기능 의료기기입니다.',
     ogImage: '/images/og/ulblanc.jpg',
     hreflangs: { ko: '/products/ulblanc', en: '/products/ulblanc' },
   },
   '/products/newchae': {
-    title: '뉴채 (NEWCHAE) — 차세대 RF 피부 관리 솔루션 | 브리츠메디',
+    title: '뉴채 샷 (NEWCHAE Shot) — 고주파 타이트닝 3모드 시스템 | 브리츠메디',
     description:
-      '뉴채는 브리츠메디의 차세대 RF 피부 관리 솔루션으로, 휴대성과 성능을 모두 갖춘 컴팩트 RF 디바이스입니다.',
+      '뉴채 샷은 고주파 타이트닝, 전기 근육 자극 V라인, 전기 연동 펌프 스킨 부스트의 3가지 모드를 갖춘 고주파 타이트닝 시스템입니다.',
     ogImage: '/images/og/newchae.jpg',
     hreflangs: { ko: '/products/newchae', en: '/products/newchae' },
   },
   '/products/lumino-wave': {
-    title: '루미노 웨이브 (LUMINO WAVE) — LED + RF 복합 디바이스 | 브리츠메디',
+    title: '루미노 웨이브 (LUMINO WAVE) — 초음파+레이저+고주파 복합 다중 에너지 디바이스 | 브리츠메디',
     description:
-      '루미노 웨이브는 LED 광치료와 RF 에너지를 결합한 브리츠메디의 복합 피부 미용 디바이스로, 피부 재생과 탄력 개선을 동시에 구현합니다.',
+      '루미노 웨이브는 초음파, 레이저, 고주파를 결합한 복합 다중 에너지 의료기기로, 같은 효과를 더 낮은 출력으로 구현하여 시술 안전성과 재현성을 확보합니다.',
     ogImage: '/images/og/lumino-wave.jpg',
     hreflangs: { ko: '/products/lumino-wave', en: '/products/lumino-wave' },
   },
