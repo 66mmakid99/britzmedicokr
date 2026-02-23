@@ -6,7 +6,7 @@ import UpdateDate from '@components/common/UpdateDate.astro';
 import { organizationSchema } from '@lib/schema';
 import { getAllPosts } from '@data/blog';
 
-const latestPosts = getAllPosts().slice(0, 4);
+const latestPosts = (await getAllPosts()).slice(0, 4);
 ---
 
 <BaseLayout>

@@ -5,7 +5,7 @@ import UpdateDate from '@components/common/UpdateDate.astro';
 import { getAllNews } from '@data/news';
 import { formatDateKo } from '@lib/utils';
 
-const newsItems = getAllNews();
+const newsItems = await getAllNews();
 ---
 
 <BaseLayout

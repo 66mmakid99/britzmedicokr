@@ -8,14 +8,18 @@ export interface ProductData {
   slug: string;
   name: string;
   nameKo: string;
+  category: 'medical' | 'beauty';
   tagline: string;
   firstSentence: string;
   tldr: string;
+  heroImage: string;
+  gallery: string[];
+  videos: string[];
   techTitle: string;
   techDescription: string[];
   specs: ProductSpec[];
   certifications: { name: string; number: string; date: string }[];
-  applications: { title: string; desc: string }[];
+  applications: { title: string; desc: string; image?: string }[];
   faqs: { question: string; answer: string }[];
   relatedProducts: { title: string; href: string; description: string }[];
   relatedContent: { title: string; href: string; description: string }[];
@@ -26,45 +30,48 @@ export const products: ProductData[] = [
     slug: 'torr-rf',
     name: 'TORR RF',
     nameKo: '토르 RF',
-    tagline: '비침습 멀티웨이브 RF 스킨타이트닝 & 바디컨투어링 의료기기',
-    firstSentence: '토르 RF(TORR RF)는 비침습 고주파 에너지를 이용하여 스킨타이트닝과 바디컨투어링에 적용하는 브리츠메디의 대표 의료기기입니다.',
-    tldr: 'TORR RF는 브리츠메디의 대표 제품으로, 특화된 멀티웨이브 고주파 기술로 적은 출력으로도 원하는 깊이에 균일하고 강력·안전한 에너지를 전달합니다. Face, Body, Eye 적용이 가능하며, FDA 510(k), CE Mark, ISO 13485, MFDS 인증을 획득했습니다.',
-    techTitle: '핵심 기술: 멀티웨이브 고주파 에너지 전달',
+    category: 'medical',
+    tagline: '깊게, 그리고 부드럽게',
+    firstSentence: '토르RF는 미국 FDA 승인받은 안전하고 효율적인 고주파 의료기기입니다.',
+    tldr: 'TORR RF는 미국 FDA 승인받은 안전하고 효율적인 고주파 의료기기입니다. 설정된 출력 조건에 따라 체표면을 균일하게 가열하도록 설계되었으며, 전극 표면 온도를 실시간으로 감지하여 기준 온도에 도달하면 자동으로 출력이 차단됩니다. 미세형·소형·대형 핸드피스로 시술 목적에 맞게 선택하여 사용합니다.',
+    heroImage: '/images/products/torr-rf/herosection_torrrf_modelcut01.png',
+    gallery: [
+      '/images/products/torr-rf/TORR RF.jpg',
+      '/images/products/torr-rf/TORR RF2.jpg',
+      '/images/products/torr-rf/TORR RF HAND PIECES.jpg',
+      '/images/products/torr-rf/torrrf_modelcut02.jpg',
+    ],
+    videos: [
+      '/images/products/torr-rf/torr_rf_fullbody.mp4',
+      '/images/products/torr-rf/torr_rf_handpiece_3d_animation.mp4',
+    ],
+    techTitle: 'TORR RF의 설계 철학',
     techDescription: [
-      '특화된 멀티웨이브 고주파 기술로 적은 출력으로도 원하는 깊이에 균일하고 강력한 에너지를 전달합니다.',
-      'Multi-wave 기술로 복합 주파수를 동시에 전달하여 표피, 진피, 피하지방 등 다양한 깊이에 작용합니다.',
-      '피부 임피던스 기반 자동 출력 조절 시스템으로 환자별 최적 에너지를 전달하고, 핫스팟 없이 안전한 시술이 가능합니다.',
+      'DEPTH — 세심하게 조율되는 열전달 경험: 토르RF에서 발생한 고주파 에너지는 설정된 출력 조건에 따라 체표면을 균일하게 가열하도록 설계되었습니다. 전극 표면 온도는 실시간으로 감지되어 기준 온도에 도달하면 자동으로 출력이 차단됩니다.',
+      'FIT THE MOMENT — 상황에 맞춘 섬세한 설정: 토르RF는 출력 강도(Level)와 시술 시간을 세밀하게 조절할 수 있도록 설계되어 있어 다양한 시술 환경에서 안정적인 조건을 유지하는 데 도움이 됩니다.',
+      'FIT WITH TRUST — 기술이 만든 안정적인 설계: 토르RF는 표면 온도 모니터링, 출력 차단 알고리즘, 핸드피스 구조 설계를 기반으로 일정한 시술 조건을 유지하도록 제작되었습니다. 이는 시술자가 보다 균일한 조건을 확보하는 데 도움을 줍니다.',
+      'FIT TO SHAPE — 토르RF가 전하는 구조의 정교함: 토르RF의 핸드피스 구조는 전극 배치와 크기 차이에 기반하여 설계되어 다양한 시술 환경에서 안정적으로 운용되도록 제작되었습니다. 시술 목적에 따라 전극 크기가 다른 핸드피스를 선택적으로 사용할 수 있습니다.',
     ],
     specs: [
-      { label: 'RF 방식', value: 'Toroidal Coil Multi-wave RF' },
-      { label: '주파수', value: '1MHz / 2MHz / 4MHz' },
-      { label: '최대 출력', value: '200', unit: 'W' },
-      { label: '핸드피스', value: 'Face Tip, Body Tip, Eye Tip' },
-      { label: '디스플레이', value: '10.1인치 터치스크린' },
-      { label: '크기', value: '380 × 420 × 1050', unit: 'mm' },
-      { label: '무게', value: '약 25', unit: 'kg' },
-      { label: '전원', value: 'AC 100-240V, 50/60Hz' },
-      { label: '분류', value: '의료기기 (Class II)' },
+      { label: '제품명', value: 'TORR RF' },
+      { label: '분류', value: '의료기기' },
+      { label: '핸드피스', value: '미세형, 소형, 대형' },
+      { label: '인증', value: 'FDA 510(k)' },
     ],
     certifications: [
-      { name: 'FDA 510(k)', number: 'K-XXXXXX', date: '2022년' },
-      { name: 'CE Mark', number: 'CE-XXXX', date: '2021년' },
-      { name: 'ISO 13485', number: 'ISO-XXXXX', date: '2022년' },
-      { name: 'MFDS (식약처)', number: '제허 XX-XXXX호', date: '2020년' },
+      { name: 'FDA 510(k)', number: '', date: '' },
     ],
     applications: [
-      { title: '얼굴 리프팅', desc: '처진 피부를 끌어올려 탄력 있는 V라인을 만듭니다. 이중턱, 볼처짐, 턱선 개선에 효과적입니다.' },
-      { title: '피부 탄력 개선', desc: '콜라겐 리모델링을 촉진하여 피부 탄력과 질감을 개선합니다. 주름 완화에도 도움이 됩니다.' },
-      { title: '체형 관리', desc: 'Body Tip을 이용한 복부, 팔, 허벅지 등 바디 타이트닝에 활용됩니다.' },
-      { title: '아이존 케어', desc: 'Eye Tip을 이용한 눈가 주름, 눈밑 처짐 등 섬세한 부위 시술이 가능합니다.' },
+      { title: '미세형 핸드피스', desc: '피부결이 맞고 굴곡이 있는 부위에 안정하고 정교한 시술이 가능합니다.', image: '/images/products/torr-rf/Eye Handpiece.png' },
+      { title: '소형 핸드피스', desc: '임피던스 모드로 넓은 부위에 고르게 안정적인 설계에서 고주파 에너지를 전달합니다.', image: '/images/products/torr-rf/Face Handpiece (Deep mode).png' },
+      { title: '대형 핸드피스', desc: '피부와 지방층이 두터운 부위는 깊고 강한 고주파 에너지를 필요로 합니다. 대형 핸드피스는 진동(Vibro)과 오실레이트 기능으로 시술 시 편의를 제공합니다.', image: '/images/products/torr-rf/Face Handpiece (Super mode).png' },
     ],
     faqs: [
-      { question: '토르 RF란 무엇인가요?', answer: '토르 RF(TORR RF)는 브리츠메디가 개발한 멀티웨이브 RF 피부 미용 의료기기입니다. 특화된 멀티웨이브 고주파 기술로 적은 출력으로도 원하는 깊이에 균일하고 강력한 에너지를 전달하여 안전하고 효과적인 피부 시술이 가능합니다.' },
-      { question: '토르 RF와 써마지(Thermage)의 차이점은?', answer: '써마지는 모노폴라 RF 방식으로 에너지가 한 점에 집중되어 깊은 침투는 가능하나 핫스팟(화상) 위험이 있습니다. 토르 RF는 멀티웨이브 RF 기술로 균일한 에너지를 전달하여 핫스팟 없이 넓은 면적에 고른 효과를 냅니다.' },
-      { question: '시술 시간은 얼마나 걸리나요?', answer: '시술 부위에 따라 다르지만, 얼굴 전체 시술은 약 30~45분, 바디 시술은 약 45~60분 소요됩니다.' },
-      { question: '시술 후 다운타임이 있나요?', answer: '비침습 시술이므로 다운타임이 거의 없습니다. 시술 직후 약간의 홍조가 있을 수 있으나 수시간 내 자연스럽게 사라집니다.' },
-      { question: 'FDA 승인을 받았나요?', answer: '네, 토르 RF는 미국 FDA 510(k) 승인을 획득하였으며, CE Mark, ISO 13485, 한국 식약처 허가까지 주요 글로벌 인증을 모두 보유하고 있습니다.' },
-      { question: '어떤 부위에 시술 가능한가요?', answer: '얼굴(리프팅, 탄력), 눈가(아이존), 바디(복부, 팔, 허벅지) 등 다양한 부위에 시술 가능합니다. 3종 핸드피스(Face, Body, Eye Tip)로 부위별 최적 시술이 가능합니다.' },
+      { question: '안전한가요?', answer: '토르RF에서 발생한 고주파 에너지는 설정된 출력 조건에 따라 체표면을 균일하게 가열하도록 설계되었습니다. 전극 표면 온도는 실시간으로 감지되어 기준 온도에 도달하면 자동으로 출력이 차단됩니다.' },
+      { question: '아프진 않을까요?', answer: '토르RF는 실시간 온도 모니터링 기반으로 전극 표면 온도가 기준치를 초과할 경우 출력을 자동으로 차단하도록 설계되어 있습니다. 이 기능은 시술 중 온도 편차를 줄여 안정적인 시술 운영을 돕습니다.' },
+      { question: '시술하는 데 얼마나 걸릴까요?', answer: '토르RF는 별도의 마취 과정이 필요하지 않아 바로 시술이 가능하며, 설정된 온도에 따라 소요 시간은 의료진 판단에 따라 달라질 수 있지만 대체로 10~15분 이내에 진행됩니다.' },
+      { question: '시술 후 일상생활이 가능할까요?', answer: '토르RF는 체표면을 가열하는 방식의 고주파 의료기기로, 일반적으로 시술 후 바로 일상생활을 이어갈 수 있으나 시술 후 반응은 개인별 피부 상태에 따라 달라질 수 있으므로 의료진의 개인별 피부 상태에 맞춘 안내를 받으시기 바랍니다.' },
+      { question: '어떤 핸드피스를 사용하나요?', answer: '토르RF는 미세형·소형·대형 핸드피스로 구성되어 있으며, 전극 크기와 전용 면적이 달라 의료진은 시술 목적에 맞게 적절한 핸드피스를 선택하여 사용합니다.' },
     ],
     relatedProducts: [
       { title: 'ULBLANC', href: '/products/ulblanc', description: '다적응증 의료기기' },
@@ -81,9 +88,15 @@ export const products: ProductData[] = [
     slug: 'ulblanc',
     name: 'ULBLANC',
     nameKo: '울블랑',
+    category: 'medical',
     tagline: '저주파·고주파·초음파 다적응증 의료기기',
     firstSentence: '울블랑(ULBLANC)은 저주파, 고주파, 초음파 각각의 파장으로 다양한 적응증 시술이 가능한 브리츠메디의 다기능 의료기기입니다.',
     tldr: 'ULBLANC은 저주파, 고주파, 초음파를 활용하여 다양한 적응증 시술이 가능한 의료기기입니다. 한국인 얼굴형을 고려한 인체공학적 설계와 1/3, 3/10MHz 두 개의 모드로 피부 표피·진피 Dual Care가 가능합니다. 피부 진정·재생, 경피적 약물 전달까지 폭넓은 적용이 가능하며, CE Mark과 ISO 13485, MFDS 인증을 획득했습니다.',
+    heroImage: '/images/products/ulblanc/ulblanc.png',
+    gallery: [
+      '/images/products/ulblanc/ulblanc body and handpieces.png',
+    ],
+    videos: [],
     techTitle: '핵심 기술: 다중 파장 에너지 시스템',
     techDescription: [
       '저주파, 고주파, 초음파 각각의 파장으로 다양한 적응증 시술이 가능한 다기능 디바이스입니다.',
@@ -134,9 +147,18 @@ export const products: ProductData[] = [
     slug: 'newchae',
     name: 'NEWCHAE Shot',
     nameKo: '뉴채 샷',
+    category: 'beauty',
     tagline: '고주파 타이트닝 3가지 모드 시스템',
     firstSentence: '뉴채 샷(NEWCHAE Shot)은 멀티채널 고주파 에너지 샷, 전기 근육 자극 V라인, 전기 연동 펌프 스킨 부스트의 3가지 모드를 갖춘 브리츠메디의 고주파 타이트닝 시스템입니다.',
     tldr: 'NEWCHAE Shot은 고주파 타이트닝, 전기 근육 자극 V라인, 전기 연동 펌프 스킨 부스트의 3가지 모드를 제공하는 시스템입니다. 멀티채널 기술로 각 채널 고주파 에너지가 표피~진피에 전달되며, 자동 샷 방식의 멀티채널 집중 에너지 샷 시스템과 RF STACK 출력으로 심부열 발생, 3D 입체진동 마사지(분당 1만회 미세진동)를 구현합니다.',
+    heroImage: '/images/products/newchae/newchae 01 (1).jpg',
+    gallery: [
+      '/images/products/newchae/newchae 01 (4).jpg',
+      '/images/products/newchae/newchae pack(1).jpg',
+      '/images/products/newchae/newchae pack (2).jpg',
+      '/images/products/newchae/newchae cream 01.jpg',
+    ],
+    videos: [],
     techTitle: '핵심 기술: 멀티채널 고주파 & 3모드 시스템',
     techDescription: [
       '멀티채널 기술로 각 채널의 고주파 에너지가 표피~진피에 전달되며, 자동 샷 방식의 멀티채널 집중 에너지 샷 시스템을 적용했습니다.',
@@ -152,7 +174,7 @@ export const products: ProductData[] = [
       { label: '크기', value: '250 × 280 × 350', unit: 'mm' },
       { label: '무게', value: '약 6', unit: 'kg' },
       { label: '전원', value: 'AC 100-240V, 50/60Hz' },
-      { label: '분류', value: '의료기기' },
+      { label: '분류', value: '미용기기' },
     ],
     certifications: [
       { name: 'CE Mark', number: 'CE-XXXX', date: '2023년' },
@@ -186,9 +208,13 @@ export const products: ProductData[] = [
     slug: 'lumino-wave',
     name: 'LUMINO WAVE',
     nameKo: '루미노 웨이브',
+    category: 'medical',
     tagline: '초음파 + 레이저 + 고주파 복합 다중 에너지 디바이스',
     firstSentence: '루미노 웨이브(LUMINO WAVE)는 초음파, 레이저, 고주파를 결합한 브리츠메디의 복합 다중 에너지 의료기기로, 초음파가 피부 환경을 열고 레이저·고주파가 침투하는 구조로 같은 효과를 더 낮은 출력으로 구현합니다.',
     tldr: 'LUMINO WAVE는 초음파 + 레이저 + 고주파를 결합한 복합 다중 에너지 디바이스입니다. 초음파가 피부 환경을 먼저 열어주고, 레이저·고주파가 효과적으로 침투하는 구조로 같은 효과를 더 낮은 출력으로 구현합니다. 시술자 숙련도 의존도를 줄이고, 시술 결과의 재현성·안정성을 확보한 것이 핵심 차별점입니다.',
+    heroImage: '/images/products/lumino-wave/20260207 luminowave page12_image.png',
+    gallery: [],
+    videos: [],
     techTitle: '핵심 기술: 복합 다중 에너지 설계',
     techDescription: [
       '초음파가 피부 환경을 먼저 열어(Ultrasound-induced Air Bubbles) 레이저·고주파 에너지의 침투 효율을 극대화합니다.',
@@ -236,4 +262,8 @@ export const products: ProductData[] = [
 
 export function getProduct(slug: string): ProductData | undefined {
   return products.find((p) => p.slug === slug);
+}
+
+export function getProductsByCategory(category: 'medical' | 'beauty'): ProductData[] {
+  return products.filter((p) => p.category === category);
 }

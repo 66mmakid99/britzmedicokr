@@ -73,6 +73,25 @@ export function medicalDeviceSchema(product: {
   };
 }
 
+export function beautyDeviceSchema(product: {
+  name: string;
+  nameKo: string;
+  description: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    alternateName: product.nameKo,
+    description: product.description,
+    category: 'Beauty Device',
+    manufacturer: {
+      '@type': 'Organization',
+      name: company.name,
+    },
+  };
+}
+
 export function articleSchema(article: {
   title: string;
   description: string;

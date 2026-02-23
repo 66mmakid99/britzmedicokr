@@ -4,19 +4,19 @@ import SchemaOrg from '@components/aeo/SchemaOrg.astro';
 import PageHero from '@components/common/PageHero.astro';
 import UpdateDate from '@components/common/UpdateDate.astro';
 import RelatedContent from '@components/common/RelatedContent.astro';
-import { getAllNews, getNewsBySlug } from '@data/news';
+import { getAllNews } from '@data/news';
 import { company } from '@data/company';
 import { formatDateKo } from '@lib/utils';
 
-export function getStaticPaths() {
-  const newsItems = getAllNews();
+export async function getStaticPaths() {
+  const newsItems = await getAllNews();
   return newsItems.map((item) => ({
     params: { slug: item.slug },
+    props: { news: item },
   }));
 }
 
-const { slug } = Astro.params;
-const news = getNewsBySlug(slug as string);
+const { news } = Astro.props;
 
 if (!news) {
   return Astro.redirect('/news');

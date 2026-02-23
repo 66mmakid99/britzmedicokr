@@ -12,10 +12,12 @@ export const mainNav = [
   {
     label: '제품',
     children: [
+      { label: '의료기기', separator: true },
       { label: 'TORR RF', href: '/products/torr-rf' },
       { label: 'ULBLANC', href: '/products/ulblanc' },
-      { label: 'NEWCHAE', href: '/products/newchae' },
       { label: 'LUMINO WAVE', href: '/products/lumino-wave' },
+      { label: '미용기기', separator: true },
+      { label: 'NEWCHAE', href: '/products/newchae' },
     ],
   },
   { label: '인증/특허', href: '/certifications' },

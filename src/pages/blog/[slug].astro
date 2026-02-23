@@ -5,25 +5,25 @@ import TLDRBox from '@components/aeo/TLDRBox.astro';
 import FAQSection from '@components/aeo/FAQSection.astro';
 import CompareTable from '@components/aeo/CompareTable.astro';
 import UpdateDate from '@components/common/UpdateDate.astro';
-import { getAllPosts, getPostBySlug, getRelatedPosts } from '@data/blog';
+import { getAllPosts, getRelatedPosts } from '@data/blog';
 import { articleSchema, faqSchema } from '@lib/schema';
 import { formatDateKo } from '@lib/utils';
 
-export function getStaticPaths() {
-  const posts = getAllPosts();
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
   return posts.map((post) => ({
     params: { slug: post.slug },
+    props: { post },
   }));
 }
 
-const { slug } = Astro.params;
-const post = getPostBySlug(slug as string);
+const { post } = Astro.props;
 
 if (!post) {
   return Astro.redirect('/blog');
 }
 
-const related = getRelatedPosts(post);
+const related = await getRelatedPosts(post);
 
 const rfCompareHeaders = ['단일 에너지 (기존)', '복합 다중 에너지 (BRITZMEDI)'];
 const rfCompareRows = [

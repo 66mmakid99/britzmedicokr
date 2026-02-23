@@ -8,8 +8,11 @@ import PageHero from '@components/common/PageHero.astro';
 import CTASection from '@components/common/CTASection.astro';
 import UpdateDate from '@components/common/UpdateDate.astro';
 import RelatedContent from '@components/common/RelatedContent.astro';
-import { products } from '@data/products';
+import { products, getProductsByCategory } from '@data/products';
 import { company } from '@data/company';
+
+const medicalProducts = getProductsByCategory('medical');
+const beautyProducts = getProductsByCategory('beauty');
 
 const orgSchema = {
   '@context': 'https://schema.org',
@@ -19,18 +22,30 @@ const orgSchema = {
   url: company.url,
   logo: `${company.url}${company.logo}`,
   description: company.description,
-  makesOffer: products.map((p) => ({
-    '@type': 'Offer',
-    itemOffered: {
-      '@type': 'MedicalDevice',
-      name: p.name,
-      alternateName: p.nameKo,
-      description: p.firstSentence,
-    },
-  })),
+  makesOffer: [
+    ...medicalProducts.map((p) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'MedicalDevice',
+        name: p.name,
+        alternateName: p.nameKo,
+        description: p.firstSentence,
+      },
+    })),
+    ...beautyProducts.map((p) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Product',
+        name: p.name,
+        alternateName: p.nameKo,
+        description: p.firstSentence,
+        category: 'Beauty Device',
+      },
+    })),
+  ],
 };
 
-const productCards = [
+const medicalCards = [
   {
     slug: 'torr-rf',
     name: 'TORR RF',
@@ -38,6 +53,7 @@ const productCards = [
     tagline: '비침습 멀티웨이브 RF 의료기기',
     description: '멀티웨이브 고주파 기술로 적은 출력으로도 원하는 깊이에 균일하고 강력한 에너지를 전달하여 스킨타이트닝과 바디컨투어링을 구현합니다.',
     specs: ['1 / 2 / 4 MHz 복합 주파수', '최대 200W 출력', 'FDA, CE, ISO 인증'],
+    image: '/images/products/torr-rf/herosection_torrrf_modelcut01.png',
   },
   {
     slug: 'ulblanc',
@@ -46,14 +62,7 @@ const productCards = [
     tagline: '저주파·고주파·초음파 다적응증 의료기기',
     description: '저주파, 고주파, 초음파 각각의 파장으로 다양한 적응증 시술이 가능합니다. 피부 진정·재생, 경피적 약물 전달까지 폭넓은 적용이 가능합니다.',
     specs: ['듀얼 모드 1/3MHz + 3/10MHz', '인체공학적 설계', 'CE, ISO, MFDS 인증'],
-  },
-  {
-    slug: 'newchae',
-    name: 'NEWCHAE Shot',
-    nameKo: '뉴채 샷',
-    tagline: '고주파 타이트닝 3모드 시스템',
-    description: '고주파 타이트닝, 전기 근육 자극 V라인, 전기 연동 펌프 스킨 부스트의 3가지 모드를 갖춘 시스템입니다.',
-    specs: ['멀티채널 RF 에너지 샷', '분당 1만회 미세진동', 'CE, MFDS 인증'],
+    image: '/images/products/ulblanc/ulblanc.png',
   },
   {
     slug: 'lumino-wave',
@@ -62,6 +71,19 @@ const productCards = [
     tagline: '초음파+레이저+고주파 복합 다중 에너지',
     description: '초음파가 피부 환경을 열고 레이저·고주파가 침투하는 구조로, 같은 효과를 더 낮은 출력으로 구현합니다.',
     specs: ['초음파 + 레이저 + 고주파', '2종 핸드피스 시스템', 'CE, ISO, MFDS 인증'],
+    image: '/images/products/lumino-wave/20260207 luminowave page12_image.png',
+  },
+];
+
+const beautyCards = [
+  {
+    slug: 'newchae',
+    name: 'NEWCHAE Shot',
+    nameKo: '뉴채 샷',
+    tagline: '고주파 타이트닝 3모드 미용기기',
+    description: '고주파 타이트닝, 전기 근육 자극 V라인, 전기 연동 펌프 스킨 부스트의 3가지 모드를 갖춘 미용기기입니다.',
+    specs: ['멀티채널 RF 에너지 샷', '분당 1만회 미세진동', 'CE, MFDS 인증'],
+    image: '/images/products/newchae/newchae 01 (1).jpg',
   },
 ];
 ---
@@ -77,22 +99,29 @@ const productCards = [
   <!-- Body -->
   <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
     <p class="mb-8 text-lg text-zinc-600">
-      브리츠메디는 다중 에너지 설계(Multi-Energy Design) 기술로 피부 치료 및 미용 의료기기를 개발합니다. 4가지 제품 라인업으로 리프팅, 탄력 개선, 피부 재생까지 종합 솔루션을 제공합니다.
+      브리츠메디는 다중 에너지 설계(Multi-Energy Design) 기술로 피부 치료 의료기기와 미용기기를 개발합니다. 의료기기 3종과 미용기기 1종으로 리프팅, 탄력 개선, 피부 재생까지 종합 솔루션을 제공합니다.
     </p>
 
-    <TLDRBox content="브리츠메디는 TORR RF(멀티웨이브 RF 스킨타이트닝), ULBLANC(다적응증 의료기기), NEWCHAE Shot(고주파 타이트닝 3모드), LUMINO WAVE(초음파+레이저+고주파 복합) 4가지 제품을 보유하고 있습니다. 용도와 클리닉 규모에 따라 최적의 장비를 선택할 수 있습니다." />
+    <TLDRBox content="브리츠메디는 의료기기 3종(TORR RF, ULBLANC, LUMINO WAVE)과 미용기기 1종(NEWCHAE Shot)을 보유하고 있습니다. 의료기기는 FDA·CE·ISO 등 글로벌 인증을 획득한 전문 시술 장비이며, NEWCHAE Shot은 고주파 타이트닝 3모드 미용기기입니다. 용도와 클리닉 규모에 따라 최적의 장비를 선택할 수 있습니다." />
 
-    <!-- 제품 카드 -->
+    <!-- 의료기기 섹션 -->
     <section class="my-16">
-      <h2 class="mb-8 text-2xl font-bold text-zinc-900 md:text-3xl">전체 제품</h2>
+      <h2 class="mb-2 text-2xl font-bold text-zinc-900 md:text-3xl">의료기기</h2>
+      <p class="mb-8 text-zinc-500">글로벌 인증을 획득한 전문 시술용 의료기기 라인업</p>
       <div class="grid gap-8 md:grid-cols-2">
-        {productCards.map((p) => (
+        {medicalCards.map((p) => (
           <a href={`/products/${p.slug}`} class="group flex flex-col overflow-hidden rounded-2xl border border-zinc-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md sm:flex-row">
-            {/* Image placeholder */}
-            <div class="flex w-full shrink-0 items-center justify-center bg-zinc-50 p-8 sm:w-56 md:w-48 lg:w-56">
-              <span class="text-6xl font-bold text-zinc-200 transition-colors group-hover:text-zinc-300/30">{p.name.charAt(0)}</span>
+            <div class="flex w-full shrink-0 items-center justify-center bg-zinc-50 p-4 sm:w-56 md:w-48 lg:w-56">
+              <img
+                src={p.image}
+                alt={`${p.name} - ${p.tagline}`}
+                width="224"
+                height="224"
+                loading="lazy"
+                decoding="async"
+                class="h-40 w-full object-contain transition-transform group-hover:scale-105"
+              />
             </div>
-            {/* Text content */}
             <div class="flex flex-1 flex-col justify-center p-6">
               <p class="text-xs font-medium uppercase tracking-wider text-zinc-400">{p.nameKo}</p>
               <p class="mt-1 text-xl font-bold text-zinc-900 group-hover:text-teal-600">{p.name}</p>
@@ -121,25 +150,71 @@ const productCards = [
       </div>
     </section>
 
-    <!-- 전체 제품 비교 테이블 -->
+    <!-- 의료기기 비교 테이블 -->
     <section class="my-16">
-      <h2 class="mb-6 text-2xl font-bold text-zinc-900 md:text-3xl">제품 비교표</h2>
+      <h2 class="mb-6 text-2xl font-bold text-zinc-900 md:text-3xl">의료기기 비교표</h2>
       <p class="mb-6 text-zinc-600">
-        4가지 제품의 주요 사양을 한눈에 비교해 보세요. 클리닉 규모, 시술 목적, 예산에 따라 최적의 장비를 선택할 수 있습니다.
+        3가지 의료기기의 주요 사양을 한눈에 비교해 보세요. 클리닉 규모, 시술 목적, 예산에 따라 최적의 장비를 선택할 수 있습니다.
       </p>
       <CompareTable
-        headers={['TORR RF', 'ULBLANC', 'NEWCHAE Shot', 'LUMINO WAVE']}
+        headers={['TORR RF', 'ULBLANC', 'LUMINO WAVE']}
         rows={[
-          { label: '기술 방식', values: ['멀티웨이브 RF', '저주파·고주파·초음파', '멀티채널 RF + EMS', '초음파+레이저+고주파'] },
-          { label: '주파수', values: ['1 / 2 / 4 MHz', '1/3MHz + 3/10MHz', 'RF + EMS', 'US + Laser + RF'] },
-          { label: '최대 출력', values: ['200W', '100W', '50W', '-'] },
-          { label: '핸드피스', values: ['Face, Body, Eye', 'Face, Eye', '3모드 핸드피스', 'US+RF / US+Laser'] },
-          { label: '크기', values: ['380 x 420 x 1050 mm', '300 x 350 x 450 mm', '250 x 280 x 350 mm', '-'] },
-          { label: '무게', values: ['약 25 kg', '약 12 kg', '약 6 kg', '-'] },
-          { label: '주요 인증', values: ['FDA, CE, ISO, MFDS', 'CE, ISO, MFDS', 'CE, MFDS', 'CE, ISO, MFDS'] },
+          { label: '기술 방식', values: ['멀티웨이브 RF', '저주파·고주파·초음파', '초음파+레이저+고주파'] },
+          { label: '주파수', values: ['1 / 2 / 4 MHz', '1/3MHz + 3/10MHz', 'US + Laser + RF'] },
+          { label: '최대 출력', values: ['200W', '100W', '-'] },
+          { label: '핸드피스', values: ['Face, Body, Eye', 'Face, Eye', 'US+RF / US+Laser'] },
+          { label: '크기', values: ['380 x 420 x 1050 mm', '300 x 350 x 450 mm', '-'] },
+          { label: '무게', values: ['약 25 kg', '약 12 kg', '-'] },
+          { label: '주요 인증', values: ['FDA, CE, ISO, MFDS', 'CE, ISO, MFDS', 'CE, ISO, MFDS'] },
         ]}
         highlight={0}
       />
+    </section>
+
+    <!-- 미용기기 섹션 -->
+    <section class="my-16">
+      <h2 class="mb-2 text-2xl font-bold text-zinc-900 md:text-3xl">미용기기</h2>
+      <p class="mb-8 text-zinc-500">에스테틱 및 뷰티 케어를 위한 미용기기 라인업</p>
+      <div class="grid gap-8 md:grid-cols-2">
+        {beautyCards.map((p) => (
+          <a href={`/products/${p.slug}`} class="group flex flex-col overflow-hidden rounded-2xl border border-zinc-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md sm:flex-row">
+            <div class="flex w-full shrink-0 items-center justify-center bg-zinc-50 p-4 sm:w-56 md:w-48 lg:w-56">
+              <img
+                src={p.image}
+                alt={`${p.name} - ${p.tagline}`}
+                width="224"
+                height="224"
+                loading="lazy"
+                decoding="async"
+                class="h-40 w-full object-contain transition-transform group-hover:scale-105"
+              />
+            </div>
+            <div class="flex flex-1 flex-col justify-center p-6">
+              <p class="text-xs font-medium uppercase tracking-wider text-zinc-400">{p.nameKo}</p>
+              <p class="mt-1 text-xl font-bold text-zinc-900 group-hover:text-teal-600">{p.name}</p>
+              <p class="mt-2 text-sm text-zinc-500">{p.description}</p>
+              <ul class="mt-4 space-y-1.5">
+                {p.specs.map((spec) => (
+                  <li class="flex items-center gap-2 text-sm text-zinc-600">
+                    <svg class="h-4 w-4 shrink-0 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {spec}
+                  </li>
+                ))}
+              </ul>
+              <div class="mt-5">
+                <span class="inline-flex items-center gap-1 rounded-full bg-teal-50 px-4 py-2 text-sm font-semibold text-teal-600 transition-colors group-hover:bg-teal-100">
+                  자세히 보기
+                  <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
     </section>
 
     <!-- FAQ -->

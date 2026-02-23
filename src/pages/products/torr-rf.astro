@@ -3,7 +3,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import SchemaOrg from '@components/aeo/SchemaOrg.astro';
 import TLDRBox from '@components/aeo/TLDRBox.astro';
 import FAQSection from '@components/aeo/FAQSection.astro';
-import CompareTable from '@components/aeo/CompareTable.astro';
 import SpecTable from '@components/aeo/SpecTable.astro';
 import CTASection from '@components/common/CTASection.astro';
 import UpdateDate from '@components/common/UpdateDate.astro';
@@ -23,155 +22,201 @@ const deviceSchema = medicalDeviceSchema({
 <BaseLayout>
   <SchemaOrg schema={[deviceSchema, faqSchema(product.faqs)]} slot="head" />
 
-  <!-- CINEMATIC PRODUCT HERO -->
+  <!-- HERO: 깊게, 그리고 부드럽게 -->
   <section class="relative flex min-h-[80vh] items-center overflow-hidden bg-zinc-950">
-    <!-- Background glow effects -->
     <div class="absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-zinc-400/10 blur-[120px]"></div>
     <div class="absolute -bottom-20 right-1/4 h-[400px] w-[400px] rounded-full bg-zinc-600/10 blur-[100px]"></div>
-    <div class="absolute -right-20 top-1/3 h-[300px] w-[300px] rounded-full bg-zinc-500/5 blur-[80px]"></div>
 
     <div class="relative mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
       <div class="grid items-center gap-12 md:grid-cols-2">
-        <!-- Left side -->
         <div>
-          <p class="text-xs font-medium uppercase tracking-[0.3em] text-zinc-300">{product.nameKo}</p>
+          <p class="text-xs font-medium uppercase tracking-[0.3em] text-teal-400">미국 FDA 승인 의료기기</p>
           <h1 class="mt-4 text-5xl font-bold tracking-tight text-white md:text-6xl">
             {product.name}
           </h1>
-          <p class="mt-4 text-xl text-zinc-400">{product.tagline}</p>
+          <p class="mt-4 text-2xl font-light text-zinc-300">{product.tagline}</p>
+          <p class="mt-6 text-base leading-relaxed text-zinc-400">
+            {product.firstSentence}
+          </p>
 
-          <!-- Key specs -->
-          <div class="mt-8 flex flex-wrap gap-8">
-            <div>
-              <p class="text-3xl font-bold text-white">200<span class="ml-1 text-lg font-normal text-teal-400">W</span></p>
-              <p class="mt-1 text-sm text-zinc-500">최대 출력</p>
-            </div>
-            <div>
-              <p class="text-3xl font-bold text-white">3<span class="ml-1 text-lg font-normal text-teal-400">MHz</span></p>
-              <p class="mt-1 text-sm text-zinc-500">복합 주파수</p>
-            </div>
-            <div>
-              <p class="text-3xl font-bold text-white">360<span class="ml-1 text-lg font-normal text-teal-400">°</span></p>
-              <p class="mt-1 text-sm text-zinc-500">균일 에너지</p>
-            </div>
-          </div>
-
-          <!-- Buttons -->
           <div class="mt-10 flex flex-wrap gap-4">
             <a href="/contact" class="rounded-full bg-teal-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-teal-500 hover:shadow-lg">상담 신청</a>
-            <a href="/certifications" class="rounded-full border border-white/30 px-8 py-4 font-semibold text-white transition-all duration-300 hover:border-white/50 hover:bg-white/5">카탈로그</a>
+            <a href="/certifications" class="rounded-full border border-white/30 px-8 py-4 font-semibold text-white transition-all duration-300 hover:border-white/50 hover:bg-white/5">인증 현황</a>
           </div>
         </div>
 
-        <!-- Right side: product visual -->
         <div class="flex items-center justify-center">
-          <div class="flex h-72 w-full items-center justify-center rounded-3xl border border-white/10 bg-white/5 p-12 backdrop-blur md:h-96">
-            <span class="text-8xl font-bold text-white/10">{product.name.charAt(0)}</span>
-          </div>
+          <img
+            src={product.heroImage}
+            alt="TORR RF - 미국 FDA 승인 멀티웨이브 RF 의료기기"
+            width="600"
+            height="500"
+            loading="eager"
+            decoding="async"
+            class="h-72 w-full rounded-3xl border border-white/10 object-contain p-4 md:h-96"
+          />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 1. TL;DR Section (bg-white) -->
+  <!-- 1. TL;DR -->
   <section class="bg-white py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <TLDRBox content={product.tldr} />
     </div>
   </section>
 
-  <!-- 2. Core Technology Section (bg-zinc-50) with CompareTable -->
+  <!-- 2. 설계 철학: DEPTH / FIT THE MOMENT / FIT WITH TRUST / FIT TO SHAPE -->
   <section class="bg-zinc-50 py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mb-6 text-2xl font-bold text-zinc-900 md:text-3xl">{product.techTitle}</h2>
-      <div class="space-y-4 text-zinc-600">
-        {product.techDescription.map((text) => (
-          <p>{text}</p>
-        ))}
-      </div>
+      <h2 class="mb-10 text-2xl font-bold text-zinc-900 md:text-3xl">{product.techTitle}</h2>
+      <div class="space-y-8">
+        {product.techDescription.map((text) => {
+          const dashIdx = text.indexOf('—');
+          const keyword = dashIdx > 0 ? text.slice(0, dashIdx).trim() : '';
+          const rest = dashIdx > 0 ? text.slice(dashIdx + 1).trim() : text;
+          const colonIdx = rest.indexOf(':');
+          const subtitle = colonIdx > 0 ? rest.slice(0, colonIdx).trim() : '';
+          const body = colonIdx > 0 ? rest.slice(colonIdx + 1).trim() : rest;
 
-      <!-- 에너지 방식 비교 테이블 -->
-      <div class="mt-10">
-        <h3 class="mb-4 text-xl font-semibold text-zinc-900">에너지 방식 비교: 단일 에너지 vs 복합 다중 에너지</h3>
-        <CompareTable
-          headers={['단일 에너지 (기존)', '복합 다중 에너지 (BRITZMEDI)']}
-          rows={[
-            { label: '접근 방식', values: ['출력 증가로 효과 극대화', '에너지 조합 구조 재설계로 효율 극대화'] },
-            { label: '출력 수준', values: ['고출력 필요', '저출력으로 동등한 효과'] },
-            { label: '시술자 숙련도 의존도', values: ['높음 (결과 편차 발생)', '낮음 (재현성·안정성 확보)'] },
-            { label: '안전성', values: ['고출력에 따른 부작용 위험', '저출력 구조로 높은 안전성'] },
-            { label: '적응증 범위', values: ['단일 에너지 한계', '복합 적응증 대응 가능'] },
-            { label: '대표 기기', values: ['기존 모노폴라/바이폴라 RF', 'TORR RF (BRITZMEDI)'] },
-          ]}
-          highlight={1}
-        />
+          return (
+            <div class="rounded-2xl border border-zinc-100 bg-white p-6 shadow-sm md:p-8">
+              {keyword && (
+                <p class="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-teal-600">{keyword}</p>
+              )}
+              {subtitle && (
+                <h3 class="mb-3 text-lg font-semibold text-zinc-900">{subtitle}</h3>
+              )}
+              <p class="leading-relaxed text-zinc-600">{body}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   </section>
 
-  <!-- 3. Spec Table Section (bg-white) -->
-  <section class="bg-white py-16 md:py-20">
+  <!-- 3. 제품 시연 영상 -->
+  {product.videos.length > 0 && (
+    <section class="bg-white py-16 md:py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="mb-8 text-2xl font-bold text-zinc-900 md:text-3xl">제품 시연 영상</h2>
+        <div class="grid gap-6 md:grid-cols-2">
+          <div>
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              poster={product.heroImage}
+              class="w-full rounded-xl"
+            >
+              <source src={product.videos[0]} type="video/mp4" />
+            </video>
+            <p class="mt-2 text-center text-sm text-zinc-500">TORR RF 풀바디 영상</p>
+          </div>
+          {product.videos.length > 1 && (
+            <div>
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                poster={product.heroImage}
+                class="w-full rounded-xl"
+              >
+                <source src={product.videos[1]} type="video/mp4" />
+              </video>
+              <p class="mt-2 text-center text-sm text-zinc-500">핸드피스 3D 애니메이션</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 4. 핸드피스 안내 -->
+  <section class="bg-zinc-50 py-16 md:py-20">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <h2 class="mb-2 text-2xl font-bold text-zinc-900 md:text-3xl">핸드피스 구성</h2>
+      <p class="mb-8 text-zinc-500">시술 목적에 따라 전극 크기가 다른 핸드피스를 선택적으로 사용할 수 있습니다.</p>
+      <div class="grid gap-6 sm:grid-cols-3">
+        {product.applications.map((app) => (
+          <div class="rounded-2xl border border-zinc-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+            {app.image && (
+              <img
+                src={app.image}
+                alt={`TORR RF ${app.title}`}
+                width="300"
+                height="300"
+                loading="lazy"
+                decoding="async"
+                class="mb-4 h-40 w-full rounded-xl object-contain"
+              />
+            )}
+            <h3 class="mb-2 text-lg font-semibold text-zinc-900">{app.title}</h3>
+            <p class="text-sm leading-relaxed text-zinc-600">{app.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 제품 갤러리 -->
+  {product.gallery.length > 0 && (
+    <section class="bg-white py-16 md:py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="mb-8 text-2xl font-bold text-zinc-900 md:text-3xl">제품 갤러리</h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {product.gallery.map((img, idx) => (
+            <img
+              src={img}
+              alt={`TORR RF 제품 이미지 ${idx + 1}`}
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+              class="rounded-xl border border-zinc-100 object-contain"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 6. 제품 사양 -->
+  <section class="bg-zinc-50 py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <h2 class="mb-6 text-2xl font-bold text-zinc-900 md:text-3xl">제품 사양</h2>
       <SpecTable specs={product.specs} />
     </div>
   </section>
 
-  <!-- 4. Certification Section (dark bg, gold theme) -->
-  <section class="bg-zinc-950 py-16 md:py-20">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mb-8 text-2xl font-bold text-white md:text-3xl">인증 현황</h2>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {product.certifications.map((cert) => (
-          <div class="rounded-2xl border border-zinc-300/20 bg-white/5 p-5 text-center backdrop-blur">
-            <div class="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-zinc-300/10">
-              <svg class="h-6 w-6 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <p class="font-semibold text-zinc-300">{cert.name}</p>
-            <p class="mt-1 text-xs text-zinc-400">{cert.number}</p>
-            <p class="mt-1 text-xs text-zinc-400">{cert.date}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Application Areas (bg-white) -->
+  <!-- 7. FAQ -->
   <section class="bg-white py-16 md:py-20">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mb-6 text-2xl font-bold text-zinc-900 md:text-3xl">적용 분야</h2>
-      <div class="grid gap-6 sm:grid-cols-2">
-        {product.applications.map((app) => (
-          <div class="rounded-2xl border border-zinc-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
-            <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50">
-              <svg class="h-5 w-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 class="mb-2 text-lg font-semibold text-zinc-900">{app.title}</h3>
-            <p class="text-sm text-zinc-600">{app.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. FAQ Section (bg-zinc-50) -->
-  <section class="bg-zinc-50 py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <FAQSection items={product.faqs} />
     </div>
   </section>
 
-  <!-- 7. CTA Section -->
-  <CTASection title={`${product.name} 데모를 신청해 보세요`} description="브리츠메디 전문 상담팀이 클리닉에 방문하여 장비 시연을 진행합니다." />
+  <!-- 8. CTA -->
+  <CTASection title="TORR RF 상담 신청" description="브리츠메디 전문 상담팀이 자세한 제품 안내를 도와드립니다." />
 
-  <!-- 8. Related Content (bg-white) -->
+  <!-- 9. 관련 콘텐츠 -->
   <section class="bg-white py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <RelatedContent items={product.relatedContent} />
+    </div>
+  </section>
+
+  <!-- 의료기기 광고심의필 -->
+  <section class="border-t border-zinc-100 bg-zinc-50 py-8">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <p class="text-xs leading-relaxed text-zinc-400">
+        의료기기 광고심의필 | S2025-E11-49-8725 | 유효기간 2029.01.06<br />
+        TORR RF는 의료기기이며, 의료인이 사용하는 전문 의료장비입니다.<br />
+        이 제품은 「의료기기법」에 의한 의료기기이며, 효능과 안전성이 확보된 의료기기입니다.
+      </p>
       <UpdateDate />
     </div>
   </section>

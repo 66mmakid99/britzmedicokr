@@ -50,7 +50,9 @@
 - 카카오톡: https://pf.kakao.com/_MdCLG
 
 ## 현재 진행 상황
-- Phase: IR 기반 콘텐츠 보강 완료, 잔존 용어 정리 완료
-- 완료된 페이지: 24페이지 프론트엔드 + IR 기반 업데이트 반영
+- Phase: 프론트엔드 콘텐츠 정비 완료 (IR 기반 + 제품 이미지/영상 + 잔존 용어 정리)
 - 디자인: teal 포인트 컬러 + zinc 모노크롬 시스템 적용 완료
-- 다음 작업: admin (Content Factory) 구축 예정
+- 페이지: 24페이지 프론트엔드
+- DB 연동: Supabase (블로그/뉴스 빌드 시 fetch + 폴백)
+- 인증: Content Ops에 Supabase Auth 적용
+- 다음 작업: Content Factory 본격 운영 / 추가 콘텐츠 보강

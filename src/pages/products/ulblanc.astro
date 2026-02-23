@@ -64,9 +64,15 @@ const deviceSchema = medicalDeviceSchema({
 
         <!-- Right side: product visual -->
         <div class="flex items-center justify-center">
-          <div class="flex h-72 w-full items-center justify-center rounded-3xl border border-white/10 bg-white/5 p-12 backdrop-blur md:h-96">
-            <span class="text-8xl font-bold text-white/10">{product.name.charAt(0)}</span>
-          </div>
+          <img
+            src={product.heroImage}
+            alt="ULBLANC - 저주파·고주파·초음파 다적응증 의료기기"
+            width="600"
+            height="500"
+            loading="eager"
+            decoding="async"
+            class="h-72 w-full rounded-3xl border border-white/10 object-contain p-4 md:h-96"
+          />
         </div>
       </div>
     </div>
@@ -140,14 +146,36 @@ const deviceSchema = medicalDeviceSchema({
     </div>
   </section>
 
-  <!-- 6. FAQ Section (bg-zinc-50) -->
-  <section class="bg-zinc-50 py-16 md:py-20">
+  <!-- 6. 제품 갤러리 -->
+  {product.gallery.length > 0 && (
+    <section class="bg-zinc-50 py-16 md:py-20">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <h2 class="mb-8 text-2xl font-bold text-zinc-900 md:text-3xl">제품 갤러리</h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {product.gallery.map((img, idx) => (
+            <img
+              src={img}
+              alt={`ULBLANC 제품 이미지 ${idx + 1}`}
+              width="600"
+              height="400"
+              loading="lazy"
+              decoding="async"
+              class="rounded-xl border border-zinc-100 object-contain"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- 7. FAQ Section -->
+  <section class="bg-white py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <FAQSection items={product.faqs} />
     </div>
   </section>
 
-  <!-- 7. CTA Section -->
+  <!-- 8. CTA Section -->
   <CTASection title={`${product.name} 도입 상담을 받아보세요`} description="브리츠메디 전문 상담팀이 클리닉에 최적화된 솔루션을 안내합니다." />
 
   <!-- 8. Related Content (bg-white) -->

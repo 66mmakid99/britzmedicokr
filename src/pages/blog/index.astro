@@ -5,7 +5,7 @@ import UpdateDate from '@components/common/UpdateDate.astro';
 import { getAllPosts } from '@data/blog';
 import { formatDateKo } from '@lib/utils';
 
-const posts = getAllPosts();
+const posts = await getAllPosts();
 
 const categories = [
   { key: 'all', label: '전체' },
