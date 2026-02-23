@@ -4,6 +4,7 @@ const products = [
   {
     id: 'torr-rf',
     name: 'TORR RF',
+    nameKo: '토르 RF',
     category: 'FLAGSHIP RF DEVICE',
     tagline: '비침습 멀티웨이브 RF 스킨타이트닝 & 바디컨투어링',
     image: '/images/products/torr-rf/TORR RF2.webp',
@@ -17,6 +18,7 @@ const products = [
   {
     id: 'ulblanc',
     name: 'ULBLANC',
+    nameKo: '울블랑',
     category: 'PREMIUM SKINCARE',
     tagline: '저주파·고주파·초음파 다적응증 의료기기',
     image: '/images/products/ulblanc/ulblanc.webp',
@@ -30,6 +32,7 @@ const products = [
   {
     id: 'newchae',
     name: 'NEWCHAE Shot',
+    nameKo: '뉴채 샷',
     category: 'BEAUTY DEVICE',
     tagline: '고주파 타이트닝 3가지 모드 시스템',
     image: '/images/products/newchae/newchae 01 (1).webp',
@@ -43,6 +46,7 @@ const products = [
   {
     id: 'lumino-wave',
     name: 'LUMINO WAVE',
+    nameKo: '루미노 웨이브',
     category: 'MULTI-ENERGY DESIGN',
     tagline: '초음파 + 레이저 + 고주파 복합 다중 에너지',
     image: '/images/products/lumino-wave/20260207 luminowave page12_image.webp',
@@ -74,7 +78,8 @@ export default function ProductShowcase() {
                   : 'text-zinc-400 hover:text-teal-600'
               }`}
             >
-              {p.name}
+              <span className="hidden md:inline">{p.nameKo}({p.name})</span>
+              <span className="md:hidden">{p.nameKo}</span>
             </button>
           ))}
         </div>
@@ -104,7 +109,7 @@ export default function ProductShowcase() {
             {product.category}
           </p>
           <h3 className="mt-3 text-4xl font-bold tracking-tight text-zinc-900 md:text-5xl">
-            {product.name}
+            {product.nameKo}<span className="ml-2 text-2xl font-medium text-zinc-400 md:text-3xl">({product.name})</span>
           </h3>
           <p className="mt-4 text-xl leading-relaxed text-zinc-600">
             {product.tagline}
