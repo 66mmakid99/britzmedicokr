@@ -6,7 +6,7 @@ const products = [
     name: 'TORR RF',
     category: 'FLAGSHIP RF DEVICE',
     tagline: '비침습 멀티웨이브 RF 스킨타이트닝 & 바디컨투어링',
-    image: '/images/products/torr-rf/herosection_torrrf_modelcut01.png',
+    image: '/images/products/torr-rf/herosection_torrrf_modelcut01.webp',
     features: [
       { number: 'Low', label: '적은 출력, 균일한 에너지 전달' },
       { number: '3', label: 'Face / Body / Eye 적용' },
@@ -19,7 +19,7 @@ const products = [
     name: 'ULBLANC',
     category: 'PREMIUM SKINCARE',
     tagline: '저주파·고주파·초음파 다적응증 의료기기',
-    image: '/images/products/ulblanc/ulblanc.png',
+    image: '/images/products/ulblanc/ulblanc.webp',
     features: [
       { number: 'Dual', label: '1/3MHz + 3/10MHz 듀얼 모드' },
       { number: 'Multi', label: '저주파·고주파·초음파' },
@@ -32,7 +32,7 @@ const products = [
     name: 'NEWCHAE Shot',
     category: 'BEAUTY DEVICE',
     tagline: '고주파 타이트닝 3가지 모드 시스템',
-    image: '/images/products/newchae/newchae 01 (1).jpg',
+    image: '/images/products/newchae/newchae 01 (1).webp',
     features: [
       { number: '3', label: '타이트닝 / V라인 / 스킨부스트' },
       { number: 'Shot', label: '멀티채널 집중 에너지 샷' },
@@ -45,7 +45,7 @@ const products = [
     name: 'LUMINO WAVE',
     category: 'MULTI-ENERGY DESIGN',
     tagline: '초음파 + 레이저 + 고주파 복합 다중 에너지',
-    image: '/images/products/lumino-wave/20260207 luminowave page12_image.png',
+    image: '/images/products/lumino-wave/20260207 luminowave page12_image.webp',
     features: [
       { number: 'US', label: '초음파 피부 환경 제어' },
       { number: 'Low', label: '저출력 고효율 구조' },
