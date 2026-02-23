@@ -6,7 +6,7 @@ const products = [
     name: 'TORR RF',
     category: 'FLAGSHIP RF DEVICE',
     tagline: '비침습 멀티웨이브 RF 스킨타이트닝 & 바디컨투어링',
-    image: '/images/products/torr-rf/herosection_torrrf_modelcut01.webp',
+    image: '/images/products/torr-rf/TORR RF2.webp',
     features: [
       { number: 'Low', label: '적은 출력, 균일한 에너지 전달' },
       { number: '3', label: 'Face / Body / Eye 적용' },
