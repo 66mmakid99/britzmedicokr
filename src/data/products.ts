@@ -34,7 +34,7 @@ export const products: ProductData[] = [
     tagline: '깊게, 그리고 부드럽게',
     firstSentence: '토르RF는 미국 FDA 승인받은 안전하고 효율적인 고주파 의료기기입니다.',
     tldr: 'TORR RF는 미국 FDA 승인받은 안전하고 효율적인 고주파 의료기기입니다. 설정된 출력 조건에 따라 체표면을 균일하게 가열하도록 설계되었으며, 전극 표면 온도를 실시간으로 감지하여 기준 온도에 도달하면 자동으로 출력이 차단됩니다. 미세형·소형·대형 핸드피스로 시술 목적에 맞게 선택하여 사용합니다.',
-    heroImage: '/images/products/torr-rf/herosection_torrrf_modelcut01.webp',
+    heroImage: '/images/products/torr-rf/TORR RF2.webp',
     gallery: [
       '/images/products/torr-rf/TORR RF.webp',
       '/images/products/torr-rf/TORR RF2.webp',
