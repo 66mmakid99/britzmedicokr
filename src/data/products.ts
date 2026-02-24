@@ -92,7 +92,7 @@ export const products: ProductData[] = [
     tagline: '저주파·고주파·초음파 다적응증 의료기기',
     firstSentence: '울블랑(ULBLANC)은 저주파, 고주파, 초음파 각각의 파장으로 다양한 적응증 시술이 가능한 브리츠메디의 다기능 의료기기입니다.',
     tldr: 'ULBLANC은 저주파, 고주파, 초음파를 활용하여 다양한 적응증 시술이 가능한 의료기기입니다. 한국인 얼굴형을 고려한 인체공학적 설계와 1/3, 3/10MHz 두 개의 모드로 피부 표피·진피 Dual Care가 가능합니다. 피부 진정·재생, 경피적 약물 전달까지 폭넓은 적용이 가능하며, CE Mark과 ISO 13485, MFDS 인증을 획득했습니다.',
-    heroImage: '/images/products/ulblanc/ulblanc.webp',
+    heroImage: '/images/products/ulblanc/ulblanc-fullbody.webp',
     gallery: [
       '/images/products/ulblanc/ulblanc body and handpieces.webp',
     ],
@@ -212,7 +212,7 @@ export const products: ProductData[] = [
     tagline: '초음파 + 레이저 + 고주파 복합 다중 에너지 디바이스',
     firstSentence: '루미노 웨이브(LUMINO WAVE)는 초음파, 레이저, 고주파를 결합한 브리츠메디의 복합 다중 에너지 의료기기로, 초음파가 피부 환경을 열고 레이저·고주파가 침투하는 구조로 같은 효과를 더 낮은 출력으로 구현합니다.',
     tldr: 'LUMINO WAVE는 초음파 + 레이저 + 고주파를 결합한 복합 다중 에너지 디바이스입니다. 초음파가 피부 환경을 먼저 열어주고, 레이저·고주파가 효과적으로 침투하는 구조로 같은 효과를 더 낮은 출력으로 구현합니다. 시술자 숙련도 의존도를 줄이고, 시술 결과의 재현성·안정성을 확보한 것이 핵심 차별점입니다.',
-    heroImage: '/images/products/lumino-wave/20260207 luminowave page12_image.webp',
+    heroImage: '/images/products/lumino-wave/luminowave-hero.webp',
     gallery: [],
     videos: [],
     techTitle: '핵심 기술: 복합 다중 에너지 설계',
