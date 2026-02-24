@@ -21,7 +21,7 @@ const products = [
     nameKo: '울블랑',
     category: 'PREMIUM SKINCARE',
     tagline: '저주파·고주파·초음파 다적응증 의료기기',
-    image: '/images/products/ulblanc/ulblanc_fullbody.PNG',
+    image: '/images/products/ulblanc/ulblanc_fullbody.webp',
     features: [
       { number: 'Dual', label: '1/3MHz + 3/10MHz 듀얼 모드' },
       { number: 'Multi', label: '저주파·고주파·초음파' },
