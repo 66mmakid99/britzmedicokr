@@ -3,7 +3,7 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { CHATBOT_SYSTEM_PROMPT } from '@data/chatbot-knowledge';
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   const { message, history } = await request.json();
 
   if (!message || typeof message !== 'string') {
@@ -13,10 +13,16 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  const googleKey = (import.meta as any).env?.GOOGLE_AI_API_KEY
-    || (typeof process !== 'undefined' ? process.env.GOOGLE_AI_API_KEY : '');
-  const anthropicKey = (import.meta as any).env?.ANTHROPIC_API_KEY
-    || (typeof process !== 'undefined' ? process.env.ANTHROPIC_API_KEY : '');
+  // Cloudflare Pages: locals.runtime.env, fallback: import.meta.env, process.env
+  const runtimeEnv = (locals as any)?.runtime?.env || {};
+  const googleKey = runtimeEnv.GOOGLE_AI_API_KEY
+    || import.meta.env.GOOGLE_AI_API_KEY
+    || (typeof process !== 'undefined' ? process.env.GOOGLE_AI_API_KEY : '')
+    || '';
+  const anthropicKey = runtimeEnv.ANTHROPIC_API_KEY
+    || import.meta.env.ANTHROPIC_API_KEY
+    || (typeof process !== 'undefined' ? process.env.ANTHROPIC_API_KEY : '')
+    || '';
 
   if (!googleKey && !anthropicKey) {
     return new Response(
