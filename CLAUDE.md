@@ -79,12 +79,14 @@
 - [x] 푸터 사업자 정보 (사업자등록증 기반)
 - [x] AEO/SEO 구조 (Schema.org, FAQ 스키마, 메타태그)
 
+## 완료된 추가 작업
+- [x] Supabase contact_inquiries 테이블 생성 완료
+- [x] Google Maps 임베드 (Contact 페이지)
+- [x] Google Analytics 조건부 연동 (PUBLIC_GA_MEASUREMENT_ID 환경변수)
+- [x] Resend 이메일 알림 연동 (RESEND_API_KEY 환경변수)
+
 ## 남은 작업
-- [ ] Supabase에 contact_inquiries 테이블 생성 (마이그레이션 파일 준비됨)
 - [ ] britzmedi.co.kr 도메인 연결
-- [ ] Google Analytics 연동
 - [ ] LUMINO WAVE 갤러리/영상 추가 (소스 이미지 부재)
 - [ ] 블로그/뉴스 실제 콘텐츠 발행 (Content Factory)
-- [ ] 이메일 알림 연동 (문의 접수 시)
 - [ ] 카카오톡 채널 연동
-- [ ] 네이버 지도 임베드 (Contact 페이지)
