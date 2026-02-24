@@ -49,7 +49,7 @@ const products = [
     nameKo: '루미노 웨이브',
     category: 'MULTI-ENERGY DESIGN',
     tagline: '초음파 + 레이저 + 고주파 복합 다중 에너지',
-    image: '/images/products/lumino-wave/20260207 luminowave page12_image.png',
+    image: '/images/products/lumino-wave/20260207 luminowave page12_image.webp',
     features: [
       { number: 'US', label: '초음파 피부 환경 제어' },
       { number: 'Low', label: '저출력 고효율 구조' },
