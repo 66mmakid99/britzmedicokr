@@ -7,9 +7,9 @@ const { title, descriptions } = Astro.props;
 ---
 
 <section class="bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-    <h2 class="text-2xl font-bold text-zinc-900 mb-8">{title}</h2>
-    <div class="grid md:grid-cols-2 gap-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
+    <h2 class="text-2xl font-bold text-zinc-900 mb-10">{title}</h2>
+    <div class="grid md:grid-cols-2 gap-5">
       {descriptions.map((text) => {
         const dashIdx = text.indexOf(' — ');
         const keyword = dashIdx > 0 ? text.slice(0, dashIdx).trim() : '';
@@ -19,12 +19,17 @@ const { title, descriptions } = Astro.props;
         const body = colonIdx > 0 ? rest.slice(colonIdx + 2).trim() : rest;
 
         return (
-          <div class="group p-6 rounded-xl border border-zinc-100 hover:border-teal-100 hover:bg-teal-50/30 transition-all">
+          <div class="group p-7 rounded-2xl border border-zinc-200/60 hover:border-teal-200 hover:shadow-lg transition-all duration-300">
             {keyword && (
-              <p class="text-xs font-bold uppercase tracking-[0.2em] text-teal-600 mb-1">{keyword}</p>
+              <div class="flex items-center gap-2 mb-2">
+                <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                </svg>
+                <p class="text-xs font-bold uppercase tracking-widest text-teal-600">{keyword}</p>
+              </div>
             )}
             {subtitle && (
-              <h3 class="font-semibold text-zinc-900 mb-2">{subtitle}</h3>
+              <h3 class="text-base font-bold text-zinc-900 mb-3">{subtitle}</h3>
             )}
             <p class="text-sm text-zinc-600 leading-relaxed">{body}</p>
           </div>

@@ -14,73 +14,92 @@ interface Props {
 const { name, nameKo, subtitle, tagline, firstSentence, badge, stats, heroImage, heroVideo } = Astro.props;
 ---
 
-<section class="relative bg-zinc-950 overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950"></div>
-  <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-teal-950/20 to-transparent"></div>
+<section class="relative min-h-[70vh] bg-zinc-950 overflow-hidden flex items-center">
+  <!-- 배경 그라디언트 메시 -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900/80 to-zinc-950"></div>
+    <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-teal-950/15 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-zinc-900/50 to-transparent"></div>
+    <!-- 미세 노이즈 텍스처 -->
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');"></div>
+  </div>
 
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+  <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <!-- 텍스트 -->
       <div class="order-2 lg:order-1">
         {badge && (
-          <span class="inline-flex items-center gap-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 px-3 py-1 text-xs font-semibold text-teal-400 mb-4">
-            <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 px-3.5 py-1.5 text-xs font-semibold text-teal-400 mb-5">
+            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
             {badge}
           </span>
         )}
-        <p class="text-teal-400 text-sm font-semibold tracking-widest uppercase mb-3">{subtitle}</p>
-        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight mb-1">
+
+        <p class="text-teal-400 text-sm font-semibold tracking-widest uppercase mb-4">{subtitle}</p>
+
+        <h1 class="text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-2" style="letter-spacing: -0.02em;">
           {nameKo}
-          <span class="block text-lg lg:text-xl font-medium text-zinc-500 mt-2">{name}</span>
         </h1>
-        <p class="text-lg text-zinc-400 leading-relaxed mt-4 mb-8">{tagline}</p>
+        <p class="text-xl lg:text-2xl font-medium text-zinc-500 mb-6">{name}</p>
+
+        <p class="text-lg text-zinc-400 leading-relaxed mb-4 max-w-lg">{tagline}</p>
 
         {firstSentence && (
           <p class="text-sm text-zinc-500 leading-relaxed mb-8 max-w-lg">{firstSentence}</p>
         )}
 
         <!-- 핵심 수치 -->
-        <div class="flex flex-wrap gap-8 mb-8">
+        <div class="flex flex-wrap gap-10 mb-10">
           {stats.map(stat => (
             <div>
-              <div class="flex items-baseline gap-1">
-                <span class="text-3xl lg:text-4xl font-bold text-white">{stat.value}</span>
-                <span class="text-sm text-teal-400 font-medium">{stat.unit}</span>
+              <div class="flex items-baseline gap-1.5">
+                <span class="text-4xl lg:text-5xl font-black text-white">{stat.value}</span>
+                <span class="text-sm text-teal-400 font-semibold">{stat.unit}</span>
               </div>
-              <p class="text-xs text-zinc-500 mt-1">{stat.label}</p>
+              <p class="text-sm text-zinc-500 mt-1.5">{stat.label}</p>
             </div>
           ))}
         </div>
 
         <!-- CTA -->
-        <div class="flex flex-wrap gap-3">
-          <a href="/contact" class="px-6 py-3 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-500 transition-colors">
+        <div class="flex flex-wrap gap-4">
+          <a href="/contact" class="inline-flex items-center px-8 py-4 bg-teal-600 text-white text-sm font-semibold rounded-xl hover:bg-teal-500 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-teal-600/20">
             상담 신청
           </a>
-          <a href="#specs" class="px-6 py-3 border border-zinc-700 text-zinc-300 text-sm font-medium rounded-lg hover:border-zinc-500 hover:text-white transition-colors">
+          <a href="#specs" class="inline-flex items-center px-8 py-4 border border-zinc-700 text-zinc-300 text-sm font-semibold rounded-xl hover:border-zinc-500 hover:text-white transition-all duration-300 hover:scale-[1.02]">
             자세히 보기
           </a>
         </div>
       </div>
 
       <!-- 제품 이미지 -->
-      <div class="relative order-1 lg:order-2">
+      <div class="relative order-1 lg:order-2 flex items-center justify-center">
+        <!-- teal 글로우 -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-80 h-80 lg:w-96 lg:h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
+        </div>
+
         {heroVideo ? (
           <video
             src={heroVideo}
             autoplay muted loop playsinline
             poster={heroImage}
-            class="w-full max-h-[500px] object-contain drop-shadow-2xl"
+            class="relative w-full max-h-[520px] object-contain drop-shadow-2xl"
           />
         ) : (
           <img
             src={heroImage}
-            alt={`${name} 제품 이미지`}
-            class="w-full max-h-[500px] object-contain drop-shadow-2xl"
+            alt={`${name} - ${tagline}`}
+            class="relative w-full max-h-[520px] object-contain drop-shadow-2xl"
             loading="eager"
+            decoding="async"
           />
         )}
-        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/60 via-transparent to-transparent pointer-events-none"></div>
+
+        <!-- 하단 페이드 -->
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none"></div>
       </div>
     </div>
   </div>

@@ -6,26 +6,27 @@ interface Props {
 const { title = '적용 분야', applications } = Astro.props;
 ---
 
-<section class="bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-    <h2 class="text-2xl font-bold text-zinc-900 mb-8">{title}</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<section class="bg-zinc-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
+    <h2 class="text-2xl font-bold text-zinc-900 mb-10">{title}</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
       {applications.map(app => (
-        <div class="group p-6 rounded-xl border border-zinc-100 hover:border-teal-100 hover:bg-teal-50/30 transition-all">
+        <div class="group p-7 rounded-2xl bg-white border border-zinc-200/60 hover:border-teal-200 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">
           {app.image && (
             <img
               src={app.image}
               alt={app.title}
               loading="lazy"
-              class="mb-4 h-40 w-full rounded-lg object-contain"
+              decoding="async"
+              class="mb-5 h-44 w-full rounded-xl object-contain"
             />
           )}
-          <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-teal-200 transition-colors">
-            <svg class="w-5 h-5 text-teal-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <div class="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-teal-100 transition-colors duration-300">
+            <svg class="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <h3 class="font-semibold text-zinc-900 mb-2">{app.title}</h3>
+          <h3 class="text-base font-bold text-zinc-900 mb-2">{app.title}</h3>
           <p class="text-sm text-zinc-600 leading-relaxed">{app.desc}</p>
         </div>
       ))}
