@@ -12,6 +12,7 @@
     "seed": "tsx scripts/seed-content.ts"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.7.0",
     "@supabase/supabase-js": "^2.97.0",
