@@ -56,6 +56,41 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     if (error) throw error;
 
+    // 이메일 알림 발송 (Resend)
+    const resendKey = runtimeEnv.RESEND_API_KEY
+      || import.meta.env.RESEND_API_KEY
+      || '';
+    if (resendKey) {
+      try {
+        await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${resendKey}`,
+          },
+          body: JSON.stringify({
+            from: 'BRITZMEDI <noreply@britzmedi.com>',
+            to: ['sh.lee@britzmedi.co.kr'],
+            subject: `[britzmedi.co.kr] 새 문의 — ${name.trim()} (${company?.trim() || '개인'})`,
+            html: `
+              <h2>새 문의가 접수되었습니다</h2>
+              <table style="border-collapse:collapse;width:100%;max-width:500px;">
+                <tr><td style="padding:8px;border-bottom:1px solid #eee;color:#666;">이름</td><td style="padding:8px;border-bottom:1px solid #eee;">${name.trim()}</td></tr>
+                <tr><td style="padding:8px;border-bottom:1px solid #eee;color:#666;">이메일</td><td style="padding:8px;border-bottom:1px solid #eee;"><a href="mailto:${email.trim()}">${email.trim()}</a></td></tr>
+                ${phone?.trim() ? `<tr><td style="padding:8px;border-bottom:1px solid #eee;color:#666;">전화</td><td style="padding:8px;border-bottom:1px solid #eee;">${phone.trim()}</td></tr>` : ''}
+                ${company?.trim() ? `<tr><td style="padding:8px;border-bottom:1px solid #eee;color:#666;">회사/병원</td><td style="padding:8px;border-bottom:1px solid #eee;">${company.trim()}</td></tr>` : ''}
+                ${product?.trim() ? `<tr><td style="padding:8px;border-bottom:1px solid #eee;color:#666;">관심 제품</td><td style="padding:8px;border-bottom:1px solid #eee;">${product.trim()}</td></tr>` : ''}
+                <tr><td style="padding:8px;color:#666;" valign="top">문의 내용</td><td style="padding:8px;">${message.trim().replace(/\n/g, '<br>')}</td></tr>
+              </table>
+              <p style="margin-top:16px;color:#999;font-size:12px;">britzmedi.co.kr Contact Form</p>
+            `,
+          }),
+        });
+      } catch (emailErr) {
+        console.error('Email notification failed:', emailErr);
+      }
+    }
+
     return new Response(
       JSON.stringify({ success: true }),
       { status: 200, headers: { 'Content-Type': 'application/json' } },
