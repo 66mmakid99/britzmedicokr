@@ -1,12 +1,17 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import SchemaOrg from '@components/aeo/SchemaOrg.astro';
-import TLDRBox from '@components/aeo/TLDRBox.astro';
-import FAQSection from '@components/aeo/FAQSection.astro';
-import SpecTable from '@components/aeo/SpecTable.astro';
-import CTASection from '@components/common/CTASection.astro';
+import ProductHero from '@components/products/ProductHero.astro';
+import ProductTLDR from '@components/products/ProductTLDR.astro';
+import ProductTech from '@components/products/ProductTech.astro';
+import ProductSpecs from '@components/products/ProductSpecs.astro';
+import ProductCertifications from '@components/products/ProductCertifications.astro';
+import ProductApplications from '@components/products/ProductApplications.astro';
+import ProductGallery from '@components/products/ProductGallery.astro';
+import ProductFAQ from '@components/products/ProductFAQ.astro';
+import ProductCTA from '@components/products/ProductCTA.astro';
+import ProductRelated from '@components/products/ProductRelated.astro';
 import UpdateDate from '@components/common/UpdateDate.astro';
-import RelatedContent from '@components/common/RelatedContent.astro';
 import { getProduct } from '@data/products';
 import { medicalDeviceSchema, faqSchema } from '@lib/schema';
 
@@ -22,199 +27,43 @@ const deviceSchema = medicalDeviceSchema({
 <BaseLayout>
   <SchemaOrg schema={[deviceSchema, faqSchema(product.faqs)]} slot="head" />
 
-  <!-- HERO -->
-  <section class="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-zinc-50/50">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(20,184,166,0.08),transparent)]"></div>
-    <div class="relative mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6 md:pb-24 md:pt-16 lg:px-8">
-      <div class="grid items-center gap-10 md:grid-cols-2 md:gap-16">
-        <!-- 텍스트 -->
-        <div class="order-2 md:order-1">
-          <span class="inline-flex items-center gap-1.5 rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-700">
-            <svg class="h-3 w-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
-            미국 FDA 승인 의료기기
-          </span>
-          <h1 class="mt-5 text-4xl font-bold tracking-tight text-zinc-900 md:text-5xl lg:text-6xl">
-            {product.nameKo}
-            <span class="mt-1 block text-lg font-medium text-zinc-400 md:text-xl">{product.name}</span>
-          </h1>
-          <p class="mt-4 text-xl font-light text-zinc-500">{product.tagline}</p>
-          <p class="mt-4 max-w-lg text-base leading-relaxed text-zinc-600">
-            {product.firstSentence}
-          </p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="/contact" class="rounded-full bg-zinc-900 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-teal-600 hover:shadow-lg">상담 신청</a>
-            <a href="/certifications" class="rounded-full border border-zinc-200 bg-white px-7 py-3.5 text-sm font-semibold text-zinc-700 transition-all hover:border-teal-200 hover:text-teal-600">인증 현황</a>
-          </div>
-        </div>
-        <!-- 제품 이미지 -->
-        <div class="order-1 flex items-center justify-center md:order-2">
-          <div class="relative w-full">
-            <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-teal-50/60 via-zinc-100/50 to-white/80"></div>
-            <div class="relative px-6 py-10 md:px-10 md:py-14">
-              <img
-                src={product.heroImage}
-                alt="TORR RF - 미국 FDA 승인 멀티웨이브 RF 의료기기"
-                width="720"
-                height="600"
-                loading="eager"
-                decoding="async"
-                class="mx-auto h-[280px] w-full object-contain drop-shadow-xl sm:h-[360px] md:h-[440px]"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <ProductHero
+    name={product.name}
+    nameKo={product.nameKo}
+    subtitle="Multiwave RF Lifting"
+    tagline={product.tagline}
+    firstSentence={product.firstSentence}
+    badge="미국 FDA 승인 의료기기"
+    stats={[
+      { value: "3", unit: "파장", label: "멀티웨이브 RF" },
+      { value: "FDA", unit: "510(k)", label: "미국 FDA 승인" },
+      { value: "0", unit: "원", label: "소모품 비용" },
+    ]}
+    heroImage={product.heroImage}
+    heroVideo={product.videos.length > 0 ? product.videos[0] : undefined}
+  />
 
-  <!-- 1. TL;DR -->
-  <section class="bg-white py-16 md:py-20">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <TLDRBox content={product.tldr} />
-    </div>
-  </section>
+  <ProductTLDR content={product.tldr} />
 
-  <!-- 2. 설계 철학: DEPTH / FIT THE MOMENT / FIT WITH TRUST / FIT TO SHAPE -->
-  <section class="bg-zinc-50 py-16 md:py-20">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mb-10 text-2xl font-bold text-zinc-900 md:text-3xl">{product.techTitle}</h2>
-      <div class="space-y-8">
-        {product.techDescription.map((text) => {
-          const dashIdx = text.indexOf('—');
-          const keyword = dashIdx > 0 ? text.slice(0, dashIdx).trim() : '';
-          const rest = dashIdx > 0 ? text.slice(dashIdx + 1).trim() : text;
-          const colonIdx = rest.indexOf(':');
-          const subtitle = colonIdx > 0 ? rest.slice(0, colonIdx).trim() : '';
-          const body = colonIdx > 0 ? rest.slice(colonIdx + 1).trim() : rest;
+  <ProductTech title={product.techTitle} descriptions={product.techDescription} />
 
-          return (
-            <div class="rounded-2xl border border-zinc-100 bg-white p-6 shadow-sm md:p-8">
-              {keyword && (
-                <p class="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-teal-600">{keyword}</p>
-              )}
-              {subtitle && (
-                <h3 class="mb-3 text-lg font-semibold text-zinc-900">{subtitle}</h3>
-              )}
-              <p class="leading-relaxed text-zinc-600">{body}</p>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  </section>
+  <ProductSpecs specs={product.specs} />
 
-  <!-- 3. 제품 시연 영상 -->
-  {product.videos.length > 0 && (
-    <section class="bg-white py-16 md:py-20">
-      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 class="mb-8 text-2xl font-bold text-zinc-900 md:text-3xl">제품 시연 영상</h2>
-        <div class="grid gap-6 md:grid-cols-2">
-          <div>
-            <video
-              autoplay
-              muted
-              loop
-              playsinline
-              poster={product.heroImage}
-              class="w-full rounded-xl"
-            >
-              <source src={product.videos[0]} type="video/mp4" />
-            </video>
-            <p class="mt-2 text-center text-sm text-zinc-500">TORR RF 풀바디 영상</p>
-          </div>
-          {product.videos.length > 1 && (
-            <div>
-              <video
-                autoplay
-                muted
-                loop
-                playsinline
-                poster={product.heroImage}
-                class="w-full rounded-xl"
-              >
-                <source src={product.videos[1]} type="video/mp4" />
-              </video>
-              <p class="mt-2 text-center text-sm text-zinc-500">핸드피스 3D 애니메이션</p>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  )}
+  <ProductCertifications certifications={product.certifications} />
 
-  <!-- 4. 핸드피스 안내 -->
-  <section class="bg-zinc-50 py-16 md:py-20">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mb-2 text-2xl font-bold text-zinc-900 md:text-3xl">핸드피스 구성</h2>
-      <p class="mb-8 text-zinc-500">시술 목적에 따라 전극 크기가 다른 핸드피스를 선택적으로 사용할 수 있습니다.</p>
-      <div class="grid gap-6 sm:grid-cols-3">
-        {product.applications.map((app) => (
-          <div class="rounded-2xl border border-zinc-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md">
-            {app.image && (
-              <img
-                src={app.image}
-                alt={`TORR RF ${app.title}`}
-                width="300"
-                height="300"
-                loading="lazy"
-                decoding="async"
-                class="mb-4 h-40 w-full rounded-xl object-contain"
-              />
-            )}
-            <h3 class="mb-2 text-lg font-semibold text-zinc-900">{app.title}</h3>
-            <p class="text-sm leading-relaxed text-zinc-600">{app.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <ProductApplications title="핸드피스 구성" applications={product.applications} />
 
-  <!-- 5. 제품 갤러리 -->
-  {product.gallery.length > 0 && (
-    <section class="bg-white py-16 md:py-20">
-      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        <h2 class="mb-8 text-2xl font-bold text-zinc-900 md:text-3xl">제품 갤러리</h2>
-        <div class="grid gap-4 sm:grid-cols-2">
-          {product.gallery.map((img, idx) => (
-            <img
-              src={img}
-              alt={`TORR RF 제품 이미지 ${idx + 1}`}
-              width="600"
-              height="400"
-              loading="lazy"
-              decoding="async"
-              class="rounded-xl border border-zinc-100 object-contain"
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
+  <ProductGallery
+    images={product.gallery}
+    videos={product.videos}
+    productName={product.name}
+  />
 
-  <!-- 6. 제품 사양 -->
-  <section class="bg-zinc-50 py-16 md:py-20">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <h2 class="mb-6 text-2xl font-bold text-zinc-900 md:text-3xl">제품 사양</h2>
-      <SpecTable specs={product.specs} />
-    </div>
-  </section>
+  <ProductFAQ faqs={product.faqs} />
 
-  <!-- 7. FAQ -->
-  <section class="bg-white py-16 md:py-20">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <FAQSection items={product.faqs} />
-    </div>
-  </section>
+  <ProductCTA productName={product.name} />
 
-  <!-- 8. CTA -->
-  <CTASection title="TORR RF 상담 신청" description="브리츠메디 전문 상담팀이 자세한 제품 안내를 도와드립니다." />
-
-  <!-- 9. 관련 콘텐츠 -->
-  <section class="bg-white py-16 md:py-20">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <RelatedContent items={product.relatedContent} />
-    </div>
-  </section>
+  <ProductRelated items={product.relatedContent} />
 
   <!-- 의료기기 광고심의필 -->
   <section class="border-t border-zinc-100 bg-zinc-50 py-8">

@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  descriptions: string[];
+}
+const { title, descriptions } = Astro.props;
+---
+
+<section class="bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <h2 class="text-2xl font-bold text-zinc-900 mb-8">{title}</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      {descriptions.map((text) => {
+        const dashIdx = text.indexOf(' — ');
+        const keyword = dashIdx > 0 ? text.slice(0, dashIdx).trim() : '';
+        const rest = dashIdx > 0 ? text.slice(dashIdx + 3).trim() : text;
+        const colonIdx = rest.indexOf(': ');
+        const subtitle = colonIdx > 0 ? rest.slice(0, colonIdx).trim() : '';
+        const body = colonIdx > 0 ? rest.slice(colonIdx + 2).trim() : rest;
+
+        return (
+          <div class="group p-6 rounded-xl border border-zinc-100 hover:border-teal-100 hover:bg-teal-50/30 transition-all">
+            {keyword && (
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-teal-600 mb-1">{keyword}</p>
+            )}
+            {subtitle && (
+              <h3 class="font-semibold text-zinc-900 mb-2">{subtitle}</h3>
+            )}
+            <p class="text-sm text-zinc-600 leading-relaxed">{body}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

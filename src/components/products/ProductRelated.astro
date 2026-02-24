@@ -1,0 +1,22 @@
+---
+interface Props {
+  items: Array<{ title: string; href: string; description: string }>;
+}
+const { items } = Astro.props;
+---
+
+{items.length > 0 && (
+  <section class="bg-zinc-50 border-t border-zinc-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h2 class="text-2xl font-bold text-zinc-900 mb-6">관련 콘텐츠</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {items.map(item => (
+          <a href={item.href} class="block p-5 bg-white rounded-xl border border-zinc-200 hover:border-teal-200 hover:shadow-sm transition-all">
+            <p class="text-sm font-semibold text-zinc-900">{item.title}</p>
+            <p class="text-xs text-zinc-500 mt-1">{item.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

@@ -1,13 +1,9 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import SchemaOrg from '@components/aeo/SchemaOrg.astro';
-import TLDRBox from '@components/aeo/TLDRBox.astro';
 import FAQSection from '@components/aeo/FAQSection.astro';
 import CompareTable from '@components/aeo/CompareTable.astro';
-import PageHero from '@components/common/PageHero.astro';
-import CTASection from '@components/common/CTASection.astro';
 import UpdateDate from '@components/common/UpdateDate.astro';
-import RelatedContent from '@components/common/RelatedContent.astro';
 import { products, getProductsByCategory } from '@data/products';
 import { company } from '@data/company';
 
@@ -44,118 +40,99 @@ const orgSchema = {
     })),
   ],
 };
-
-const medicalCards = [
-  {
-    slug: 'torr-rf',
-    name: 'TORR RF',
-    nameKo: '토르 RF',
-    tagline: '비침습 멀티웨이브 RF 의료기기',
-    description: '멀티웨이브 고주파 기술로 적은 출력으로도 원하는 깊이에 균일하고 강력한 에너지를 전달하여 스킨타이트닝과 바디컨투어링을 구현합니다.',
-    specs: ['1 / 2 / 4 MHz 복합 주파수', '최대 200W 출력', 'FDA, CE, ISO 인증'],
-    image: '/images/products/torr-rf/herosection_torrrf_modelcut01.webp',
-  },
-  {
-    slug: 'ulblanc',
-    name: 'ULBLANC',
-    nameKo: '울블랑',
-    tagline: '저주파·고주파·초음파 다적응증 의료기기',
-    description: '저주파, 고주파, 초음파 각각의 파장으로 다양한 적응증 시술이 가능합니다. 피부 진정·재생, 경피적 약물 전달까지 폭넓은 적용이 가능합니다.',
-    specs: ['듀얼 모드 1/3MHz + 3/10MHz', '인체공학적 설계', 'CE, ISO, MFDS 인증'],
-    image: '/images/products/ulblanc/ulblanc_fullbody.webp',
-  },
-  {
-    slug: 'lumino-wave',
-    name: 'LUMINO WAVE',
-    nameKo: '루미노 웨이브',
-    tagline: '초음파+레이저+고주파 복합 다중 에너지',
-    description: '초음파가 피부 환경을 열고 레이저·고주파가 침투하는 구조로, 같은 효과를 더 낮은 출력으로 구현합니다.',
-    specs: ['초음파 + 레이저 + 고주파', '2종 핸드피스 시스템', 'CE, ISO, MFDS 인증'],
-    image: '/images/products/lumino-wave/20260207 luminowave page12_image.webp',
-  },
-];
-
-const beautyCards = [
-  {
-    slug: 'newchae',
-    name: 'NEWCHAE Shot',
-    nameKo: '뉴채 샷',
-    tagline: '고주파 타이트닝 3모드 미용기기',
-    description: '고주파 타이트닝, 전기 근육 자극 V라인, 전기 연동 펌프 스킨 부스트의 3가지 모드를 갖춘 미용기기입니다.',
-    specs: ['멀티채널 RF 에너지 샷', '분당 1만회 미세진동', 'CE, MFDS 인증'],
-    image: '/images/products/newchae/newchae 01 (1).webp',
-  },
-];
 ---
 
 <BaseLayout>
   <SchemaOrg schema={orgSchema} slot="head" />
 
-  <PageHero
-    title="제품 라인업"
-    breadcrumb={[{ name: '제품', href: '/products' }]}
-  />
+  <!-- 히어로 -->
+  <section class="bg-zinc-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 text-center">
+      <p class="text-teal-400 text-sm font-semibold tracking-widest uppercase mb-3">Product Lineup</p>
+      <h1 class="text-3xl lg:text-4xl font-bold text-white mb-3">제품 라인업</h1>
+      <p class="text-zinc-400 max-w-2xl mx-auto">다중 에너지 설계로 새로운 기준을 만듭니다</p>
+    </div>
+  </section>
 
-  <!-- Body -->
-  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-    <p class="mb-8 text-lg text-zinc-600">
-      브리츠메디는 다중 에너지 설계(Multi-Energy Design) 기술로 피부 치료 의료기기와 미용기기를 개발합니다. 의료기기 3종과 미용기기 1종으로 리프팅, 탄력 개선, 피부 재생까지 종합 솔루션을 제공합니다.
-    </p>
-
-    <TLDRBox content="브리츠메디는 의료기기 3종(TORR RF, ULBLANC, LUMINO WAVE)과 미용기기 1종(NEWCHAE Shot)을 보유하고 있습니다. 의료기기는 FDA·CE·ISO 등 글로벌 인증을 획득한 전문 시술 장비이며, NEWCHAE Shot은 고주파 타이트닝 3모드 미용기기입니다. 용도와 클리닉 규모에 따라 최적의 장비를 선택할 수 있습니다." />
-
-    <!-- 의료기기 섹션 -->
-    <section class="my-16">
-      <h2 class="mb-2 text-2xl font-bold text-zinc-900 md:text-3xl">의료기기</h2>
-      <p class="mb-8 text-zinc-500">글로벌 인증을 획득한 전문 시술용 의료기기 라인업</p>
-      <div class="grid gap-8 md:grid-cols-2">
-        {medicalCards.map((p) => (
-          <a href={`/products/${p.slug}`} class="group flex flex-col overflow-hidden rounded-2xl border border-zinc-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md sm:flex-row">
-            <div class="flex w-full shrink-0 items-center justify-center bg-zinc-50 p-4 sm:w-56 md:w-48 lg:w-56">
-              <img
-                src={p.image}
-                alt={`${p.name} - ${p.tagline}`}
-                width="224"
-                height="224"
-                loading="lazy"
-                decoding="async"
-                class="h-40 w-full object-contain transition-transform group-hover:scale-105"
-              />
-            </div>
-            <div class="flex flex-1 flex-col justify-center p-6">
-              <p class="text-xs font-medium uppercase tracking-wider text-zinc-400">{p.nameKo}</p>
-              <p class="mt-1 text-xl font-bold text-zinc-900 group-hover:text-teal-600">{p.name}</p>
-              <p class="mt-2 text-sm text-zinc-500">{p.description}</p>
-              <ul class="mt-4 space-y-1.5">
-                {p.specs.map((spec) => (
-                  <li class="flex items-center gap-2 text-sm text-zinc-600">
-                    <svg class="h-4 w-4 shrink-0 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {spec}
-                  </li>
-                ))}
-              </ul>
-              <div class="mt-5">
-                <span class="inline-flex items-center gap-1 rounded-full bg-teal-50 px-4 py-2 text-sm font-semibold text-teal-600 transition-colors group-hover:bg-teal-100">
-                  자세히 보기
-                  <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </a>
-        ))}
+  <!-- TL;DR -->
+  <section class="bg-teal-50/50 border-y border-teal-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex gap-4">
+        <div class="flex-shrink-0 w-1 bg-teal-500 rounded-full"></div>
+        <div>
+          <p class="text-xs font-semibold text-teal-600 uppercase tracking-widest mb-2">핵심 요약</p>
+          <p class="text-zinc-700 leading-relaxed">브리츠메디는 의료기기 3종(TORR RF, ULBLANC, LUMINO WAVE)과 미용기기 1종(NEWCHAE Shot)을 보유하고 있습니다. 의료기기는 FDA·CE·ISO 등 글로벌 인증을 획득한 전문 시술 장비이며, NEWCHAE Shot은 고주파 타이트닝 3모드 미용기기입니다.</p>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 의료기기 비교 테이블 -->
-    <section class="my-16">
-      <h2 class="mb-6 text-2xl font-bold text-zinc-900 md:text-3xl">의료기기 비교표</h2>
-      <p class="mb-6 text-zinc-600">
-        3가지 의료기기의 주요 사양을 한눈에 비교해 보세요. 클리닉 규모, 시술 목적, 예산에 따라 최적의 장비를 선택할 수 있습니다.
-      </p>
+  <!-- 제품 카드 그리드 -->
+  <section class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <!-- 의료기기 -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-zinc-900 mb-2">의료기기</h2>
+        <p class="text-zinc-500 mb-8">글로벌 인증을 획득한 전문 시술용 의료기기 라인업</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {medicalProducts.map(product => (
+            <a href={`/products/${product.slug}`} class="group block bg-zinc-50 rounded-2xl overflow-hidden border border-zinc-200 hover:border-teal-200 hover:shadow-lg transition-all">
+              <div class="aspect-[4/3] bg-zinc-100 p-8 flex items-center justify-center">
+                <img
+                  src={product.heroImage}
+                  alt={product.name}
+                  class="max-h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-6">
+                <p class="text-xs text-teal-600 font-semibold tracking-widest uppercase mb-2">{product.category === 'medical' ? '의료기기' : '미용기기'}</p>
+                <h3 class="text-xl font-bold text-zinc-900 mb-1">{product.name} <span class="text-sm font-normal text-zinc-400">{product.nameKo}</span></h3>
+                <p class="text-sm text-zinc-600 line-clamp-2">{product.tagline}</p>
+                <div class="mt-4 text-sm text-teal-600 font-medium group-hover:text-teal-500 transition-colors">
+                  자세히 보기 →
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- 미용기기 -->
+      <div>
+        <h2 class="text-2xl font-bold text-zinc-900 mb-2">미용기기</h2>
+        <p class="text-zinc-500 mb-8">에스테틱 및 뷰티 케어를 위한 미용기기 라인업</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {beautyProducts.map(product => (
+            <a href={`/products/${product.slug}`} class="group block bg-zinc-50 rounded-2xl overflow-hidden border border-zinc-200 hover:border-teal-200 hover:shadow-lg transition-all">
+              <div class="aspect-[4/3] bg-zinc-100 p-8 flex items-center justify-center">
+                <img
+                  src={product.heroImage}
+                  alt={product.name}
+                  class="max-h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-6">
+                <p class="text-xs text-teal-600 font-semibold tracking-widest uppercase mb-2">미용기기</p>
+                <h3 class="text-xl font-bold text-zinc-900 mb-1">{product.name} <span class="text-sm font-normal text-zinc-400">{product.nameKo}</span></h3>
+                <p class="text-sm text-zinc-600 line-clamp-2">{product.tagline}</p>
+                <div class="mt-4 text-sm text-teal-600 font-medium group-hover:text-teal-500 transition-colors">
+                  자세히 보기 →
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 의료기기 비교 테이블 -->
+  <section class="bg-zinc-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <h2 class="text-2xl font-bold text-zinc-900 mb-2">의료기기 비교표</h2>
+      <p class="text-zinc-500 mb-8">3가지 의료기기의 주요 사양을 한눈에 비교해 보세요.</p>
       <CompareTable
         headers={['TORR RF', 'ULBLANC', 'LUMINO WAVE']}
         rows={[
@@ -169,70 +146,58 @@ const beautyCards = [
         ]}
         highlight={0}
       />
-    </section>
+    </div>
+  </section>
 
-    <!-- 미용기기 섹션 -->
-    <section class="my-16">
-      <h2 class="mb-2 text-2xl font-bold text-zinc-900 md:text-3xl">미용기기</h2>
-      <p class="mb-8 text-zinc-500">에스테틱 및 뷰티 케어를 위한 미용기기 라인업</p>
-      <div class="grid gap-8 md:grid-cols-2">
-        {beautyCards.map((p) => (
-          <a href={`/products/${p.slug}`} class="group flex flex-col overflow-hidden rounded-2xl border border-zinc-100 bg-white shadow-sm transition-all duration-300 hover:shadow-md sm:flex-row">
-            <div class="flex w-full shrink-0 items-center justify-center bg-zinc-50 p-4 sm:w-56 md:w-48 lg:w-56">
-              <img
-                src={p.image}
-                alt={`${p.name} - ${p.tagline}`}
-                width="224"
-                height="224"
-                loading="lazy"
-                decoding="async"
-                class="h-40 w-full object-contain transition-transform group-hover:scale-105"
-              />
-            </div>
-            <div class="flex flex-1 flex-col justify-center p-6">
-              <p class="text-xs font-medium uppercase tracking-wider text-zinc-400">{p.nameKo}</p>
-              <p class="mt-1 text-xl font-bold text-zinc-900 group-hover:text-teal-600">{p.name}</p>
-              <p class="mt-2 text-sm text-zinc-500">{p.description}</p>
-              <ul class="mt-4 space-y-1.5">
-                {p.specs.map((spec) => (
-                  <li class="flex items-center gap-2 text-sm text-zinc-600">
-                    <svg class="h-4 w-4 shrink-0 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    {spec}
-                  </li>
-                ))}
-              </ul>
-              <div class="mt-5">
-                <span class="inline-flex items-center gap-1 rounded-full bg-teal-50 px-4 py-2 text-sm font-semibold text-teal-600 transition-colors group-hover:bg-teal-100">
-                  자세히 보기
-                  <svg class="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </span>
-              </div>
-            </div>
-          </a>
-        ))}
+  <!-- FAQ -->
+  <section class="bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <FAQSection items={[
+        { question: "어떤 제품을 선택해야 하나요?", answer: "클리닉 규모와 시술 목적에 따라 달라집니다. 스킨타이트닝·바디컨투어링은 TORR RF, 다양한 적응증 시술은 ULBLANC, 고주파 타이트닝·V라인은 NEWCHAE Shot, 복합 다중 에너지 시술은 LUMINO WAVE를 추천합니다." },
+        { question: "브리츠메디 제품의 기술적 차별점은 무엇인가요?", answer: "브리츠메디는 다중 에너지 설계(Multi-Energy Design) 기술을 기반으로, 단일 에너지의 출력을 높이는 대신 에너지 조합의 구조를 재설계하여 저출력 고효율 시술을 구현합니다. 특히 LUMINO WAVE는 초음파가 피부 환경을 먼저 열어 후속 에너지의 침투 효율을 극대화하는 구조입니다." },
+        { question: "제품 데모 신청은 어떻게 하나요?", answer: "문의하기 페이지 또는 이메일을 통해 제품 데모를 신청하실 수 있습니다. 전문 상담팀이 클리닉에 방문하여 시연 및 상담을 진행합니다." },
+        { question: "해외에서도 구매 가능한가요?", answer: "네, 브리츠메디는 글로벌 유통 네트워크를 통해 해외 판매를 지원합니다. 영문 사이트(britzmedi.com)에서 해외 파트너십 문의가 가능합니다." },
+      ]} />
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-zinc-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <h2 class="text-2xl lg:text-3xl font-bold text-white mb-3">최적의 장비를 찾고 계신가요?</h2>
+      <p class="text-zinc-400 mb-8">브리츠메디 전문 상담팀이 클리닉에 맞는 장비를 추천해 드립니다.</p>
+      <div class="flex justify-center gap-3">
+        <a href="/contact" class="px-8 py-3.5 bg-teal-600 text-white text-sm font-medium rounded-lg hover:bg-teal-500 transition-colors">
+          무료 상담 신청
+        </a>
+        <a href="/certifications" class="px-8 py-3.5 border border-zinc-700 text-zinc-300 text-sm font-medium rounded-lg hover:border-zinc-500 hover:text-white transition-colors">
+          인증 현황 보기
+        </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- FAQ -->
-    <FAQSection items={[
-      { question: "어떤 제품을 선택해야 하나요?", answer: "클리닉 규모와 시술 목적에 따라 달라집니다. 스킨타이트닝·바디컨투어링은 TORR RF, 다양한 적응증 시술은 ULBLANC, 고주파 타이트닝·V라인은 NEWCHAE Shot, 복합 다중 에너지 시술은 LUMINO WAVE를 추천합니다." },
-      { question: "브리츠메디 제품의 기술적 차별점은 무엇인가요?", answer: "브리츠메디는 다중 에너지 설계(Multi-Energy Design) 기술을 기반으로, 단일 에너지의 출력을 높이는 대신 에너지 조합의 구조를 재설계하여 저출력 고효율 시술을 구현합니다. 특히 LUMINO WAVE는 초음파가 피부 환경을 먼저 열어 후속 에너지의 침투 효율을 극대화하는 구조입니다." },
-      { question: "제품 데모 신청은 어떻게 하나요?", answer: "문의하기 페이지 또는 이메일을 통해 제품 데모를 신청하실 수 있습니다. 전문 상담팀이 클리닉에 방문하여 시연 및 상담을 진행합니다." },
-      { question: "해외에서도 구매 가능한가요?", answer: "네, 브리츠메디는 글로벌 유통 네트워크를 통해 해외 판매를 지원합니다. 영문 사이트(britzmedi.com)에서 해외 파트너십 문의가 가능합니다." },
-    ]} />
-
-    <CTASection title="최적의 RF 장비를 찾고 계신가요?" description="브리츠메디 전문 상담팀이 클리닉에 맞는 장비를 추천해 드립니다." />
-
-    <RelatedContent items={[
-      { title: 'R&D / 기술력', href: '/rnd', description: '다중 에너지 설계 기술 소개' },
-      { title: '인증 및 특허', href: '/certifications', description: 'FDA, CE, ISO 인증 현황' },
-      { title: '기업소개', href: '/about', description: '브리츠메디 회사 소개' },
-    ]} />
-
-    <UpdateDate />
-  </div>
+  <!-- 관련 콘텐츠 -->
+  <section class="bg-zinc-50 border-t border-zinc-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h2 class="text-2xl font-bold text-zinc-900 mb-6">관련 콘텐츠</h2>
+      <div class="grid md:grid-cols-3 gap-4">
+        <a href="/rnd" class="block p-5 bg-white rounded-xl border border-zinc-200 hover:border-teal-200 hover:shadow-sm transition-all">
+          <p class="text-sm font-semibold text-zinc-900">R&D / 기술력</p>
+          <p class="text-xs text-zinc-500 mt-1">다중 에너지 설계 기술 소개</p>
+        </a>
+        <a href="/certifications" class="block p-5 bg-white rounded-xl border border-zinc-200 hover:border-teal-200 hover:shadow-sm transition-all">
+          <p class="text-sm font-semibold text-zinc-900">인증 및 특허</p>
+          <p class="text-xs text-zinc-500 mt-1">FDA, CE, ISO 인증 현황</p>
+        </a>
+        <a href="/about" class="block p-5 bg-white rounded-xl border border-zinc-200 hover:border-teal-200 hover:shadow-sm transition-all">
+          <p class="text-sm font-semibold text-zinc-900">기업소개</p>
+          <p class="text-xs text-zinc-500 mt-1">브리츠메디 회사 소개</p>
+        </a>
+      </div>
+      <div class="mt-8 text-center">
+        <UpdateDate />
+      </div>
+    </div>
+  </section>
 </BaseLayout>

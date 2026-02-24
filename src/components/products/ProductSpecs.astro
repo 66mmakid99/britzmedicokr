@@ -1,0 +1,24 @@
+---
+import type { ProductSpec } from '@data/products';
+
+interface Props {
+  specs: ProductSpec[];
+}
+const { specs } = Astro.props;
+---
+
+<section id="specs" class="bg-zinc-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <h2 class="text-2xl font-bold text-zinc-900 mb-8">제품 사양</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {specs.map(spec => (
+        <div class="bg-white rounded-xl p-5 border border-zinc-200 hover:border-teal-200 hover:shadow-sm transition-all">
+          <p class="text-xs text-zinc-400 font-medium mb-1">{spec.label}</p>
+          <p class="text-sm font-semibold text-zinc-900">
+            {spec.value}{spec.unit ? ` ${spec.unit}` : ''}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
