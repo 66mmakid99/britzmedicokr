@@ -29,3 +29,6 @@ Thumbs.db
 npm-debug.log*
 src.zip
 public/videos/hero-original.mp4
+
+# 민감 문서
+docs/*사업자등록증*

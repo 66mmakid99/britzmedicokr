@@ -67,6 +67,35 @@ export interface Database {
         };
         Update: Partial<Database['public']['Tables']['news_items']['Insert']>;
       };
+      contact_inquiries: {
+        Row: {
+          id: string;
+          name: string;
+          email: string;
+          phone: string | null;
+          company: string | null;
+          position: string | null;
+          subject: string | null;
+          message: string;
+          product_interest: string | null;
+          status: 'new' | 'read' | 'replied' | 'closed';
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          email: string;
+          phone?: string | null;
+          company?: string | null;
+          position?: string | null;
+          subject?: string | null;
+          message: string;
+          product_interest?: string | null;
+          status?: 'new' | 'read' | 'replied' | 'closed';
+          created_at?: string;
+        };
+        Update: Partial<Database['public']['Tables']['contact_inquiries']['Insert']>;
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
