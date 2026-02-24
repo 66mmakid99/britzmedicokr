@@ -7,7 +7,6 @@ import ProductTech from '@components/products/ProductTech.astro';
 import ProductSpecs from '@components/products/ProductSpecs.astro';
 import ProductCertifications from '@components/products/ProductCertifications.astro';
 import ProductApplications from '@components/products/ProductApplications.astro';
-import ProductGallery from '@components/products/ProductGallery.astro';
 import ProductFAQ from '@components/products/ProductFAQ.astro';
 import ProductCTA from '@components/products/ProductCTA.astro';
 import ProductRelated from '@components/products/ProductRelated.astro';
@@ -52,12 +51,6 @@ const deviceSchema = medicalDeviceSchema({
   <ProductCertifications certifications={product.certifications} />
 
   <ProductApplications title="핸드피스 구성" applications={product.applications} />
-
-  <ProductGallery
-    images={product.gallery}
-    videos={product.videos}
-    productName={product.name}
-  />
 
   <ProductFAQ faqs={product.faqs} />
 
