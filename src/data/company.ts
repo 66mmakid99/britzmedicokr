@@ -13,11 +13,17 @@ export const company = {
     country: 'KR',
   },
   contact: {
-    phone: '',
+    phone: '031-747-8564',
     email: 'info@britzmedi.co.kr',
   },
   social: {
     global: 'https://www.britzmedi.com',
   },
   certifications: ['FDA 510(k)', 'CE Mark', 'ISO 13485'],
+  business: {
+    ceo: '김진용',
+    bizNumber: '831-86-01886',
+    privacyOfficer: '김진용',
+    fullAddress: '경기도 성남시 중원구 둔촌대로388, 크란츠테크노 1211호',
+  },
 } as const;
