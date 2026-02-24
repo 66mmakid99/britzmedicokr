@@ -21,7 +21,7 @@ const products = [
     nameKo: '울블랑',
     category: 'PREMIUM SKINCARE',
     tagline: '저주파·고주파·초음파 다적응증 의료기기',
-    image: '/images/products/ulblanc/ulblanc.webp',
+    image: '/images/products/ulblanc/ulblanc_fullbody.PNG',
     features: [
       { number: 'Dual', label: '1/3MHz + 3/10MHz 듀얼 모드' },
       { number: 'Multi', label: '저주파·고주파·초음파' },
@@ -49,7 +49,7 @@ const products = [
     nameKo: '루미노 웨이브',
     category: 'MULTI-ENERGY DESIGN',
     tagline: '초음파 + 레이저 + 고주파 복합 다중 에너지',
-    image: '/images/products/lumino-wave/20260207 luminowave page12_image.webp',
+    image: '/images/products/lumino-wave/20260207 luminowave page12_image.png',
     features: [
       { number: 'US', label: '초음파 피부 환경 제어' },
       { number: 'Low', label: '저출력 고효율 구조' },

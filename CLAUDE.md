@@ -89,4 +89,3 @@
 - [ ] britzmedi.co.kr 도메인 연결
 - [ ] LUMINO WAVE 갤러리/영상 추가 (소스 이미지 부재)
 - [ ] 블로그/뉴스 실제 콘텐츠 발행 (Content Factory)
-- [ ] 카카오톡 채널 연동
