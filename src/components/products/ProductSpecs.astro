@@ -7,18 +7,73 @@ interface Props {
 const { specs } = Astro.props;
 ---
 
-<section id="specs" class="bg-zinc-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
-    <h2 class="text-2xl font-bold text-zinc-900 mb-10">제품 사양</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+<section class="product-specs" id="specs">
+  <div class="product-section-inner">
+    <div class="product-section-label">Specifications</div>
+    <h2 class="product-section-title">제품 사양</h2>
+    <div class="product-specs__grid">
       {specs.map(spec => (
-        <div class="bg-white rounded-2xl p-6 border border-zinc-200/60 hover:border-teal-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-          <p class="text-xs text-zinc-400 font-medium uppercase tracking-wider mb-2">{spec.label}</p>
-          <p class="text-base font-bold text-zinc-900">
+        <div class="product-spec-card">
+          <div class="product-spec-label">{spec.label}</div>
+          <div class="product-spec-value">
             {spec.value}{spec.unit ? ` ${spec.unit}` : ''}
-          </p>
+          </div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .product-specs { background: #fafafa; padding: 80px 24px; }
+  .product-section-inner { max-width: 1280px; margin: 0 auto; }
+  .product-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0d9488;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  .product-section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #18181b;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+  }
+  .product-specs__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .product-spec-card {
+    background: white;
+    border: 1px solid rgba(228,228,231,0.6);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+  .product-spec-card:hover {
+    border-color: rgba(13,148,136,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+  .product-spec-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .product-spec-value { font-size: 15px; font-weight: 700; color: #18181b; }
+
+  @media (max-width: 1024px) {
+    .product-specs__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .product-specs { padding: 60px 16px; }
+    .product-specs__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

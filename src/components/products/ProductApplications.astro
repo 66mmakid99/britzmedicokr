@@ -6,30 +6,94 @@ interface Props {
 const { title = '적용 분야', applications } = Astro.props;
 ---
 
-<section class="bg-zinc-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
-    <h2 class="text-2xl font-bold text-zinc-900 mb-10">{title}</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+<section class="product-apps">
+  <div class="product-section-inner">
+    <div class="product-section-label">Applications</div>
+    <h2 class="product-section-title">{title}</h2>
+    <div class="product-app-grid">
       {applications.map(app => (
-        <div class="group p-7 rounded-2xl bg-white border border-zinc-200/60 hover:border-teal-200 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">
+        <div class="product-app-card">
           {app.image && (
             <img
               src={app.image}
               alt={app.title}
               loading="lazy"
               decoding="async"
-              class="mb-5 h-44 w-full rounded-xl object-contain"
+              class="product-app-image"
             />
           )}
-          <div class="w-10 h-10 bg-teal-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-teal-100 transition-colors duration-300">
-            <svg class="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
+          <div class="product-app-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
-          <h3 class="text-base font-bold text-zinc-900 mb-2">{app.title}</h3>
-          <p class="text-sm text-zinc-600 leading-relaxed">{app.desc}</p>
+          <div class="product-app-title">{app.title}</div>
+          <div class="product-app-desc">{app.desc}</div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .product-apps { background: #fafafa; padding: 80px 24px; }
+  .product-section-inner { max-width: 1280px; margin: 0 auto; }
+  .product-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0d9488;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  .product-section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #18181b;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+  }
+  .product-app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .product-app-card {
+    background: white;
+    border: 1px solid rgba(228,228,231,0.6);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  .product-app-card:hover {
+    border-color: rgba(13,148,136,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+  .product-app-image {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-bottom: 16px;
+  }
+  .product-app-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #18181b, #27272a);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+  .product-app-icon svg { width: 22px; height: 22px; color: #2dd4bf; }
+  .product-app-title { font-size: 14px; font-weight: 700; color: #18181b; margin-bottom: 6px; }
+  .product-app-desc { font-size: 12px; color: #71717a; line-height: 1.6; }
+
+  @media (max-width: 1024px) {
+    .product-app-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .product-app-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

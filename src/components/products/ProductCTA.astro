@@ -7,23 +7,110 @@ interface Props {
 const { productName, headline, description } = Astro.props;
 ---
 
-<section class="bg-zinc-950 relative overflow-hidden">
-  <!-- 서틀한 배경 -->
-  <div class="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900/50 to-zinc-950"></div>
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl"></div>
-
-  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">
+<section class="product-cta">
+  <div class="product-cta__inner">
+    <h2 class="product-cta__title">
       {headline || `${productName} 도입 상담을 받아보세요`}
     </h2>
-    <p class="text-base text-zinc-400 mb-10 max-w-xl mx-auto">{description || '브리츠메디 전문 컨설턴트가 클리닉에 최적화된 솔루션을 안내해드립니다.'}</p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a href="/contact" class="inline-flex items-center px-8 py-4 bg-teal-600 text-white text-sm font-semibold rounded-xl hover:bg-teal-500 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-teal-600/20">
+    <p class="product-cta__desc">
+      {description || '브리츠메디 전문 컨설턴트가 클리닉에 최적화된 솔루션을 안내해드립니다.'}
+    </p>
+    <div class="product-cta__buttons">
+      <a href="/contact" class="product-btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         무료 상담 신청
       </a>
-      <a href="/certifications" class="inline-flex items-center px-8 py-4 border border-zinc-700 text-zinc-300 text-sm font-semibold rounded-xl hover:border-zinc-500 hover:text-white transition-all duration-300 hover:scale-[1.02]">
+      <a href="/certifications" class="product-btn-ghost">
         인증 현황 보기
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
 </section>
+
+<style>
+  .product-cta {
+    background: #09090b;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-cta::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(13,148,136,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .product-cta__inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .product-cta__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .product-cta__desc {
+    font-size: 14px;
+    color: #a1a1aa;
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+  .product-cta__buttons { display: flex; justify-content: center; gap: 12px; }
+
+  .product-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    background: #0d9488;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .product-btn-primary:hover {
+    background: #14b8a6;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(13,148,136,0.25);
+  }
+  .product-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    background: transparent;
+    color: #d4d4d8;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    text-decoration: none;
+    border: 1px solid #3f3f46;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .product-btn-ghost:hover {
+    border-color: #71717a;
+    color: white;
+    background: rgba(255,255,255,0.03);
+  }
+
+  @media (max-width: 640px) {
+    .product-cta__buttons { flex-direction: column; align-items: center; }
+    .product-btn-primary, .product-btn-ghost { width: 100%; justify-content: center; }
+  }
+</style>

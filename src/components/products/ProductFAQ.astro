@@ -6,24 +6,80 @@ const { faqs } = Astro.props;
 ---
 
 {faqs.length > 0 && (
-  <section class="bg-zinc-50">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
-      <h2 class="text-2xl font-bold text-zinc-900 mb-10">자주 묻는 질문</h2>
-      <div class="space-y-3">
+  <section class="product-faq">
+    <div class="product-faq__inner">
+      <div class="product-section-label">FAQ</div>
+      <h2 class="product-section-title">자주 묻는 질문</h2>
+      <div class="product-faq__list">
         {faqs.map((faq) => (
-          <details class="group rounded-2xl border border-zinc-200/60 overflow-hidden bg-white hover:border-teal-200 transition-all duration-300">
-            <summary class="flex items-center justify-between px-7 py-5 cursor-pointer hover:bg-zinc-50/50 transition-colors duration-300">
-              <span class="text-sm font-semibold text-zinc-900 pr-4">{faq.question}</span>
-              <svg class="w-5 h-5 text-zinc-400 flex-shrink-0 group-open:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>
+          <details class="product-faq__item">
+            <summary>
+              {faq.question}
+              <svg class="product-faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
             </summary>
-            <div class="px-7 pb-5 text-sm text-zinc-600 leading-relaxed border-t border-zinc-100 pt-4">
-              {faq.answer}
-            </div>
+            <div class="product-faq__answer">{faq.answer}</div>
           </details>
         ))}
       </div>
     </div>
   </section>
 )}
+
+<style>
+  .product-faq { background: #fafafa; padding: 80px 24px; }
+  .product-faq__inner { max-width: 800px; margin: 0 auto; }
+  .product-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0d9488;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  .product-section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #18181b;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+  }
+  .product-faq__list { display: flex; flex-direction: column; gap: 10px; }
+  .product-faq__item {
+    background: white;
+    border: 1px solid rgba(228,228,231,0.6);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .product-faq__item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 28px;
+    cursor: pointer;
+    list-style: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #18181b;
+    transition: background 0.2s ease;
+  }
+  .product-faq__item summary::-webkit-details-marker { display: none; }
+  .product-faq__item summary::marker { display: none; content: ''; }
+  .product-faq__item summary:hover { background: #fafafa; }
+  .product-faq__chevron {
+    width: 20px;
+    height: 20px;
+    color: #a1a1aa;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+  .product-faq__item[open] .product-faq__chevron { transform: rotate(180deg); }
+  .product-faq__answer {
+    padding: 0 28px 22px;
+    font-size: 13px;
+    color: #52525b;
+    line-height: 1.8;
+    border-top: 1px solid #f4f4f5;
+    padding-top: 16px;
+    margin-top: -4px;
+  }
+</style>

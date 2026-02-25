@@ -5,19 +5,46 @@ interface Props {
 const { content } = Astro.props;
 ---
 
-<section class="bg-teal-50/50 border-y border-teal-100">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
-    <div class="flex gap-5">
-      <div class="flex-shrink-0 w-1 bg-teal-500 rounded-full"></div>
-      <div>
-        <div class="flex items-center gap-2 mb-3">
-          <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-          </svg>
-          <p class="text-xs font-bold text-teal-700 uppercase tracking-widest">TL;DR</p>
-        </div>
-        <p class="text-base text-zinc-700 leading-relaxed">{content}</p>
-      </div>
+<section class="product-tldr">
+  <div class="product-tldr__inner">
+    <div class="product-tldr__bar"></div>
+    <div>
+      <div class="product-tldr__label">핵심 요약</div>
+      <p class="product-tldr__text">{content}</p>
     </div>
   </div>
 </section>
+
+<style>
+  .product-tldr {
+    background: linear-gradient(135deg, rgba(240,253,250,0.5), rgba(204,251,241,0.15));
+    border-top: 1px solid rgba(13,148,136,0.08);
+    border-bottom: 1px solid rgba(13,148,136,0.08);
+  }
+  .product-tldr__inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    display: flex;
+    gap: 20px;
+  }
+  .product-tldr__bar {
+    flex-shrink: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, #14b8a6, #2dd4bf);
+    border-radius: 4px;
+  }
+  .product-tldr__label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #0d9488;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  .product-tldr__text {
+    font-size: 15px;
+    color: #3f3f46;
+    line-height: 1.8;
+  }
+</style>

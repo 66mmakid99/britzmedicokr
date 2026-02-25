@@ -14,93 +14,278 @@ interface Props {
 const { name, nameKo, subtitle, tagline, firstSentence, badge, stats, heroImage, heroVideo } = Astro.props;
 ---
 
-<section class="relative min-h-[70vh] bg-zinc-950 overflow-hidden flex items-center">
-  <!-- 배경 그라디언트 메시 -->
-  <div class="absolute inset-0">
-    <div class="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900/80 to-zinc-950"></div>
-    <div class="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-teal-950/15 to-transparent"></div>
-    <div class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-zinc-900/50 to-transparent"></div>
-    <!-- 미세 노이즈 텍스처 -->
-    <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');"></div>
-  </div>
+<section class="product-hero">
+  <div class="product-hero__noise"></div>
+  <div class="product-hero__inner">
+    <div class="product-hero__text">
+      {badge && (
+        <div class="product-hero__badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          {badge}
+        </div>
+      )}
 
-  <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-      <!-- 텍스트 -->
-      <div class="order-2 lg:order-1">
-        {badge && (
-          <span class="inline-flex items-center gap-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 px-3.5 py-1.5 text-xs font-semibold text-teal-400 mb-5">
-            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            {badge}
-          </span>
-        )}
+      <h1 class="product-hero__title">{nameKo}</h1>
+      <p class="product-hero__subtitle">{name}</p>
+      <p class="product-hero__desc">{firstSentence || tagline}</p>
 
-        <p class="text-teal-400 text-sm font-semibold tracking-widest uppercase mb-4">{subtitle}</p>
-
-        <h1 class="text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-2" style="letter-spacing: -0.02em;">
-          {nameKo}
-        </h1>
-        <p class="text-xl lg:text-2xl font-medium text-zinc-500 mb-6">{name}</p>
-
-        <p class="text-lg text-zinc-400 leading-relaxed mb-4 max-w-lg">{tagline}</p>
-
-        {firstSentence && (
-          <p class="text-sm text-zinc-500 leading-relaxed mb-8 max-w-lg">{firstSentence}</p>
-        )}
-
-        <!-- 핵심 수치 -->
-        <div class="flex flex-wrap gap-10 mb-10">
-          {stats.map(stat => (
+      <div class="product-hero__stats">
+        {stats.map(stat => (
+          <div>
             <div>
-              <div class="flex items-baseline gap-1.5">
-                <span class="text-4xl lg:text-5xl font-black text-white">{stat.value}</span>
-                <span class="text-sm text-teal-400 font-semibold">{stat.unit}</span>
-              </div>
-              <p class="text-sm text-zinc-500 mt-1.5">{stat.label}</p>
+              <span class="product-hero__stat-value">{stat.value}</span>
+              <span class="product-hero__stat-unit">{stat.unit}</span>
             </div>
-          ))}
-        </div>
-
-        <!-- CTA -->
-        <div class="flex flex-wrap gap-4">
-          <a href="/contact" class="inline-flex items-center px-8 py-4 bg-teal-600 text-white text-sm font-semibold rounded-xl hover:bg-teal-500 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-teal-600/20">
-            상담 신청
-          </a>
-          <a href="#specs" class="inline-flex items-center px-8 py-4 border border-zinc-700 text-zinc-300 text-sm font-semibold rounded-xl hover:border-zinc-500 hover:text-white transition-all duration-300 hover:scale-[1.02]">
-            자세히 보기
-          </a>
-        </div>
+            <div class="product-hero__stat-label">{stat.label}</div>
+          </div>
+        ))}
       </div>
 
-      <!-- 제품 이미지 -->
-      <div class="relative order-1 lg:order-2 flex items-center justify-center">
-        <!-- teal 글로우 -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div class="w-80 h-80 lg:w-96 lg:h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
-        </div>
-
-        {heroVideo ? (
-          <video
-            src={heroVideo}
-            autoplay muted loop playsinline
-            poster={heroImage}
-            class="relative w-full max-h-[520px] object-contain drop-shadow-2xl"
-          />
-        ) : (
-          <img
-            src={heroImage}
-            alt={`${name} - ${tagline}`}
-            class="relative w-full max-h-[520px] object-contain drop-shadow-2xl"
-            loading="eager"
-            decoding="async"
-          />
-        )}
-
-        <!-- 하단 페이드 -->
-        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-zinc-950 to-transparent pointer-events-none"></div>
+      <div class="product-hero__ctas">
+        <a href="/contact" class="product-btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          상담 신청
+        </a>
+        <a href="#specs" class="product-btn-ghost">
+          자세히 보기
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+        </a>
       </div>
+    </div>
+
+    <div class="product-hero__image-wrap">
+      <div class="product-hero__image-glow"></div>
+      {heroVideo ? (
+        <video
+          src={heroVideo}
+          autoplay muted loop playsinline
+          poster={heroImage}
+          alt={`${name} - ${tagline}`}
+        />
+      ) : (
+        <img
+          src={heroImage}
+          alt={`${name} - ${tagline}`}
+          loading="eager"
+          decoding="async"
+        />
+      )}
     </div>
   </div>
 </section>
+
+<style>
+  .product-hero {
+    position: relative;
+    min-height: 85vh;
+    background: #09090b;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  .product-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 80%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(13,148,136,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .product-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(to top, #09090b, transparent);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .product-hero__noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+  }
+  .product-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    width: 100%;
+  }
+  .product-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(13,148,136,0.12);
+    border: 1px solid rgba(13,148,136,0.2);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #2dd4bf;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .product-hero__badge svg { width: 12px; height: 12px; }
+  .product-hero__title {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 6px;
+  }
+  .product-hero__subtitle {
+    font-size: 15px;
+    color: #71717a;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 20px;
+  }
+  .product-hero__desc {
+    font-size: 16px;
+    color: #a1a1aa;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+  .product-hero__stats {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .product-hero__stat-value {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .product-hero__stat-unit {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2dd4bf;
+    margin-left: 3px;
+  }
+  .product-hero__stat-label {
+    font-size: 11px;
+    color: #71717a;
+    margin-top: 4px;
+  }
+  .product-hero__ctas { display: flex; gap: 12px; }
+
+  .product-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    background: #0d9488;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .product-btn-primary:hover {
+    background: #14b8a6;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(13,148,136,0.25);
+  }
+  .product-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 32px;
+    background: transparent;
+    color: #d4d4d8;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    text-decoration: none;
+    border: 1px solid #3f3f46;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .product-btn-ghost:hover {
+    border-color: #71717a;
+    color: white;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .product-hero__image-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-hero__image-glow {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .product-hero__image-wrap img,
+  .product-hero__image-wrap video {
+    position: relative;
+    z-index: 1;
+    max-height: 520px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 60px rgba(0,0,0,0.5));
+  }
+
+  /* Animation */
+  .product-hero__text > * {
+    animation: productFadeInUp 0.7s ease-out both;
+  }
+  .product-hero__badge { animation-delay: 0.1s; }
+  .product-hero__title { animation-delay: 0.2s; }
+  .product-hero__subtitle { animation-delay: 0.25s; }
+  .product-hero__desc { animation-delay: 0.3s; }
+  .product-hero__stats { animation-delay: 0.4s; }
+  .product-hero__ctas { animation-delay: 0.5s; }
+  .product-hero__image-wrap { animation: productFadeInUp 0.8s ease-out 0.3s both; }
+
+  @keyframes productFadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .product-hero__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding-top: 100px;
+    }
+    .product-hero__desc { margin: 0 auto 36px; }
+    .product-hero__stats { justify-content: center; }
+    .product-hero__ctas { justify-content: center; }
+    .product-hero__image-wrap { margin-top: 20px; }
+    .product-hero__image-wrap img,
+    .product-hero__image-wrap video { max-height: 400px; }
+  }
+  @media (max-width: 640px) {
+    .product-hero__inner { padding: 80px 16px 40px; }
+    .product-hero__stats { gap: 24px; }
+    .product-hero__ctas { flex-direction: column; }
+    .product-btn-primary, .product-btn-ghost { width: 100%; justify-content: center; }
+  }
+</style>

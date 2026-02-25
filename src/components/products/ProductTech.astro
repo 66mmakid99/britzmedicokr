@@ -6,10 +6,11 @@ interface Props {
 const { title, descriptions } = Astro.props;
 ---
 
-<section class="bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
-    <h2 class="text-2xl font-bold text-zinc-900 mb-10">{title}</h2>
-    <div class="grid md:grid-cols-2 gap-5">
+<section class="product-features">
+  <div class="product-section-inner">
+    <div class="product-section-label">Core Technology</div>
+    <h2 class="product-section-title">{title}</h2>
+    <div class="product-features__grid">
       {descriptions.map((text) => {
         const dashIdx = text.indexOf(' — ');
         const keyword = dashIdx > 0 ? text.slice(0, dashIdx).trim() : '';
@@ -19,22 +20,91 @@ const { title, descriptions } = Astro.props;
         const body = colonIdx > 0 ? rest.slice(colonIdx + 2).trim() : rest;
 
         return (
-          <div class="group p-7 rounded-2xl border border-zinc-200/60 hover:border-teal-200 hover:shadow-lg transition-all duration-300">
-            {keyword && (
-              <div class="flex items-center gap-2 mb-2">
-                <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                </svg>
-                <p class="text-xs font-bold uppercase tracking-widest text-teal-600">{keyword}</p>
-              </div>
-            )}
-            {subtitle && (
-              <h3 class="text-base font-bold text-zinc-900 mb-3">{subtitle}</h3>
-            )}
-            <p class="text-sm text-zinc-600 leading-relaxed">{body}</p>
+          <div class="product-feature-card">
+            <div class="product-feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            {keyword && <div class="product-feature-keyword">{keyword}</div>}
+            {subtitle && <div class="product-feature-title">{subtitle}</div>}
+            <div class="product-feature-desc">{body}</div>
           </div>
         );
       })}
     </div>
   </div>
 </section>
+
+<style>
+  .product-features {
+    background: white;
+    padding: 80px 24px;
+  }
+  .product-section-inner { max-width: 1280px; margin: 0 auto; }
+  .product-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0d9488;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  .product-section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #18181b;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+  }
+  .product-features__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .product-feature-card {
+    padding: 32px;
+    background: white;
+    border: 1px solid rgba(228,228,231,0.6);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+  .product-feature-card:hover {
+    border-color: rgba(13,148,136,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    transform: translateY(-2px);
+  }
+  .product-feature-icon {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #f0fdfa, rgba(204,251,241,0.5));
+    border: 1px solid rgba(13,148,136,0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  .product-feature-card:hover .product-feature-icon {
+    background: linear-gradient(135deg, rgba(204,251,241,0.8), #f0fdfa);
+    border-color: rgba(13,148,136,0.2);
+  }
+  .product-feature-icon svg { width: 20px; height: 20px; color: #0f766e; }
+  .product-feature-keyword {
+    font-size: 10px;
+    font-weight: 700;
+    color: #0d9488;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .product-feature-title { font-size: 15px; font-weight: 700; color: #18181b; margin-bottom: 8px; }
+  .product-feature-desc { font-size: 13px; color: #71717a; line-height: 1.7; }
+
+  @media (max-width: 1024px) {
+    .product-features__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .product-features { padding: 60px 16px; }
+    .product-features__grid { grid-template-columns: 1fr; }
+  }
+</style>

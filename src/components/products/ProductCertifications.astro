@@ -5,23 +5,78 @@ interface Props {
 const { certifications } = Astro.props;
 ---
 
-<section class="bg-white border-t border-zinc-100">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-14">
-    <h2 class="text-2xl font-bold text-zinc-900 mb-8">인증 현황</h2>
-    <div class="flex flex-wrap gap-4">
+<section class="product-certs">
+  <div class="product-section-inner">
+    <div class="product-section-label">Certifications</div>
+    <h2 class="product-section-title">인증 현황</h2>
+    <div class="product-cert-grid">
       {certifications.map(cert => (
-        <div class="flex items-center gap-3 px-5 py-3.5 bg-zinc-50 rounded-2xl border border-zinc-200/60 hover:border-teal-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
-          <div class="w-9 h-9 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0">
-            <svg class="w-4.5 h-4.5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-            </svg>
+        <div class="product-cert-badge">
+          <div class="product-cert-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <div>
-            <p class="text-sm font-bold text-zinc-900">{cert.name}</p>
-            {cert.date && <p class="text-xs text-zinc-500 mt-0.5">{cert.date}</p>}
+            <div class="product-cert-name">{cert.name}</div>
+            {cert.date && <div class="product-cert-desc">{cert.date}</div>}
           </div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .product-certs {
+    background: white;
+    padding: 64px 24px;
+    border-top: 1px solid #f4f4f5;
+  }
+  .product-section-inner { max-width: 1280px; margin: 0 auto; }
+  .product-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0d9488;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  .product-section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #18181b;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+  }
+  .product-cert-grid { display: flex; gap: 16px; flex-wrap: wrap; }
+  .product-cert-badge {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 24px;
+    background: #fafafa;
+    border: 1px solid #e4e4e7;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+  }
+  .product-cert-badge:hover {
+    border-color: rgba(13,148,136,0.2);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .product-cert-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #14b8a6, #0d9488);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .product-cert-icon svg { width: 18px; height: 18px; color: white; }
+  .product-cert-name { font-size: 14px; font-weight: 700; color: #18181b; }
+  .product-cert-desc { font-size: 11px; color: #71717a; margin-top: 1px; }
+
+  @media (max-width: 640px) {
+    .product-cert-grid { flex-direction: column; }
+  }
+</style>
