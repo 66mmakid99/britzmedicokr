@@ -56,10 +56,11 @@ export const products: ProductData[] = [
       { label: '제품명', value: 'TORR RF' },
       { label: '분류', value: '의료기기' },
       { label: '핸드피스', value: '미세형, 소형, 대형' },
-      { label: '인증', value: 'FDA 510(k)' },
+      { label: '인증', value: 'FDA 510(k) K212561, ISO 13485' },
     ],
     certifications: [
-      { name: 'FDA 510(k)', number: '', date: '' },
+      { name: 'FDA 510(k)', number: 'K212561', date: '2022년 9월' },
+      { name: 'ISO 13485:2016', number: 'MK000197', date: '2022년 11월' },
     ],
     applications: [
       { title: '미세형 핸드피스', desc: '피부결이 맞고 굴곡이 있는 부위에 안정하고 정교한 시술이 가능합니다.', image: '/images/products/torr-rf/Eye Handpiece.webp' },
@@ -115,9 +116,8 @@ export const products: ProductData[] = [
       { label: '분류', value: '의료기기 (Class II)' },
     ],
     certifications: [
-      { name: 'CE Mark', number: 'CE-XXXX', date: '2022년' },
-      { name: 'ISO 13485', number: 'ISO-XXXXX', date: '2022년' },
-      { name: 'MFDS (식약처)', number: '제허 XX-XXXX호', date: '2022년' },
+      { name: 'ISO 13485:2016', number: 'MK000197', date: '2022년 11월' },
+      { name: 'MFDS (식약처)', number: '제허 22-786호', date: '2022년' },
     ],
     applications: [
       { title: '얼굴 리프팅', desc: '다중 파장 에너지로 얼굴 전체의 리프팅과 탄력 개선을 구현합니다.' },
@@ -177,8 +177,7 @@ export const products: ProductData[] = [
       { label: '분류', value: '미용기기' },
     ],
     certifications: [
-      { name: 'CE Mark', number: 'CE-XXXX', date: '2023년' },
-      { name: 'MFDS (식약처)', number: '제허 XX-XXXX호', date: '2023년' },
+      { name: 'MFDS (식약처)', number: '제허 22-786호', date: '2022년' },
     ],
     applications: [
       { title: '고주파 타이트닝', desc: '멀티채널 집중 에너지 샷과 RF STACK 출력으로 심부열을 발생시켜 안전한 콜라겐 생성과 피부 타이트닝을 구현합니다.' },
@@ -230,9 +229,8 @@ export const products: ProductData[] = [
       { label: '분류', value: '의료기기' },
     ],
     certifications: [
-      { name: 'CE Mark', number: 'CE-XXXX', date: '2024년' },
-      { name: 'ISO 13485', number: 'ISO-XXXXX', date: '2024년' },
-      { name: 'MFDS (식약처)', number: '제허 XX-XXXX호', date: '2024년' },
+      { name: 'ISO 13485:2016', number: 'MK000197', date: '2022년 11월' },
+      { name: 'MFDS (식약처)', number: '신고 완료', date: '2024년' },
     ],
     applications: [
       { title: '색소·톤 개선', desc: '레이저+초음파 복합 에너지로 색소 침착 개선과 피부 톤 균일화를 구현합니다.' },
