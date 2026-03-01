@@ -22,5 +22,6 @@ export const mainNav = [
   },
   { label: '인증/특허', href: '/certifications' },
   { label: '블로그', href: '/blog' },
+  { label: '뉴스', href: '/news' },
   { label: '문의', href: '/contact' },
 ] as const;
