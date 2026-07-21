@@ -1,188 +1,503 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import SchemaOrg from '@components/aeo/SchemaOrg.astro';
-import ProductShowcase from '@components/interactive/ProductShowcase.tsx';
 import UpdateDate from '@components/common/UpdateDate.astro';
 import { organizationSchema } from '@lib/schema';
 import { getAllPosts } from '@data/blog';
 
 const latestPosts = (await getAllPosts()).slice(0, 4);
+
+const products = [
+  {
+    id: 'torr-rf',
+    name: 'TORR RF',
+    nameKo: '토르 RF',
+    category: 'FLAGSHIP RF DEVICE',
+    tagline: '비침습 멀티웨이브 RF 스킨타이트닝 & 바디컨투어링',
+    image: '/images/products/torr-rf/TORR RF2.webp',
+    specs: [
+      { k: 'ENERGY', v: '적은 출력, 균일한 에너지 전달' },
+      { k: 'MODE', v: 'Face / Body / Eye 적용' },
+      { k: 'CLEAR', v: 'FDA 510(k) 승인 획득' },
+    ],
+    href: '/products/torr-rf',
+  },
+  {
+    id: 'ulblanc',
+    name: 'ULBLANC',
+    nameKo: '울블랑',
+    category: 'PREMIUM SKINCARE',
+    tagline: '저주파·고주파·초음파 다적응증 의료기기',
+    image: '/images/products/ulblanc/ulblanc_fullbody.webp',
+    specs: [
+      { k: 'DUAL', v: '1/3MHz + 3/10MHz 듀얼 모드' },
+      { k: 'MULTI', v: '저주파·고주파·초음파' },
+      { k: 'TDD', v: '경피적 약물 전달' },
+    ],
+    href: '/products/ulblanc',
+  },
+  {
+    id: 'lumino-wave',
+    name: 'LUMINO WAVE',
+    nameKo: '루미노 웨이브',
+    category: 'MULTI-ENERGY DESIGN',
+    tagline: '초음파 + 레이저 + 고주파 복합 다중 에너지',
+    image: '/images/products/lumino-wave/20260207 luminowave page12_image.webp',
+    specs: [
+      { k: 'US', v: '초음파 피부 환경 제어' },
+      { k: 'POWER', v: '저출력 고효율 구조' },
+      { k: 'HP×2', v: '2종 핸드피스 시스템' },
+    ],
+    href: '/products/lumino-wave',
+  },
+  {
+    id: 'newchae',
+    name: 'NEWCHAE Shot',
+    nameKo: '뉴채 샷',
+    category: 'BEAUTY DEVICE',
+    tagline: '고주파 타이트닝 3가지 모드 시스템',
+    image: '/images/products/newchae/newchae 01 (1).webp',
+    specs: [
+      { k: 'MODE', v: '타이트닝 / V라인 / 스킨부스트' },
+      { k: 'SHOT', v: '멀티채널 집중 에너지 샷' },
+      { k: 'VIB', v: '분당 1만회 미세진동' },
+    ],
+    href: '/products/newchae',
+  },
+];
+
+const stats = [
+  { number: 40, suffix: '+', label: '파트너 국가' },
+  { number: 3, suffix: '종', label: '트리플 인증' },
+  { number: 20, suffix: '+', label: '특허 보유' },
+  { number: 50, suffix: 'K+', label: '글로벌 시술' },
+];
 ---
 
 <BaseLayout>
-  <SchemaOrg schema={organizationSchema()} slot="head" />
+  <Fragment slot="head">
+    <SchemaOrg schema={organizationSchema()} />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </Fragment>
 
-  <!-- Hero 섹션 — 풀스크린 시네마틱 + 동영상 배경 -->
-  <section class="relative flex min-h-screen items-end overflow-hidden">
-    <!-- 배경: 동영상 (모바일 포함) + CSS 폴백 -->
-    <div class="absolute inset-0 z-0">
-      <video
-        autoplay muted loop playsinline
-        class="absolute inset-0 h-full w-full object-cover"
-      >
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video>
-      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
-      <!-- CSS 폴백 배경 (동영상 없을 때 자동 표시) -->
-      <div class="absolute inset-0 -z-10 bg-zinc-950">
-        <div class="animate-float absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-zinc-400/10 blur-[120px]"></div>
-        <div class="animate-float-slow absolute -right-20 -bottom-20 h-[500px] w-[500px] rounded-full bg-zinc-600/15 blur-[100px]"></div>
+  <div id="home-immersive" class="bg-[#070708] text-[#F4F4F2]">
+    <!-- ============ 1. HERO ============ -->
+    <section class="hero relative flex h-[100svh] min-h-[560px] flex-col justify-end overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <video
+          id="hero-video"
+          autoplay muted loop playsinline
+          class="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#070708] via-[#070708]/35 to-[#070708]/60"></div>
       </div>
-    </div>
 
-    <div class="relative mx-auto w-full max-w-7xl px-4 pb-24 pt-40 sm:px-6 lg:px-8">
-      <div class="max-w-xl">
-        <span class="inline-block rounded-full border border-teal-500/30 px-4 py-1.5 text-xs uppercase tracking-[0.3em] text-teal-400">
-          Multi-Energy Design
-        </span>
-        <h1 class="mt-6 text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
-          다중 에너지 설계로<br />
-          <span class="bg-gradient-to-r from-teal-400 to-teal-200 bg-clip-text text-transparent">피부 미용의 새로운 기준</span>
-        </h1>
-        <p class="mt-5 max-w-lg text-base leading-relaxed text-zinc-300 sm:text-lg">
-          브리츠메디는 에너지를 조합하는 구조를 재설계하는 의료기기 회사입니다. 더 강한 에너지가 아닌, 에너지를 쓰는 방식의 변화로 피부 미용 의료기기의 새로운 기준을 만듭니다.
+      <div class="hero-content relative z-10 mx-auto w-full max-w-[1400px] px-5 pb-16 sm:px-8 md:pb-20">
+        <p class="font-mono text-[11px] tracking-[0.35em] text-teal-400/90 uppercase">
+          Multi-Energy Architecture
         </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/contact" class="rounded-full bg-teal-600 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-teal-500 hover:shadow-lg sm:px-8 sm:py-4 sm:text-base">
+        <h1 class="mt-5">
+          <span class="hero-line block font-display text-[clamp(2rem,9.5vw,9rem)] font-black uppercase leading-[0.92] tracking-[-0.01em] text-white">
+            Energy,
+          </span>
+          <span class="hero-line block font-display text-[clamp(2rem,9.5vw,9rem)] font-black uppercase leading-[0.92] tracking-[-0.01em] text-white">
+            Redesigned<span class="text-teal-400">.</span>
+          </span>
+          <span class="hero-sub mt-6 block max-w-2xl break-keep text-base font-normal leading-relaxed text-zinc-300 sm:text-lg">
+            브리츠메디는 피부 치료 및 미용을 위한 다중 에너지 설계 의료기기 전문 기업입니다.
+            더 강한 에너지가 아닌, 에너지를 쓰는 방식의 변화로 새로운 기준을 만듭니다.
+          </span>
+        </h1>
+        <div class="hero-cta mt-9 flex flex-wrap items-center gap-3">
+          <a href="/contact" class="rounded-full bg-teal-500 px-8 py-3.5 text-sm font-semibold text-[#070708] transition-colors hover:bg-teal-400">
             상담 신청
           </a>
-          <a href="/products" class="rounded-full border border-white/30 px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-white/10 sm:px-8 sm:py-4 sm:text-base">
+          <a href="/products" class="rounded-full border border-white/25 px-8 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/60">
             제품 알아보기
           </a>
         </div>
       </div>
-    </div>
 
-    <!-- 스크롤 인디케이터 -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-white/40">
-      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-      </svg>
-    </div>
-  </section>
-
-  <!-- 솔루션 쇼케이스 — 탭 전환 -->
-  <ProductShowcase client:load />
-
-  <!-- 왜 브리츠메디 -->
-  <section class="reveal bg-zinc-50 px-4 py-20 sm:px-6 lg:px-8 md:py-28">
-    <div class="mx-auto max-w-7xl">
-      <div class="mb-12 text-center">
-        <h2 class="mb-3 text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">왜 브리츠메디인가</h2>
+      <div class="absolute bottom-0 right-8 z-10 hidden items-center gap-3 pb-16 md:flex" aria-hidden="true">
+        <span class="font-mono text-[10px] tracking-[0.3em] text-white/40 uppercase" style="writing-mode: vertical-rl;">Scroll</span>
+        <span class="scroll-line block h-16 w-px bg-white/25"></span>
       </div>
-      <div class="reveal-stagger grid gap-8 md:grid-cols-3">
-        <!-- 멀티 에너지 조합 설계 -->
-        <div class="rounded-2xl border border-zinc-100 bg-white p-8 shadow-sm transition-all duration-300 hover:border-teal-200 hover:shadow-md hover:shadow-teal-500/10">
-          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
-            <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714a2.25 2.25 0 00.659 1.591L19 14.5M14.25 3.104c.251.023.501.05.75.082M19 14.5l-2.47 2.47a2.25 2.25 0 01-1.59.659H9.06a2.25 2.25 0 01-1.591-.659L5 14.5m14 0V17a2.25 2.25 0 01-2.25 2.25H7.25A2.25 2.25 0 015 17v-2.5" />
-            </svg>
-          </div>
-          <h3 class="mb-3 text-lg font-bold text-zinc-900">멀티 에너지 조합 설계</h3>
-          <p class="text-sm leading-relaxed text-zinc-600">더 강한 에너지가 아닌, 에너지를 쓰는 방식의 변화. 초음파·레이저·고주파를 구조적으로 조합하여 낮은 출력으로도 높은 효과를 구현합니다.</p>
-        </div>
-        <!-- 40개국+ 글로벌 파트너 네트워크 -->
-        <div class="rounded-2xl border border-zinc-100 bg-white p-8 shadow-sm transition-all duration-300 hover:border-teal-200 hover:shadow-md hover:shadow-teal-500/10">
-          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
-            <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A8.966 8.966 0 013 12c0-1.777.516-3.434 1.404-4.832" />
-            </svg>
-          </div>
-          <h3 class="mb-3 text-lg font-bold text-zinc-900">40개국+ 글로벌 파트너 네트워크</h3>
-          <p class="text-sm leading-relaxed text-zinc-600">전 세계 40개국 이상의 파트너 네트워크를 통해 글로벌 시장에서 입증된 브랜드입니다.</p>
-        </div>
-        <!-- FDA/CE/ISO 트리플 인증 -->
-        <div class="rounded-2xl border border-zinc-100 bg-white p-8 shadow-sm transition-all duration-300 hover:border-teal-200 hover:shadow-md hover:shadow-teal-500/10">
-          <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
-            <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-            </svg>
-          </div>
-          <h3 class="mb-3 text-lg font-bold text-zinc-900">FDA/CE/ISO 트리플 인증</h3>
-          <p class="text-sm leading-relaxed text-zinc-600">FDA 510(k), CE Mark, ISO 13485 등 주요 글로벌 의료기기 인증을 획득하여 품질과 안전성을 보증합니다.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 숫자 섹션 — 풀와이드 대형 숫자 -->
-  <section class="reveal relative overflow-hidden bg-zinc-950 px-4 py-24 text-white sm:px-6 lg:px-8 md:py-32">
-    <div class="absolute left-1/4 top-1/3 h-[400px] w-[400px] rounded-full bg-zinc-700/20 blur-[120px]"></div>
-    <div class="relative mx-auto max-w-7xl">
-      <p class="text-center text-xs uppercase tracking-[0.3em] text-zinc-300">Sustained Growth</p>
-      <p class="mt-2 text-center text-zinc-400">브리츠메디의 성장을 확인하세요</p>
-      <div class="reveal-stagger mt-16 grid grid-cols-2 gap-8 md:grid-cols-4">
-        {[
-          { number: '40', unit: '개국+', label: '파트너 국가' },
-          { number: '3', unit: '종', label: '트리플 인증' },
-          { number: '20', unit: '건+', label: '특허 보유' },
-          { number: '50K', unit: '+', label: '글로벌 시술' },
-        ].map((stat, i) => (
-          <div class="relative text-center">
-            <p class="text-6xl font-bold italic tracking-tight text-white md:text-7xl lg:text-8xl">
-              {stat.number}<span class="text-2xl text-teal-400">{stat.unit}</span>
+    <!-- ============ 2. MANIFESTO ============ -->
+    <section class="manifesto relative px-5 py-36 sm:px-8 md:py-52" aria-label="브랜드 철학">
+      <div class="mx-auto max-w-[1100px]">
+        <p class="font-mono text-[11px] tracking-[0.35em] text-zinc-600 uppercase">Our Thesis</p>
+        <p id="manifesto-text" class="break-keep mt-8 text-[clamp(1.75rem,4.5vw,3.75rem)] font-bold leading-[1.35] tracking-tight text-zinc-700">
+          더 강한 에너지가 아닌, 에너지를 쓰는 방식을 바꿉니다. 초음파·레이저·고주파를 구조적으로 조합해 낮은 출력으로 높은 효과를 설계합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 3. PRODUCT DIAL (pinned showcase) ============ -->
+    <section id="dial-section" class="relative" aria-label="제품 라인업">
+      <div id="dial-viewport" class="relative flex min-h-[100svh] items-center overflow-hidden">
+
+        <!-- 시그니처: 토로이달 링 다이얼 -->
+        <svg id="energy-dial" class="pointer-events-none absolute -left-[28vw] top-1/2 h-[120vh] w-[120vh] -translate-y-1/2 opacity-[0.16] lg:-left-[16vw]" viewBox="0 0 800 800" fill="none" aria-hidden="true">
+          {Array.from({ length: 11 }).map((_, i) => (
+            <circle cx="400" cy="400" r={60 + i * 32} stroke="#5EEAD4" stroke-width={i % 3 === 0 ? 1.2 : 0.5} opacity={1 - i * 0.07} />
+          ))}
+          <line x1="400" y1="12" x2="400" y2="88" stroke="#5EEAD4" stroke-width="1.5" />
+          <circle cx="400" cy="400" r="6" fill="#5EEAD4" />
+        </svg>
+
+        <div class="relative mx-auto w-full max-w-[1400px] px-5 sm:px-8">
+          <div class="mb-4 flex items-baseline justify-between lg:mb-0">
+            <h2 class="font-display text-sm font-bold uppercase tracking-[0.3em] text-zinc-500">Product Line</h2>
+            <p class="font-mono text-xs text-zinc-600" aria-hidden="true">
+              <span id="dial-index">01</span> / {String(products.length).padStart(2, '0')}
             </p>
-            <p class="mt-3 text-sm tracking-wider text-zinc-500">{stat.label}</p>
-            {i < 3 && <div class="absolute right-0 top-1/4 hidden h-1/2 w-px bg-zinc-700 md:block"></div>}
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
-  <!-- CTA 섹션 -->
-  <section class="reveal relative overflow-hidden bg-gradient-to-r from-zinc-900 via-zinc-950 to-zinc-900 px-4 py-20 sm:px-6 lg:px-8 md:py-28">
-    <div class="absolute -right-20 -top-20 h-[300px] w-[300px] rounded-full bg-white/5 blur-[80px]"></div>
-    <div class="relative mx-auto max-w-3xl text-center">
-      <h2 class="text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">함께 성장할 파트너를 찾고 있습니다</h2>
-      <p class="mt-4 text-lg text-zinc-200">브리츠메디의 기술력을 직접 경험해보세요</p>
-      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="/contact" class="rounded-full bg-teal-600 px-10 py-4 text-base font-semibold text-white transition-all hover:bg-teal-500 hover:shadow-xl">
-          무료 상담 신청
-        </a>
-        <a href="/products" class="rounded-full border-2 border-white px-10 py-4 text-base font-semibold text-white transition-all hover:bg-white/10">
-          카탈로그 요청
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 최신 소식 — 뉴스룸 스타일 -->
-  <section class="reveal px-4 py-20 sm:px-6 lg:px-8 md:py-28">
-    <div class="mx-auto max-w-7xl">
-      <div class="flex items-end justify-between">
-        <div>
-          <h2 class="text-3xl font-bold tracking-tight text-zinc-900 md:text-4xl">News Room</h2>
-          <p class="mt-1 text-zinc-500">브리츠메디의 최신 소식</p>
+          <div id="dial-slides" class="relative">
+            {products.map((p, i) => (
+              <article
+                class="dial-slide grid items-center gap-8 py-14 lg:absolute lg:inset-0 lg:grid-cols-2 lg:gap-16 lg:py-0"
+                data-index={i}
+              >
+                <div class="dial-media relative flex items-center justify-center">
+                  <img
+                    src={p.image}
+                    alt={`${p.nameKo}(${p.name}) — ${p.tagline}`}
+                    width={720} height={600}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    class="max-h-[42vh] w-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)] lg:max-h-[60vh]"
+                  />
+                </div>
+                <div class="dial-copy">
+                  <p class="font-mono text-[11px] tracking-[0.3em] text-teal-400/90 uppercase">{p.category}</p>
+                  <h3 class="mt-4 font-display text-[clamp(2.2rem,5vw,4.5rem)] font-black uppercase leading-none tracking-tight text-white">
+                    {p.name}
+                  </h3>
+                  <p class="mt-2 text-sm text-zinc-500">{p.nameKo}</p>
+                  <p class="mt-5 max-w-md text-base leading-relaxed text-zinc-300">{p.tagline}</p>
+                  <dl class="mt-8 max-w-md divide-y divide-white/10 border-y border-white/10">
+                    {p.specs.map((s) => (
+                      <div class="flex items-center gap-6 py-3">
+                        <dt class="w-16 shrink-0 font-mono text-[11px] tracking-[0.15em] text-teal-400/80">{s.k}</dt>
+                        <dd class="text-sm text-zinc-300">{s.v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <a href={p.href} class="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white">
+                    자세히 보기
+                    <span class="inline-block h-px w-8 bg-teal-400 transition-all group-hover:w-12"></span>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
-        <a href="/blog" class="text-sm font-semibold text-zinc-900 transition-colors hover:text-teal-600">더보기 &rarr;</a>
       </div>
-      <div class="mt-12 divide-y divide-zinc-200">
-        {latestPosts.map((post) => (
-          <a href={`/blog/${post.slug}`} class="group -mx-6 flex items-center justify-between rounded-xl px-6 py-6 transition-colors hover:bg-zinc-50">
-            <div class="flex items-center gap-4">
-              <span class="rounded-full bg-teal-50 px-3 py-1 text-xs font-medium text-teal-700">{post.categoryLabel}</span>
-              <span class="text-base font-medium text-zinc-900 transition-colors group-hover:text-teal-600 md:text-lg">{post.title}</span>
-            </div>
-            <span class="hidden text-sm text-zinc-400 sm:block">{post.publishedAt}</span>
+    </section>
+
+    <!-- ============ 4. TECHNOLOGY ============ -->
+    <section class="tech relative overflow-hidden" aria-label="핵심 기술">
+      <div class="relative flex min-h-[80svh] items-center">
+        <video
+          autoplay muted loop playsinline
+          class="absolute inset-0 h-full w-full object-cover opacity-40"
+        >
+          <source src="/images/products/torr-rf/torr_rf_handpiece_3d_animation.mp4" type="video/mp4" />
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#070708] via-transparent to-[#070708]/70"></div>
+        <div class="relative mx-auto w-full max-w-[1400px] px-5 py-28 sm:px-8">
+          <p class="font-mono text-[11px] tracking-[0.35em] text-teal-400/90 uppercase">Core Technology</p>
+          <h2 class="tech-title mt-5 max-w-3xl font-display text-[clamp(2.2rem,6vw,5.5rem)] font-black uppercase leading-[0.95] text-white">
+            Less Power,<br />Uniform Delivery
+          </h2>
+          <p class="tech-sub mt-6 max-w-xl text-base leading-relaxed text-zinc-300">
+            초음파·레이저·고주파를 구조적으로 조합하는 멀티 에너지 설계.
+            에너지를 조합하는 구조 자체를 재설계해 낮은 출력으로도 균일한 에너지 전달을 구현합니다.
+          </p>
+          <a href="/rnd" class="group mt-9 inline-flex items-center gap-2 text-sm font-semibold text-white">
+            R&amp;D / 기술력 보기
+            <span class="inline-block h-px w-8 bg-teal-400 transition-all group-hover:w-12"></span>
           </a>
-        ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 인증 로고 바 -->
-  <section class="border-t border-zinc-100 bg-zinc-50 px-4 py-12 sm:px-6 lg:px-8">
-    <p class="mb-8 text-center text-xs uppercase tracking-wider text-zinc-400">Trusted by</p>
-    <div class="flex flex-wrap items-center justify-center gap-12 md:gap-16">
-      {['FDA', 'CE', 'ISO 13485', 'KFDA'].map((cert) => (
-        <span class="text-xl font-bold tracking-wider text-zinc-300 transition-colors hover:text-teal-600">{cert}</span>
-      ))}
-    </div>
-    <p class="mt-6 text-center text-sm text-zinc-400">40개국+ 글로벌 파트너 네트워크</p>
-  </section>
+    <!-- ============ 5. NUMBERS ============ -->
+    <section class="numbers border-t border-white/5 px-5 py-28 sm:px-8 md:py-36" aria-label="주요 수치">
+      <div class="mx-auto max-w-[1400px]">
+        <p class="font-mono text-[11px] tracking-[0.35em] text-zinc-600 uppercase">Sustained Growth</p>
+        <div class="mt-14 grid grid-cols-2 gap-x-6 gap-y-14 lg:grid-cols-4">
+          {stats.map((s) => (
+            <div class="stat">
+              <p class="font-display text-[clamp(3.5rem,7vw,6.5rem)] font-black leading-none tracking-tight text-white">
+                <span class="stat-number" data-target={s.number}>0</span><span class="text-[0.45em] text-teal-400">{s.suffix}</span>
+              </p>
+              <p class="mt-3 font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <UpdateDate />
+    <!-- ============ 6. NEWS ============ -->
+    <section class="news border-t border-white/5 px-5 py-24 sm:px-8 md:py-32" aria-label="최신 소식">
+      <div class="mx-auto max-w-[1400px]">
+        <div class="flex items-end justify-between">
+          <h2 class="font-display text-3xl font-black uppercase tracking-tight text-white md:text-5xl">News Room</h2>
+          <a href="/blog" class="group inline-flex items-center gap-2 text-sm font-semibold text-zinc-400 transition-colors hover:text-white">
+            더보기
+            <span class="inline-block h-px w-6 bg-teal-400 transition-all group-hover:w-10"></span>
+          </a>
+        </div>
+        <div class="mt-12 divide-y divide-white/10 border-y border-white/10">
+          {latestPosts.map((post) => (
+            <a href={`/blog/${post.slug}`} class="news-row group grid grid-cols-[1fr_auto] items-center gap-4 py-6 sm:grid-cols-[140px_1fr_auto]">
+              <span class="hidden font-mono text-[11px] tracking-[0.15em] text-teal-400/70 uppercase sm:block">{post.categoryLabel}</span>
+              <span class="text-base font-medium text-zinc-300 transition-colors group-hover:text-white md:text-lg">{post.title}</span>
+              <span class="font-mono text-xs text-zinc-600">{post.publishedAt}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. CTA ============ -->
+    <section class="cta-final relative overflow-hidden border-t border-white/5 px-5 py-32 text-center sm:px-8 md:py-44" aria-label="상담 신청">
+      <svg class="pointer-events-none absolute left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 opacity-[0.08]" viewBox="0 0 800 800" fill="none" aria-hidden="true">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <circle cx="400" cy="400" r={80 + i * 42} stroke="#5EEAD4" stroke-width="0.6" />
+        ))}
+      </svg>
+      <div class="relative mx-auto max-w-3xl">
+        <h2 class="font-display text-[clamp(2.5rem,7vw,6rem)] font-black uppercase leading-[0.95] text-white">
+          Let's Talk<span class="text-teal-400">.</span>
+        </h2>
+        <p class="mt-6 text-lg text-zinc-400">함께 성장할 파트너를 찾고 있습니다</p>
+        <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a href="/contact" class="rounded-full bg-teal-500 px-10 py-4 text-base font-semibold text-[#070708] transition-colors hover:bg-teal-400">
+            무료 상담 신청
+          </a>
+          <a href="/support/partnership" class="rounded-full border border-white/25 px-10 py-4 text-base font-semibold text-white transition-colors hover:border-white/60">
+            파트너십 문의
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="mx-auto max-w-[1400px] px-5 pb-10 sm:px-8">
+      <UpdateDate />
+    </div>
   </div>
 </BaseLayout>
+
+<style>
+  .font-display {
+    font-family: 'Archivo', 'Pretendard Variable', sans-serif;
+    font-stretch: 115%;
+  }
+  /* 모바일: 확장폭 축소로 대형 타이포 가로 오버플로우 방지 */
+  @media (max-width: 639px) {
+    .font-display {
+      font-stretch: 100%;
+    }
+  }
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  /* manifesto 단어 span (JS 생성) */
+  #manifesto-text :global(.word) {
+    color: #3f3f46;
+    transition: color 0.15s linear;
+  }
+  #manifesto-text :global(.word.lit) {
+    color: #f4f4f2;
+  }
+  /* 데스크톱 pinned 슬라이드: JS 제어 전 첫 슬라이드만 노출 */
+  @media (min-width: 1024px) {
+    .dial-slide {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .dial-slide[data-index='0'] {
+      opacity: 1;
+      visibility: visible;
+    }
+    #dial-slides {
+      height: 80vh;
+    }
+  }
+  /* 모션 축소 환경: 전 슬라이드 정적 노출 */
+  @media (prefers-reduced-motion: reduce) {
+    .dial-slide {
+      position: static !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    #dial-slides {
+      height: auto !important;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import Lenis from 'lenis';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---------- Lenis 스무스 스크롤 ----------
+  if (!reduced) {
+    const lenis = new Lenis({ lerp: 0.11 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // ---------- 히어로 등장 ----------
+  if (!reduced) {
+    gsap.from('.hero-line', { yPercent: 60, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: 0.12, delay: 0.15 });
+    gsap.from('.hero-sub, .hero-cta', { y: 24, opacity: 0, duration: 0.9, ease: 'power2.out', stagger: 0.1, delay: 0.7 });
+    gsap.to('.scroll-line', { scaleY: 0.3, transformOrigin: 'top', repeat: -1, yoyo: true, duration: 1.4, ease: 'power1.inOut' });
+    gsap.to('.hero-content', {
+      yPercent: 18,
+      opacity: 0.25,
+      ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+    });
+  }
+
+  // ---------- 매니페스토: 단어별 점등 ----------
+  const manifesto = document.getElementById('manifesto-text');
+  if (manifesto) {
+    const words = (manifesto.textContent ?? '').trim().split(/\s+/);
+    manifesto.innerHTML = words.map((w) => `<span class="word">${w}</span>`).join(' ');
+    const spans = manifesto.querySelectorAll('.word');
+    if (reduced) {
+      spans.forEach((s) => s.classList.add('lit'));
+    } else {
+      ScrollTrigger.create({
+        trigger: manifesto,
+        start: 'top 75%',
+        end: 'bottom 45%',
+        scrub: true,
+        onUpdate: (self) => {
+          const n = Math.floor(self.progress * spans.length);
+          spans.forEach((s, i) => s.classList.toggle('lit', i <= n));
+        },
+      });
+    }
+  }
+
+  // ---------- 제품 다이얼 (데스크톱만 핀 고정) ----------
+  const mm = gsap.matchMedia();
+  mm.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
+    const slides = gsap.utils.toArray<HTMLElement>('.dial-slide');
+    const dial = document.getElementById('energy-dial');
+    const indexEl = document.getElementById('dial-index');
+    const SEG = 1 / slides.length;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#dial-section',
+        start: 'top top',
+        end: () => `+=${slides.length * 90}%`,
+        pin: '#dial-viewport',
+        scrub: 0.6,
+        onUpdate: (self) => {
+          const idx = Math.min(slides.length - 1, Math.floor(self.progress / SEG));
+          if (indexEl) indexEl.textContent = String(idx + 1).padStart(2, '0');
+        },
+      },
+    });
+
+    slides.forEach((slide, i) => {
+      const media = slide.querySelector('.dial-media');
+      const copy = slide.querySelector('.dial-copy');
+      const at = i * SEG;
+      if (i > 0) {
+        tl.set(slide, { visibility: 'visible' }, at);
+        tl.fromTo(slide, { opacity: 0 }, { opacity: 1, duration: SEG * 0.35 }, at);
+        tl.fromTo(media, { scale: 0.82, yPercent: 8 }, { scale: 1, yPercent: 0, duration: SEG * 0.5, ease: 'power2.out' }, at);
+        tl.fromTo(copy, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: SEG * 0.45, ease: 'power2.out' }, at + SEG * 0.08);
+      }
+      if (i < slides.length - 1) {
+        tl.to(slide, { opacity: 0, duration: SEG * 0.3 }, at + SEG * 0.68);
+        tl.set(slide, { visibility: 'hidden' }, at + SEG);
+      }
+    });
+
+    // 다이얼 링 회전 — 슬라이드 진행과 동기
+    if (dial) {
+      tl.to(dial, { rotation: 270, transformOrigin: '50% 50%', ease: 'none', duration: 1 }, 0);
+    }
+    return () => tl.scrollTrigger?.kill();
+  });
+
+  // ---------- 모바일: 심플 리빌 ----------
+  mm.add('(max-width: 1023px) and (prefers-reduced-motion: no-preference)', () => {
+    gsap.utils.toArray<HTMLElement>('.dial-slide').forEach((slide) => {
+      gsap.from(slide, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: slide, start: 'top 80%' },
+      });
+    });
+  });
+
+  // ---------- 기술 섹션 리빌 ----------
+  if (!reduced) {
+    gsap.from('.tech-title, .tech-sub', {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out',
+      stagger: 0.15,
+      scrollTrigger: { trigger: '.tech', start: 'top 65%' },
+    });
+  }
+
+  // ---------- 숫자 카운트업 ----------
+  document.querySelectorAll<HTMLElement>('.stat-number').forEach((el) => {
+    const target = Number(el.dataset.target ?? 0);
+    if (reduced) {
+      el.textContent = String(target);
+      return;
+    }
+    gsap.fromTo(
+      el,
+      { innerText: 0 },
+      {
+        innerText: target,
+        duration: 1.6,
+        ease: 'power1.out',
+        snap: { innerText: 1 },
+        scrollTrigger: { trigger: el, start: 'top 85%' },
+      }
+    );
+  });
+
+  // ---------- 뉴스 행 스태거 ----------
+  if (!reduced) {
+    gsap.from('.news-row', {
+      y: 24,
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+      stagger: 0.08,
+      scrollTrigger: { trigger: '.news', start: 'top 75%' },
+    });
+  }
+</script>

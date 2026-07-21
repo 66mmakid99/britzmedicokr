@@ -149,35 +149,16 @@ const isHome = currentPath === '/';
   const hamburger = document.getElementById('hamburger-icon');
   const navLinks = document.querySelectorAll('.nav-link');
 
+  // 홈은 다크 몰입형 페이지 — 스크롤 시 다크 글래스로 전환 (텍스트는 흰색 유지)
   if (isHome && header) {
     const onScroll = () => {
       const scrolled = window.scrollY > 50;
       if (scrolled) {
         header.classList.remove('bg-transparent');
-        header.classList.add('bg-white/90', 'backdrop-blur-xl', 'border-b', 'border-zinc-100', 'shadow-sm');
-        logoText?.classList.remove('text-white');
-        logoText?.classList.add('text-zinc-900');
-        logoDivider?.classList.remove('bg-white/30');
-        logoDivider?.classList.add('bg-zinc-200');
-        hamburger?.classList.remove('text-white');
-        hamburger?.classList.add('text-zinc-900');
-        navLinks.forEach(link => {
-          link.classList.remove('text-white/80', 'hover:text-white', 'text-white');
-          link.classList.add('text-zinc-600', 'hover:text-zinc-400');
-        });
+        header.classList.add('bg-zinc-950/70', 'backdrop-blur-xl', 'border-b', 'border-white/10');
       } else {
         header.classList.add('bg-transparent');
-        header.classList.remove('bg-white/90', 'backdrop-blur-xl', 'border-b', 'border-zinc-100', 'shadow-sm');
-        logoText?.classList.add('text-white');
-        logoText?.classList.remove('text-zinc-900');
-        logoDivider?.classList.add('bg-white/30');
-        logoDivider?.classList.remove('bg-zinc-200');
-        hamburger?.classList.add('text-white');
-        hamburger?.classList.remove('text-zinc-900');
-        navLinks.forEach(link => {
-          link.classList.add('text-white/80', 'hover:text-white');
-          link.classList.remove('text-zinc-600', 'hover:text-zinc-400');
-        });
+        header.classList.remove('bg-zinc-950/70', 'backdrop-blur-xl', 'border-b', 'border-white/10');
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
