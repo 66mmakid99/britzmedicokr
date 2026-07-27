@@ -40,7 +40,7 @@ import { organizationSchema } from '@lib/schema';
             브리츠메디는 '에너지를 쓰는 방식의 변화'를 추구하며, 다중 에너지 설계(Multi-Energy Design) 기술로 피부 미용 의료기기의 새로운 기준을 만들고 있습니다. 기술 기획·설계를 자체 수행하고, 제조 파트너·유통 파트너와 협력하는 효율적인 사업 구조를 운영합니다.
           </p>
           <p class="leading-relaxed text-zinc-600">
-            경기도 성남시에 본사를 두고, 중국·태국·베트남·일본 등 아시아 주요국에 진출하였습니다. TORR RF, ULBLANC, NEWCHAE Shot, LUMINO WAVE 등 다양한 제품 라인업으로 글로벌 시장을 공략하고 있습니다.
+            경기도 성남시에 본사를 두고, 베트남·중국 등 해외 시장 진출을 진행하고 있습니다. TORR RF, ULBLANC, NEWCHAE Shot 등의 제품 라인업과 개발 중인 LUMINO WAVE로 글로벌 시장에 도전하고 있습니다.
           </p>
           <p class="leading-relaxed text-zinc-600">
             브리츠메디의 비전은 3단계로 구성됩니다: <strong>표준화</strong>(의료진 숙련도 편차를 줄이는 장비로 기술 신뢰성 확보) → <strong>락인(Lock-in)</strong>(단일 장비 판매가 아닌, 소모품·업그레이드·프로토콜 기반 반복 수익 구조) → <strong>확장성(Scalability)</strong>(해외 허가 기반 확장, 국가별 노드 추가 구조).
@@ -79,7 +79,6 @@ import { organizationSchema } from '@lib/schema';
           { year: '2019', events: ['브리츠메디 설립', '독자적 RF 에너지 전달 기술 개발 착수'] },
           { year: '2021', events: ['ULBLANC 식약처(MFDS) 인증 (제21-4685호)'] },
           { year: '2022', events: ['TORR RF 식약처(MFDS) 허가 (제22-156호)', 'TORR RF 미국 FDA 510(k) 인증 (K212561)', 'ISO 13485 인증 획득'] },
-          { year: '2023', events: ['NEWCHAE 뷰티 디바이스 라인 출시'] },
           { year: '현재', events: ['국내외 도입처 105곳 이상 확보', 'LUMINO WAVE 식약처(MFDS) 인허가 진행 중'] },
         ].map((item) => (
           <div class="relative">
@@ -123,11 +122,15 @@ import { organizationSchema } from '@lib/schema';
       <p class="mb-8 text-zinc-600">
         브리츠메디는 국내 의료기관을 중심으로 105곳 이상의 도입처를 확보하고 있으며, 베트남·중국 등 해외 시장 진출을 진행하고 있습니다.
       </p>
-      <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-        {['아시아 태평양', '유럽', '중동 · 아프리카', '남미'].map((region) => (
+      <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
+        {[
+          { region: '대한민국', detail: '국내 의료기관 104곳 도입' },
+          { region: '베트남', detail: '수출용 자유판매증명(CFS) 확보' },
+          { region: '중국', detail: '수출용 자유판매증명(CFS) 확보' },
+        ].map((item) => (
           <div class="rounded-2xl border border-zinc-100 bg-white p-5 text-center shadow-sm transition-all duration-300 hover:shadow-md">
-            <p class="font-semibold text-zinc-900">{region}</p>
-            <p class="mt-1 text-sm text-zinc-500">10개국+</p>
+            <p class="font-semibold text-zinc-900">{item.region}</p>
+            <p class="mt-1 text-sm text-zinc-500">{item.detail}</p>
           </div>
         ))}
       </div>
