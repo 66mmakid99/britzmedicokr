@@ -9,7 +9,7 @@ export const pageSEO: Record<string, PageSEO> = {
   '/': {
     title: '브리츠메디 — 다중 에너지 설계 피부 미용 의료기기 전문 기업',
     description:
-      '브리츠메디(BRITZMEDI)는 다중 에너지 설계(Multi-Energy Design) 기술로 피부 치료 및 미용 의료기기를 개발하는 한국 기업입니다. FDA, CE, ISO 인증.',
+      '브리츠메디(BRITZMEDI)는 다중 에너지 설계(Multi-Energy Design) 기술로 피부 치료 및 미용 의료기기를 개발하는 한국 기업입니다. FDA 510(k)·MFDS·ISO 13485 인증.',
     ogImage: '/images/og/home.jpg',
     hreflangs: { ko: '/', en: '/' },
   },
@@ -23,14 +23,14 @@ export const pageSEO: Record<string, PageSEO> = {
   '/ceo': {
     title: 'CEO 인사말 — 더 나은 미용 의료기기를 향한 여정 | 브리츠메디',
     description:
-      '브리츠메디 CEO 이신재가 전하는 인사말. 다중 에너지 설계 기술 혁신을 통해 글로벌 피부 미용 의료기기 시장을 선도합니다.',
+      '브리츠메디 CEO 이신재가 전하는 인사말. 다중 에너지 설계 기술 혁신을 통해 글로벌 피부 미용 의료기기 시장에 도전합니다.',
     ogImage: '/images/og/ceo.jpg',
     hreflangs: { ko: '/ceo', en: '/ceo' },
   },
   '/way': {
     title: '브리츠 WAY — 우리가 일하는 방식 | 브리츠메디',
     description:
-      '브리츠메디의 핵심 가치와 기술 철학, 품질 철학을 소개합니다. 혁신과 신뢰를 바탕으로 최고의 의료기기를 만듭니다.',
+      '브리츠메디의 핵심 가치와 기술 철학, 품질 철학을 소개합니다. 혁신과 신뢰를 바탕으로 의료기기를 만듭니다.',
     ogImage: '/images/og/way.jpg',
     hreflangs: { ko: '/way', en: '/about' },
   },
@@ -58,7 +58,7 @@ export const pageSEO: Record<string, PageSEO> = {
   '/products/torr-rf': {
     title: '토르 RF (TORR RF) — 비침습 멀티웨이브 RF 의료기기 | 브리츠메디',
     description:
-      '토르 RF는 비침습 고주파 에너지를 이용하여 스킨타이트닝과 바디컨투어링에 적용하는 브리츠메디의 대표 의료기기입니다. FDA, CE, ISO, MFDS 인증.',
+      '토르 RF는 비침습 고주파 에너지를 이용하여 스킨타이트닝과 바디컨투어링에 적용하는 브리츠메디의 대표 의료기기입니다. FDA 510(k)·MFDS·ISO 13485 인증.',
     ogImage: '/images/og/torr-rf.jpg',
     hreflangs: { ko: '/products/torr-rf', en: '/products/torr-rf' },
   },
@@ -86,7 +86,7 @@ export const pageSEO: Record<string, PageSEO> = {
   '/certifications': {
     title: '브리츠메디 인증 및 특허 — 글로벌 품질 인증 현황',
     description:
-      '브리츠메디는 FDA 510(k), CE Mark, ISO 13485 등 글로벌 의료기기 인증을 획득하였으며, 다수의 RF 기술 관련 특허를 보유하고 있습니다.',
+      '브리츠메디는 미국 FDA 510(k), 한국 식약처(MFDS) 허가, ISO 13485 인증을 획득하였으며, 핵심 에너지 전달 기술에 대한 지식재산권을 확보하고 있습니다.',
     ogImage: '/images/og/certifications.jpg',
     hreflangs: { ko: '/certifications', en: '/certifications' },
   },

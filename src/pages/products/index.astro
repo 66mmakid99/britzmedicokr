@@ -154,12 +154,12 @@ const orgSchema = {
         headers={['TORR RF', 'ULBLANC', 'LUMINO WAVE']}
         rows={[
           { label: '기술 방식', values: ['멀티웨이브 RF', '저주파·고주파·초음파', '초음파+레이저+고주파'] },
-          { label: '주파수', values: ['1 / 2 / 4 MHz', '1/3MHz + 3/10MHz', 'US + Laser + RF'] },
-          { label: '최대 출력', values: ['200W', '100W', '-'] },
+          { label: '주파수', values: ['1 MHz', '1/3MHz + 3/10MHz', 'US + Laser + RF'] },
+          { label: '최대 출력', values: ['55W (소형 7.5W)', '100W', '-'] },
           { label: '핸드피스', values: ['Face, Body, Eye', 'Face, Eye', 'US+RF / US+Laser'] },
           { label: '크기', values: ['380 x 420 x 1050 mm', '300 x 350 x 450 mm', '-'] },
           { label: '무게', values: ['약 25 kg', '약 12 kg', '-'] },
-          { label: '주요 인증', values: ['FDA, CE, ISO, MFDS', 'CE, ISO, MFDS', 'CE, ISO, MFDS'] },
+          { label: '주요 인증', values: ['FDA 510(k), MFDS, ISO', 'MFDS, ISO', 'MFDS 인허가 진행 중'] },
         ]}
         highlight={0}
       />
@@ -217,7 +217,7 @@ const orgSchema = {
             </svg>
             <p class="text-sm font-bold text-zinc-900 group-hover:text-teal-600 transition-colors duration-300">인증 및 특허</p>
           </div>
-          <p class="text-sm text-zinc-500">FDA, CE, ISO 인증 현황</p>
+          <p class="text-sm text-zinc-500">FDA·MFDS·ISO 인증 현황</p>
         </a>
         <a href="/about" class="group block p-6 bg-white rounded-2xl border border-zinc-200/60 hover:border-teal-200 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
           <div class="flex items-center gap-3 mb-2">

@@ -19,7 +19,7 @@ export const company = {
   social: {
     global: 'https://www.britzmedi.com',
   },
-  certifications: ['FDA 510(k)', 'CE Mark', 'ISO 13485'],
+  certifications: ['FDA 510(k)', 'ISO 13485', 'MFDS'],
   business: {
     ceo: '이신재',
     bizNumber: '682-87-00782',

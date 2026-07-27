@@ -26,7 +26,7 @@ import { organizationSchema } from '@lib/schema';
         브리츠메디는 2019년 설립된 한국의 의료기기 전문 기업으로, 다중 에너지 설계(Multi-Energy Design) 기술로 피부 치료 및 미용 의료기기를 개발합니다.
       </p>
 
-      <TLDRBox content="브리츠메디(BRITZMEDI)는 다중 에너지 설계(Multi-Energy Design) 기술을 보유한 한국 의료기기 기업입니다. 기술 기획·설계를 자체 수행하고, 제조·유통 파트너와 협력하는 구조로 운영됩니다. 2019년 설립 이후 FDA 510(k), CE Mark, ISO 13485, MFDS 인증을 획득하고, 중국·태국·베트남·일본 등 아시아 주요국에 진출하며 글로벌 피부 미용 의료기기 시장에서 성장하고 있습니다." />
+      <TLDRBox content="브리츠메디(BRITZMEDI)는 다중 에너지 설계(Multi-Energy Design) 기술을 보유한 한국 의료기기 기업입니다. 기술 기획·설계를 자체 수행하고, 제조·유통 파트너와 협력하는 구조로 운영됩니다. 2019년 설립 이후 미국 FDA 510(k), 한국 식약처(MFDS) 허가, ISO 13485 인증을 획득하고, 베트남·중국 등 해외 시장 진출을 진행하며 글로벌 피부 미용 의료기기 시장에서 성장하고 있습니다." />
     </div>
   </section>
 
@@ -55,8 +55,8 @@ import { organizationSchema } from '@lib/schema';
                 { label: '대표이사', value: '이신재' },
                 { label: '소재지', value: '경기도 성남시' },
                 { label: '사업 분야', value: '다중 에너지 설계 피부 미용 의료기기 기획·개발' },
-                { label: '주요 인증', value: 'FDA 510(k), CE Mark, ISO 13485' },
-                { label: '글로벌 파트너', value: '40개국 이상' },
+                { label: '주요 인증', value: 'FDA 510(k), MFDS, ISO 13485' },
+                { label: '도입 현황', value: '국내외 도입처 105곳 이상' },
               ].map((row, i) => (
                 <tr class={i % 2 === 0 ? 'bg-white' : 'bg-zinc-50/50'}>
                   <td class="w-1/3 px-5 py-3.5 font-medium text-zinc-900">{row.label}</td>
@@ -77,12 +77,10 @@ import { organizationSchema } from '@lib/schema';
       <div class="space-y-8 border-l-2 border-teal-600 pl-8">
         {[
           { year: '2019', events: ['브리츠메디 설립', '독자적 RF 에너지 전달 기술 개발 착수'] },
-          { year: '2020', events: ['TORR RF 1세대 제품 출시', '국내 의료기기 허가 취득'] },
-          { year: '2021', events: ['CE Mark 인증 획득', '해외 시장 첫 진출 (동남아시아)'] },
-          { year: '2022', events: ['FDA 510(k) 승인', 'ISO 13485 인증 획득', 'ULBLANC 출시'] },
-          { year: '2023', events: ['NEWCHAE 출시', '글로벌 파트너 30개국 돌파'] },
-          { year: '2024', events: ['LUMINO WAVE 출시', 'TORR RF 2세대 업그레이드'] },
-          { year: '2025', events: ['글로벌 파트너 40개국 돌파', '누적 시술 100,000건 달성'] },
+          { year: '2021', events: ['ULBLANC 식약처(MFDS) 인증 (제21-4685호)'] },
+          { year: '2022', events: ['TORR RF 식약처(MFDS) 허가 (제22-156호)', 'TORR RF 미국 FDA 510(k) 인증 (K212561)', 'ISO 13485 인증 획득'] },
+          { year: '2023', events: ['NEWCHAE 뷰티 디바이스 라인 출시'] },
+          { year: '현재', events: ['국내외 도입처 105곳 이상 확보', 'LUMINO WAVE 식약처(MFDS) 인허가 진행 중'] },
         ].map((item) => (
           <div class="relative">
             <div class="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-2 border-teal-600 bg-white"></div>
@@ -104,10 +102,10 @@ import { organizationSchema } from '@lib/schema';
       <h2 class="mb-8 text-center text-2xl font-bold text-zinc-900 md:text-3xl">주요 성과</h2>
       <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
         {[
-          { number: '3+', label: '글로벌 인증' },
-          { number: '20+', label: '특허 보유' },
-          { number: '40+', label: '파트너 국가' },
-          { number: '100K+', label: '누적 시술' },
+          { number: '3종', label: '글로벌 인증 (FDA·MFDS·ISO)' },
+          { number: '105+', label: '국내외 도입처' },
+          { number: '4종', label: '제품 라인' },
+          { number: '2019', label: '설립' },
         ].map((stat) => (
           <div class="rounded-2xl border border-zinc-100 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:shadow-md">
             <p class="text-3xl font-bold text-teal-600 md:text-4xl">{stat.number}</p>
@@ -123,7 +121,7 @@ import { organizationSchema } from '@lib/schema';
     <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <h2 class="mb-4 text-2xl font-bold text-zinc-900 md:text-3xl">글로벌 네트워크</h2>
       <p class="mb-8 text-zinc-600">
-        브리츠메디는 아시아, 유럽, 중동, 남미 등 전 세계 40개국 이상의 디스트리뷰터 및 의료기관과 파트너십을 맺고 있습니다.
+        브리츠메디는 국내 의료기관을 중심으로 105곳 이상의 도입처를 확보하고 있으며, 베트남·중국 등 해외 시장 진출을 진행하고 있습니다.
       </p>
       <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
         {['아시아 태평양', '유럽', '중동 · 아프리카', '남미'].map((region) => (
@@ -141,8 +139,8 @@ import { organizationSchema } from '@lib/schema';
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <FAQSection items={[
         { question: '브리츠메디는 어떤 회사인가요?', answer: '브리츠메디는 2019년 설립된 한국의 의료기기 전문 기업으로, 다중 에너지 설계(Multi-Energy Design) 기술로 피부 치료 및 미용 의료기기를 기획·개발하고 있습니다. 기술 기획·설계를 자체 수행하고, 제조·유통 파트너와 협력하는 구조로 운영됩니다.' },
-        { question: '어디에서 제품을 구매할 수 있나요?', answer: '브리츠메디 제품은 전 세계 40개국 이상의 공식 파트너(디스트리뷰터)를 통해 구매할 수 있습니다. 한국 내에서는 직접 문의를 통해 상담 후 구매 가능합니다.' },
-        { question: '어떤 인증을 보유하고 있나요?', answer: 'FDA 510(k), CE Mark, ISO 13485 등 주요 글로벌 의료기기 인증을 보유하고 있으며, 다수의 RF 기술 관련 특허를 등록하였습니다.' },
+        { question: '어디에서 제품을 구매할 수 있나요?', answer: '한국 내에서는 브리츠메디에 직접 문의하시면 상담 후 구매하실 수 있습니다. 해외는 공식 파트너(디스트리뷰터)를 통해 구매 가능합니다.' },
+        { question: '어떤 인증을 보유하고 있나요?', answer: '미국 FDA 510(k)(K212561), 한국 식약처(MFDS) 허가, ISO 13485 품질경영시스템 인증을 보유하고 있으며, 핵심 에너지 전달 기술에 대한 국내 특허를 등록하였습니다.' },
         { question: '파트너십은 어떻게 문의하나요?', answer: '파트너십 문의 페이지를 통해 문의하실 수 있습니다. 해외 파트너십은 영문 사이트(britzmedi.com)에서도 문의 가능합니다.' },
       ]} />
 

@@ -29,15 +29,6 @@ const certSchema = {
     },
     {
       '@type': 'EducationalOccupationalCredential',
-      credentialCategory: 'CE Mark',
-      name: 'CE Mark (EU Medical Device Regulation)',
-      recognizedBy: {
-        '@type': 'Organization',
-        name: 'European Commission',
-      },
-    },
-    {
-      '@type': 'EducationalOccupationalCredential',
       credentialCategory: 'ISO 13485',
       name: 'ISO 13485:2016 Quality Management System',
       recognizedBy: {
@@ -80,26 +71,23 @@ const certifications = [
     description: "의료기기 품질경영시스템 국제 표준 ISO 13485:2016 인증을 획득(인증번호: MK000197)하였습니다. 인증 범위: 범용전기수술기 및 초음파 자극기의 설계, 개발, 제조, 판매.",
   },
   {
-    name: 'MFDS (식약처)',
-    number: '제허 22-786호',
+    name: 'MFDS 허가 — TORR RF',
+    number: '제22-156호',
     date: '2022년',
     issuer: '식품의약품안전처',
-    description: "한국 식품의약품안전처(MFDS)로부터 의료기기 제조 허가를 취득하여 국내 의료기관에 합법적으로 공급할 수 있습니다.",
+    description: "TORR RF(범용전기수술기)는 한국 식품의약품안전처(MFDS) 허가 제22-156호를 받은 의료기기입니다.",
+  },
+  {
+    name: 'MFDS 인증 — ULBLANC',
+    number: '제21-4685호',
+    date: '2021년',
+    issuer: '식품의약품안전처',
+    description: "ULBLANC은 한국 식품의약품안전처(MFDS) 인증 제21-4685호를 받은 의료기기입니다.",
   },
 ];
 
 const patents = [
-  { title: '피부미용장치 (US20220134094A1)', status: '등록', region: '미국' },
-  { title: '피부미용장치 (미국 특허 2)', status: '등록', region: '미국' },
-  { title: '고주파 온열 치료기 (미국 특허 3)', status: '등록', region: '미국' },
-  { title: '피부미용장치 (일본 특허)', status: '등록', region: '일본' },
-  { title: '초음파와 레이저의 복합 처치 장치', status: '등록', region: '한국' },
-  { title: '고주파 온열 치료장치', status: '등록', region: '한국' },
-  { title: '분할 전극 방식의 고주파 온열 치료장치', status: '등록', region: '한국' },
-  { title: '피부 피시술면 관찰이 가능한 고강도 집속 초음파 장치', status: '등록', region: '한국' },
-  { title: 'LSR-10 관련 기술 특허', status: '등록', region: '한국' },
-  { title: '디자인 특허 (DP24-6106)', status: '출원', region: '한국' },
-  { title: '기타 국내·글로벌 특허 (10건+)', status: '등록/출원', region: '글로벌' },
+  { title: '고주파 에너지 전달 기술 (핵심 특허)', status: '등록', region: '한국' },
 ];
 ---
 
@@ -115,10 +103,10 @@ const patents = [
   <section class="bg-white py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <p class="mb-8 text-lg text-zinc-600">
-        브리츠메디는 FDA 510(k), CE Mark, ISO 13485 등 글로벌 의료기기 인증을 획득하였으며, 다수의 RF 기술 관련 특허를 보유하고 있습니다. 엄격한 품질 관리 체계를 통해 안전하고 신뢰할 수 있는 의료기기를 제조합니다.
+        브리츠메디는 미국 FDA 510(k), 한국 식약처(MFDS) 허가, ISO 13485 인증을 획득하였으며, 핵심 에너지 전달 기술에 대한 국내 특허를 등록하였습니다. ISO 13485 기반 품질 관리 체계를 통해 의료기기를 제조합니다.
       </p>
 
-      <TLDRBox content="브리츠메디는 FDA 510(k)(미국), CE Mark(유럽), ISO 13485(국제 품질경영), MFDS 식약처 허가(한국) 등 글로벌 주요 인증을 모두 보유하고 있습니다. 또한 다중 에너지 설계 관련 국내·글로벌 지식재산권 20건 이상을 등록·출원하였으며, ISO 13485 기반 품질경영시스템을 운영합니다." />
+      <TLDRBox content="브리츠메디는 미국 FDA 510(k)(K212561), 한국 식약처(MFDS) 허가(TORR RF 제22-156호, ULBLANC 제21-4685호), ISO 13485 품질경영시스템 인증을 보유하고 있습니다. 또한 핵심 에너지 전달 기술에 대한 국내 특허를 등록하였으며, 추가 지식재산권 확보를 진행하고 있습니다." />
     </div>
   </section>
 
@@ -154,7 +142,7 @@ const patents = [
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <h2 class="mb-6 text-2xl font-bold text-zinc-900 md:text-3xl">특허 현황</h2>
       <p class="mb-8 text-zinc-600">
-        브리츠메디는 국내·글로벌 지식재산권 20건 이상을 보유하고 있으며, 다중 에너지 설계 관련 특허를 지속적으로 확보하고 있습니다.
+        브리츠메디는 핵심 에너지 전달 기술에 대한 국내 특허를 등록하였으며, 관련 기술의 지식재산권 확보를 지속하고 있습니다.
       </p>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {patents.map((patent) => (
@@ -233,10 +221,10 @@ const patents = [
   <section class="bg-white py-16 md:py-20">
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <FAQSection items={[
-        { question: "브리츠메디는 어떤 인증을 보유하고 있나요?", answer: "브리츠메디는 미국 FDA 510(k), 유럽 CE Mark, 국제 품질경영 표준 ISO 13485, 한국 식약처(MFDS) 허가 등 글로벌 주요 의료기기 인증을 모두 보유하고 있습니다." },
+        { question: "브리츠메디는 어떤 인증을 보유하고 있나요?", answer: "브리츠메디는 미국 FDA 510(k)(K212561), 한국 식약처(MFDS) 허가, ISO 13485 품질경영시스템 인증을 보유하고 있습니다. 제품별 허가·인증 번호는 본 페이지의 인증 현황에서 확인하실 수 있습니다." },
         { question: "FDA 510(k) 인증이란 무엇인가요?", answer: "FDA 510(k)은 미국 식품의약국(FDA)의 의료기기 사전시판 신고 제도입니다. 기존에 시판된 적법한 의료기기(predicate device)와 실질적 동등성을 입증하여 미국 내 합법적인 판매 허가를 받는 과정입니다." },
         { question: "ISO 13485 인증은 무엇을 의미하나요?", answer: "ISO 13485는 의료기기 품질경영시스템(QMS)에 대한 국제 표준입니다. 이 인증은 설계, 개발, 생산, 설치, 서비스 전 과정에서 일관된 품질을 유지하고 규제 요건을 충족함을 의미합니다." },
-        { question: "특허 기술은 어떤 것이 있나요?", answer: "브리츠메디는 피부미용장치, 고주파 온열 치료기, 초음파와 레이저의 복합 처치 장치, 고강도 집속 초음파 장치 등 국내·글로벌 지식재산권 20건 이상을 등록 및 출원하고 있습니다." },
+        { question: "특허 기술은 어떤 것이 있나요?", answer: "브리츠메디는 핵심 고주파 에너지 전달 기술에 대한 국내 특허를 등록하였으며, 관련 기술의 추가 지식재산권 확보를 진행하고 있습니다." },
       ]} />
     </div>
   </section>

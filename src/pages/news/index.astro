@@ -23,6 +23,11 @@ const newsItems = await getAllNews();
     </p>
 
     <!-- 뉴스 목록 (APR newsroom list style) -->
+    {newsItems.length === 0 && (
+      <div class="rounded-2xl border border-zinc-100 bg-zinc-50 py-16 text-center text-zinc-500">
+        등록된 소식이 없습니다. 새로운 소식이 준비되는 대로 이곳에서 안내드리겠습니다.
+      </div>
+    )}
     <div class="divide-y divide-zinc-200">
       {newsItems.map((news) => (
         <a
