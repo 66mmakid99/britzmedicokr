@@ -211,7 +211,7 @@ export const products: ProductData[] = [
     tagline: '초음파 + 레이저 + 고주파 복합 다중 에너지 디바이스',
     firstSentence: '루미노 웨이브(LUMINO WAVE)는 초음파, 레이저, 고주파를 결합한 브리츠메디의 복합 다중 에너지 의료기기로, 초음파가 피부 환경을 열고 레이저·고주파가 침투하는 구조로 같은 효과를 더 낮은 출력으로 구현합니다.',
     tldr: 'LUMINO WAVE는 초음파 + 레이저 + 고주파를 결합한 복합 다중 에너지 디바이스입니다. 초음파가 피부 환경을 먼저 열어주고, 레이저·고주파가 효과적으로 침투하는 구조로 같은 효과를 더 낮은 출력으로 구현합니다. 시술자 숙련도 의존도를 줄이고, 시술 결과의 재현성·안정성을 확보한 것이 핵심 차별점입니다.',
-    heroImage: '/images/products/lumino-wave/luminowave-hero.webp',
+    heroImage: '/images/products/lumino-wave/luminowave-product-01.webp',
     gallery: [],
     videos: [],
     techTitle: '핵심 기술: 복합 다중 에너지 설계',
